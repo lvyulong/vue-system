@@ -32,9 +32,7 @@ export default {
   },
   methods:{
     clickMe(){
-      // this.$http.get('/api/user').then(function(res){
-      //   console.log(res)
-      // })
+   
     }
     
   }

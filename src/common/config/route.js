@@ -14,7 +14,7 @@ import handle from './handle';
 
 export default [
   {state:'foo',type:'blank'},
-  {state:'foo.foo1',beforeEnter:handle.hande1},
+  {state:'foo.foo1'},
   {state:'foo.foo1.foo11'},
   {state:'foo.foo1.foo12'},
 

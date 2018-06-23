@@ -3,14 +3,14 @@ import './assets/style/common.less';
 import './assets/style/main.less';
 
 import Vue from 'vue';
-import VueResource from 'vue-resource';
+
 import Router from 'vue-router';
 
 import App from './App.vue';
 import routes from './routes';
 
 // const router = new Router()
-Vue.use(VueResource);
+
 Vue.use(Router);
 const router = new Router({routes});
 const root = document.createElement('div');

@@ -11,6 +11,7 @@
 </template>
 <script>
 import Vue from 'vue';
+import foo from '../../common/resource/api/foo';
 export default {
   name:'fooFoo1',
   data(){
@@ -20,7 +21,7 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-     Vue.http.get('/api/user').then(function(res){
+     foo.query({}).then(function(res){
       next(vm => {
         // data的属性需要提前声明
         vm.$data.user = res.data;
