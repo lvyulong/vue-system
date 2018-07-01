@@ -8,7 +8,7 @@ const blank = {
   }
 };
 
-var routes = _.filter(config,function(item){
+var routes = _.filter(config.routes,function(item){
   return item.state.indexOf('.') === -1;
 })
 
@@ -73,7 +73,7 @@ function stateToName (route) {
 // 找到使用的组件
 function findUseComponentRoute(route){
   if(route.useComponent){
-    let useRoute = _.findWhere(config,{state:route.useComponent});
+    let useRoute = _.findWhere(config.routes,{state:route.useComponent});
     return findUseComponentRoute(useRoute);
   } else {
     return route;
@@ -83,7 +83,7 @@ function findUseComponentRoute(route){
 // 构造路由数组
 function createRoute(routes){
   routes.map(function(v,k){
-
+    
     // 路由解析
     var stateArray = v.state.split('.');
     var currentState = stateArray[stateArray.length-1];
@@ -109,7 +109,7 @@ function createRoute(routes){
     }
    
     // 子路由
-    var children = _.filter(config,function(item){
+    var children = _.filter(config.routes,function(item){
       var stateArray = item.state.split('.');
       return stateArray[stateArray.length-2] === currentState;
     });
@@ -119,7 +119,9 @@ function createRoute(routes){
         children.push({
           state: `${v.state}.`,
           emptyPath:1,
-          redirect: {name:v.defaultLink}
+          redirect: {
+            name:stateToName({state:v.defaultLink})
+          }
         })
       }
       v.children = children;
@@ -129,5 +131,17 @@ function createRoute(routes){
 }
 
 createRoute(routes);
+
+// 根节点的默认路由
+if(config.default){
+  routes.unshift({
+    path:'',
+    redirect:{
+      name:stateToName({state:config.default})
+    }
+  })
+}
+
+console.log(routes)
 
 export default routes;

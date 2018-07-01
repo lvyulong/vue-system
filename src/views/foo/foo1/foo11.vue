@@ -7,7 +7,6 @@
   </div>
 </template>
 <script>
-
 export default {
   name:'fooFoo1Foo11',
   data(){

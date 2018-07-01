@@ -12,14 +12,16 @@
   
 import handle from './handle';
 
-export default [
-  {state:'foo',type:'blank'},
-  {state:'foo.foo1'},
-  {state:'foo.foo1.foo11'},
-  {state:'foo.foo1.foo12'},
-
-  {state:'bar',type:'blank',defaultLink:'fooFoo1Foo11'},
-  {state:'bar.bar1'},
-  {state:'bar.bar2'},
-
-];
+export default {
+  default:'fooFoo1Foo12',
+  routes:[
+    {state:'foo',type:'blank'},
+    {state:'foo.foo1'},
+    {state:'foo.foo1.foo11'},
+    {state:'foo.foo1.foo12'},
+  
+    {state:'bar',type:'blank',defaultLink:'foo.foo1.foo12'},
+    {state:'bar.bar1'},
+    {state:'bar.bar2'},
+  ]
+};

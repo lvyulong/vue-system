@@ -21,12 +21,13 @@ export default {
     }
   },
   beforeRouteEnter (to, from, next) {
-     foo.query({}).then(function(res){
-      next(vm => {
-        // data的属性需要提前声明
-        vm.$data.user = res.data;
-      });
-    })
+    //  foo.query({}).then(function(res){
+    //   next(vm => {
+    //     // data的属性需要提前声明
+    //     vm.$data.user = res.data;
+    //   });
+    // })
+    next()
   }
 }
 </script>
