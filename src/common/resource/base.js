@@ -45,15 +45,17 @@ export default class Resource {
                         option = Object.assign({}, this[baseOption], selfOption, option);
                         return Vue.http(option)
                     }                    
+                } else {
+                    that[v.name] = function (option) {
+                        var selfOption = {
+                            url: that[url] + config.name + '/' + v.name,
+                            method: v.method
+                        };
+                        option = Object.assign({}, this[baseOption], selfOption, option);
+                        return Vue.http(option)
+                    }
                 }
-                that[v.name] = function (option) {
-                    var selfOption = {
-                        url: that[url] + config.name + '/' + v.name,
-                        method: v.method
-                    };
-                    option = Object.assign({}, this[baseOption], selfOption, option);
-                    return Vue.http(option)
-                }
+                
             })
         }
     }

@@ -13,6 +13,7 @@ const webpackBaseConfig = {
       title:'Vue Demo'
     }),
   ],
+  
   module:{
     rules:[
       // es6语法编译

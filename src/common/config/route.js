@@ -15,6 +15,7 @@ import handle from './handle';
 export default {
   default:'fooFoo1Foo12',
   routes:[
+    {state:'test'},
     {state:'foo',type:'blank'},
     {state:'foo.foo1'},
     {state:'foo.foo1.foo11'},
