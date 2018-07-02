@@ -1,7 +1,10 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 var Api = require('./routes/apis/api');
 
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use('/api',Api);
 
 var server = app.listen(3000,function(){

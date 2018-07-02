@@ -15,6 +15,7 @@
   "author": "Eallon",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "underscore": "^1.9.1",
     "vue": "^2.5.16",
     "vue-resource": "^1.5.1",

@@ -7,7 +7,6 @@
 </template>
 <script>
 import foo from 'app/common/resource/api/foo.js';
-
 export default {
     name:'test',
     data(){
@@ -16,10 +15,32 @@ export default {
         }
     },
     created: function(){
- 
-        foo.test({params:{id:1}}).then(function(res){
+        foo.test({params:{id:2}})
+        .then(function(res){
             console.log(res)
         })
+        .catch(function(err){
+            if(err.response && err.response.data && err.response.data.msg){
+                console.log(err.response.data.msg)
+            }
+        })
+        
+        foo.err({
+            params:{id:2},
+            data:{
+                name:'err',
+                method:'post方法'
+            }
+        })
+        .then(function(res){
+            console.log(res)
+        })
+        .catch(function(err){
+            if(err.response && err.response.data && err.response.data.msg){
+                console.log(err.response.data.msg)
+            }
+        })
     }
+
 }
 </script>

@@ -1,6 +1,7 @@
 import Vue from 'Vue';
-import VueResource from 'vue-resource';
-Vue.use(VueResource);
+// import VueResource from 'vue-resource';
+import axios from 'axios';
+// Vue.use(VueResource);
 /*
 usage:
 Resource类中所有的方法，都只接受一个option对象；
@@ -43,7 +44,7 @@ export default class Resource {
                             method: v.method
                         };
                         option = Object.assign({}, this[baseOption], selfOption, option);
-                        return Vue.http(option)
+                        return axios(option)
                     }                    
                 } else {
                     that[v.name] = function (option) {
@@ -52,7 +53,7 @@ export default class Resource {
                             method: v.method
                         };
                         option = Object.assign({}, this[baseOption], selfOption, option);
-                        return Vue.http(option)
+                        return axios(option)
                     }
                 }
                 
@@ -67,7 +68,7 @@ export default class Resource {
             method: 'GET'
         };
         option = Object.assign({}, this[baseOption], selfOption, option);
-        return Vue.http(option);
+        return axios(option);
     }
     // view
     get(option) {
@@ -76,7 +77,7 @@ export default class Resource {
             method: 'GET'
         };
         option = Object.assign({}, this[baseOption], selfOption, option);
-        return Vue.http(option);
+        return axios(option);
     }
     // create
     save(option) {
@@ -85,7 +86,7 @@ export default class Resource {
             method: 'POST'
         };
         option = Object.assign({}, this[baseOption], selfOption, option);
-        return Vue.http(option);
+        return axios(option);
     }
     // update
     update(option) {
@@ -94,7 +95,7 @@ export default class Resource {
             method: 'PUT'
         };
         option = Object.assign({}, this[baseOption], selfOption, option);
-        return Vue.http(option);
+        return axios(option);
     }
     //delete
     delete(option) {
@@ -103,6 +104,6 @@ export default class Resource {
             method: 'DELETE'
         };
         option = Object.assign({}, this[baseOption], selfOption, option);
-        return Vue.http(option);
+        return axios(option);
     }
 }
