@@ -13,6 +13,11 @@ const webpackBaseConfig = {
       title:'Vue Demo'
     }),
   ],
+  resolve:{
+    alias: {
+      app: path.resolve(__dirname, '../src/'),
+    }
+  },
   module:{
     rules:[
       // es6语法编译

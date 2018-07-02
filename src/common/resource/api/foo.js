@@ -1,9 +1,10 @@
-import Resource from '../base';
+import Resource from 'app/common/resource/base';
 
-const money = new Resource({
+const foo = new Resource({
     name: 'foo',
-    actions:[
-        {name:'getAll',method:'GET'}
+    actions: [
+        {name:'test/:id',method:'get'}
     ]
 });
-export default money;
+
+export default foo;

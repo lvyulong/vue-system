@@ -10,16 +10,19 @@
 // meta:元信息，未封装
 // beforeEnter 此处只能做一些认证之类的操作，但是无法往组件里面传数据；推荐在组件内使用beforeRouterEnter操作，next可以有回调;
   
-import handle from './handle';
+import handle from 'app/common/config/handle';
 
-export default [
-  {state:'foo',type:'blank'},
-  {state:'foo.foo1'},
-  {state:'foo.foo1.foo11'},
-  {state:'foo.foo1.foo12'},
-
-  {state:'bar',type:'blank',defaultLink:'fooFoo1Foo11'},
-  {state:'bar.bar1'},
-  {state:'bar.bar2'},
-
-];
+export default {
+  default:'fooFoo1Foo12',
+  routes:[
+    {state:'test'},
+    {state:'foo',type:'blank'},
+    {state:'foo.foo1'},
+    {state:'foo.foo1.foo11'},
+    {state:'foo.foo1.foo12'},
+  
+    {state:'bar',type:'blank',defaultLink:'foo.foo1.foo12'},
+    {state:'bar.bar1'},
+    {state:'bar.bar2'},
+  ]
+};
