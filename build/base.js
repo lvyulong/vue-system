@@ -36,6 +36,11 @@ const webpackBaseConfig = {
           options:{}
         }
       },
+      // css文件编译
+      {
+        test:/\.css$/,
+        use:['style-loader','css-loader','postcss-loader']
+      },
       // 图片处理
       {
         test:/\.(jpe?g|png|svg|gif)$/,
@@ -51,7 +56,6 @@ const webpackBaseConfig = {
       // 字体处理
       {
         test:/\.(woff2?|eot|ttf|svg|otf)$/,
-        include: [path.resolve(__dirname,'../src/assets/font')],
         use:{
           loader:'url-loader',
           options:{

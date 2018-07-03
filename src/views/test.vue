@@ -19,11 +19,6 @@ export default {
         .then(function(res){
             console.log(res)
         })
-        .catch(function(err){
-            if(err.response && err.response.data && err.response.data.msg){
-                console.log(err.response.data.msg)
-            }
-        })
         
         foo.err({
             params:{id:2},

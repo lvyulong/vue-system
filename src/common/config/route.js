@@ -16,6 +16,7 @@ export default {
   default:'fooFoo1Foo12',
   routes:[
     {state:'test'},
+    {state:'login'},
     {state:'foo',type:'blank'},
     {state:'foo.foo1'},
     {state:'foo.foo1.foo11'},

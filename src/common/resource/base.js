@@ -1,7 +1,11 @@
-import Vue from 'Vue';
-// import VueResource from 'vue-resource';
+
 import axios from 'axios';
-// Vue.use(VueResource);
+import interceptor from './interceptor';
+
+// http拦截器
+axios.interceptors.request.use(interceptor.request.success,interceptor.request.error);
+axios.interceptors.response.use(interceptor.response.success,interceptor.response.error);
+
 /*
 usage:
 Resource类中所有的方法，都只接受一个option对象；
