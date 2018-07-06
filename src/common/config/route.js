@@ -9,21 +9,27 @@
 // props ：设置为true，route.params 将会被设置为组件属性；如果 props 是一个对象，它会被按原样设置为组件属性。
 // meta:元信息，未封装
 // beforeEnter 此处只能做一些认证之类的操作，但是无法往组件里面传数据；推荐在组件内使用beforeRouterEnter操作，next可以有回调;
-  
+
 import handle from 'app/common/config/handle';
 
 export default {
-  default:'fooFoo1Foo12',
-  routes:[
-    {state:'test'},
-    {state:'login'},
-    {state:'foo',type:'blank'},
-    {state:'foo.foo1'},
-    {state:'foo.foo1.foo11'},
-    {state:'foo.foo1.foo12'},
-  
-    {state:'bar',type:'blank',defaultLink:'foo.foo1.foo12'},
-    {state:'bar.bar1'},
-    {state:'bar.bar2'},
+  default: 'appUserIndex',
+  routes: [
+    // 登陆
+    { state: 'login' },
+
+    // 应用主体
+    { state: 'app' },
+    // 我的账户
+    { state: 'app.user', type: 'blank' },
+    { state: 'app.user.index' },
+    // 我的计划
+    { state: 'app.plan', type: 'blank' },
+    // 前端
+    { state: 'app.plan.forward', type: 'blank' },
+    { state: 'app.plan.forward.index' },
+    // 后端
+    { state: 'app.plan.backward', type: 'blank' },
+    { state: 'app.plan.backward.index' }
   ]
 };

@@ -1,5 +1,4 @@
 
-import 'app/assets/style/common.less';
 import 'app/assets/style/main.less';
 
 import Vue from 'vue';

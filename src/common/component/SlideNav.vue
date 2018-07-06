@@ -45,36 +45,44 @@
   </div>
 </template>
 <script>
-  export default {
-    name: "SlideNav",
-    data() {
-      return {};
-    },
-    props: ["data", "defaultActive", "collapse", "uniqueOpened", "backgroundColor", "textColor", "activeTextColor"],
-    methods: {
-      handleOpen: function () {
-      },
-      handleClose: function () {
-      },
-      handleSelect: function (index, path) {
-      }
-    },
-    mounted: function () {
-      this.$router.push(this.defaultActive)
-    }
-  };
+export default {
+  name: "SlideNav",
+  data() {
+    return {};
+  },
+  props: [
+    "data",
+    "defaultActive",
+    "collapse",
+    "uniqueOpened",
+    "backgroundColor",
+    "textColor",
+    "activeTextColor"
+  ],
+  methods: {
+    handleOpen: function() {},
+    handleClose: function() {},
+    handleSelect: function(index, path) {}
+  },
+  mounted: function() {
+    this.$router.push(this.defaultActive);
+  }
+};
 </script>
-<style scoped>
-  .el-menu {
-    border-right: 0 !important;
-  }
+<style lang="less" scoped>
+.el-menu {
+  border-right: 0 !important;
+}
 
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-  }
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+}
 
-  .el-submenu__icon-arrow, .el-icon-arrow-down {
-    color: white !important;
-  }
+
+
+.el-submenu__icon-arrow,
+.el-icon-arrow-down {
+  color: white !important;
+}
 </style>
 
