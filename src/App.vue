@@ -6,7 +6,11 @@
           <el-aside>
             <div class="padding">
                <div><img src="./assets/image/logo.jpg" class="logo"></div>
-               <div class="mt10 white f18">Eallon</div>
+               <div class="mt10 white f18 title">
+                   <transition name="fade">
+                     <div class="title-words" v-show="!collapse">Vue </div>
+                   </transition>
+               </div>
             </div>
             <slide-nav
               :data="navConfigs"
@@ -25,7 +29,12 @@
           <el-container class="container">
             <!-- 顶部工具栏 -->
             <el-header>
-                <img src="./assets/image/logo.jpg" class="logo">
+                <span>
+                  欢迎，
+                  <router-link :to="{name:'appUserIndex'}">
+                    <strong>{{user}}</strong>
+                  </router-link>
+                  </span>
                 <a href="#" class="pull-right" @click="logout()">退出</a>
             </el-header>
             <!-- 主内容区 -->
@@ -49,7 +58,8 @@ export default {
   data() {
     return {
       collapse: false,
-      navConfigs: navs
+      navConfigs: navs,
+      user:'Eallon'
     };
   },
   methods: {
@@ -72,6 +82,15 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+
+.title{
+ min-height: 2rem;
+ padding: 1rem 0;
+}
+.title-words {
+  max-width: 172px;
+  white-space: pre-wrap;
+}
 .logo {
   width: 50px;
   height: 50px;

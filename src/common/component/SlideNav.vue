@@ -109,5 +109,6 @@ export default {
 .router-active {
   background-color: darken(#5699eb, 5%) !important;
 }
+
 </style>
 
