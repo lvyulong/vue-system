@@ -9,8 +9,20 @@ export default [
     icon: 'el-icon-goods font20',
     path: '/app/plan/forward',
     children: [
-      {path: '/app/plan/forward/index', label: '前端'},
-      {path: '/app/plan/backward/index', label: '后端'},
+      {
+        name: '技术',
+        items:[
+          {path: '/app/plan/forward/index', label: '前端'},
+          {path: '/app/plan/backward/index', label: '后端'},
+        ]
+      },
+      {
+        name: '健康',
+        items:[
+          {path: '/app/plan/sport/index', label: '运动'},
+          {path: '/app/plan/rest/index', label: '休息'},
+        ]
+      },
     ]
   },
 ]

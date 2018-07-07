@@ -10,7 +10,6 @@
             </div>
             <slide-nav
               :data="navConfigs"
-              default-active="/app/user/index"
               :collapse="collapse"
               :unique-opened="true"
               text-color="#ccc"

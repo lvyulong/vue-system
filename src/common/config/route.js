@@ -30,6 +30,12 @@ export default {
     { state: 'app.plan.forward.index' },
     // 后端
     { state: 'app.plan.backward', type: 'blank' },
-    { state: 'app.plan.backward.index' }
+    { state: 'app.plan.backward.index' },
+    // 运动
+    { state: 'app.plan.sport', type: 'blank' },
+    { state: 'app.plan.sport.index' },
+    // 休息
+    { state: 'app.plan.rest', type: 'blank' },
+    { state: 'app.plan.rest.index' }
   ]
 };
