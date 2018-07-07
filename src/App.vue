@@ -8,7 +8,7 @@
                <div><img src="./assets/image/logo.jpg" class="logo"></div>
                <div class="mt10 white f18 title">
                    <transition name="fade">
-                     <div class="title-words" v-show="!collapse">Vue </div>
+                     <div class="title-words" v-show="!collapse">Demo</div>
                    </transition>
                </div>
             </div>
