@@ -32,11 +32,11 @@ export default class Resource {
             var that = this;
             config.actions.map(function (v, k) {
                 // 如果有形如/:id的参数
-                if(v.name.indexOf('/:')!=-1){
-                    var names = v.name.split('/:');
+                if(v.url.indexOf('/:')!=-1){
+                    var names = v.url.split('/:');
                     var actionName = names[0];
                     var actionParam = names[1];
-                    that[actionName] = function (option) {
+                    that[v.name] = function (option) {
                         if(!option.params){
                             option.params = {};                       
                         }
@@ -44,7 +44,7 @@ export default class Resource {
                             option.params[actionParam] = ''
                         }
                         var selfOption = {
-                            url: that[url] + config.name + '/' + actionName + '/' + option.params[actionParam],
+                            url: that[url] + config.url + '/' + actionName + '/' + option.params[actionParam],
                             method: v.method
                         };
                         option = Object.assign({}, this[baseOption], selfOption, option);
@@ -53,7 +53,7 @@ export default class Resource {
                 } else {
                     that[v.name] = function (option) {
                         var selfOption = {
-                            url: that[url] + config.name + '/' + v.name,
+                            url: that[url] + config.url + '/' + v.url,
                             method: v.method
                         };
                         option = Object.assign({}, this[baseOption], selfOption, option);
@@ -68,7 +68,7 @@ export default class Resource {
     // index方法，注意传参顺序
     query(option) {
         var selfOption = {
-            url: this[url] + this.config.name,
+            url: this[url] + this.config.url,
             method: 'GET'
         };
         option = Object.assign({}, this[baseOption], selfOption, option);
@@ -77,7 +77,7 @@ export default class Resource {
     // view
     get(option) {
         var selfOption = {
-            url: this[url] + this.config.name + '/{id}',
+            url: this[url] + this.config.url + '/{id}',
             method: 'GET'
         };
         option = Object.assign({}, this[baseOption], selfOption, option);
@@ -86,7 +86,7 @@ export default class Resource {
     // create
     save(option) {
         var selfOption = {
-            url: this[url] + this.config.name,
+            url: this[url] + this.config.url,
             method: 'POST'
         };
         option = Object.assign({}, this[baseOption], selfOption, option);
@@ -95,7 +95,7 @@ export default class Resource {
     // update
     update(option) {
         var selfOption = {
-            url: this[url] + this.config.name + '/{id}',
+            url: this[url] + this.config.url + '/{id}',
             method: 'PUT'
         };
         option = Object.assign({}, this[baseOption], selfOption, option);
@@ -104,7 +104,7 @@ export default class Resource {
     //delete
     delete(option) {
         var selfOption = {
-            url: this[url] + this.config.name + '/{id}',
+            url: this[url] + this.config.url + '/{id}',
             method: 'DELETE'
         };
         option = Object.assign({}, this[baseOption], selfOption, option);

@@ -17,7 +17,8 @@ const webpackBaseConfig = {
   resolve:{
     alias: {
       app: path.resolve(__dirname, '../src/'),
-    }
+    },
+    extensions: ['.js', '.vue', '.json']
   },
   module:{
     rules:[

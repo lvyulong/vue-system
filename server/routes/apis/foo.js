@@ -13,7 +13,8 @@ router.get('/',function(req,res,next){
 })
 router.get('/test/:id',function(req,res,next){
   var data = {
-    name: 'test'
+    name:'foo/test',
+    param:req.params || 'nothing'
   }
   res.send(data);
   // res.status(501).send({msg:'服务器错误'})
