@@ -19,9 +19,9 @@ export default {
     { state: 'login' },
 
     // 应用主体
-    { state: 'app' },
+    { state: 'app', defaultLink: 'app.user.index' },
     // 我的账户
-    { state: 'app.user', type: 'blank' },
+    { state: 'app.user', type: 'blank', defaultLink: 'app.user.index' },
     { state: 'app.user.index' },
     // 我的计划
     { state: 'app.plan', type: 'blank' },

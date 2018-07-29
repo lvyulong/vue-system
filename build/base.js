@@ -17,6 +17,10 @@ const webpackBaseConfig = {
   resolve:{
     alias: {
       app: path.resolve(__dirname, '../src/'),
+      // 快捷用法：api、image、style
+      api: path.resolve(__dirname, '../src/common/resource/api/'),
+      image: path.resolve(__dirname, '../src/assets/image/'),
+      style: path.resolve(__dirname, '../src/assets/style/'),
     },
     extensions: ['.js', '.vue', '.json']
   },

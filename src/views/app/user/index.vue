@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import fooApi from 'app/common/resource/api/fooApi';
+import fooApi from 'api/fooApi';
 export default {
   name: "appUserIndex",
   data() {
