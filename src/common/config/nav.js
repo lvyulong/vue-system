@@ -10,7 +10,8 @@ export default [
     {
         label: '我的计划',
         icon: 'fa fa-file-text font20',
-        path: '/app/plan/forward',
+        // 有子菜单的话，此处设置的path似乎点击没有路由的跳转，只是一个容器；
+        path: '/app/plan/forward/index',
         active: '/app/plan',
         children: [
             {

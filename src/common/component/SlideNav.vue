@@ -88,6 +88,8 @@
         },
         mounted: function () {
             this.currentPath = this.$route.path;
+
+
         },
         watch: {
             // 监听路由变化

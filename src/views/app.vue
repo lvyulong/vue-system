@@ -5,7 +5,9 @@
             <!-- 侧边导航栏 -->
             <el-aside>
                 <div class="padding">
-                    <div><img src="~image/logo.jpg" class="logo"></div>
+                    <div>
+                        <img :src="sys.sysLogo" class="logo">
+                    </div>
                     <div class="mt10 white f18 title">
                         <transition name="fade">
                             <div class="title-words" v-show="!collapse">{{sys.sysName}}</div>
@@ -42,9 +44,9 @@
                     <router-view></router-view>
                 </el-main>
                 <!-- 底部 -->
-                <el-footer>
-                    <p class="font12">备案号：</p>
-                </el-footer>
+                <!--<el-footer>-->
+                    <!--<p class="font12">备案号：</p>-->
+                <!--</el-footer>-->
             </el-container>
         </el-container>
     </div>
@@ -123,6 +125,10 @@
         min-width: 64px;
         position: relative;
         height: 100vh;
+    }
+    .el-main{
+        height: 80vh;
+        overflow: scroll;
     }
 
     .swich {

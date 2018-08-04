@@ -69,12 +69,12 @@
 </template>
 
 <script>
-    import appUserApi from 'api/appUserApi';
+    import userApi from 'api/userApi';
     export default {
         name: "appUserIndex",
         data() {
             return {
-                pageListApi:appUserApi,
+                pageListApi:userApi,
                 search: {}
             }
         },
