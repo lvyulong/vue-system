@@ -13,7 +13,7 @@
 import handle from 'app/common/config/handle';
 
 export default {
-  default: 'appUserIndex',
+  default: 'app.user.index',
   routes: [
     // 登陆
     { state: 'login' },

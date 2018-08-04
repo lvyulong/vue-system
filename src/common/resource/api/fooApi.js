@@ -5,8 +5,8 @@ const fooApi = new Resource({
     actions: [
         {
             name:'test',
+            url:'test/:id',
             method:'get',
-            url:'test/:id'
         },
         {
             name:'error',
