@@ -23,6 +23,8 @@ export default {
     // 我的账户
     { state: 'app.user', type: 'blank', defaultLink: 'app.user.index' },
     { state: 'app.user.index' },
+    { state: 'app.user.new' },
+    { state: 'app.user.edit' ,params:'/:id'},
     // 我的计划
     { state: 'app.plan', type: 'blank' },
     // 前端

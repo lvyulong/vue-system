@@ -5,7 +5,7 @@
         </div>
         <div class="page-content">
             <page-list :pageListApi="pageListApi">
-                <template  slot-scope="slotScope">
+                <template slot-scope="slotScope">
                     <el-table :data="slotScope.list"
                               border
                               size="mini"
@@ -70,15 +70,22 @@
 
 <script>
     import userApi from 'api/userApi';
+
     export default {
         name: "appUserIndex",
         data() {
             return {
-                pageListApi:userApi,
-                search: {}
+                pageListApi: userApi,
+                search: {},
             }
         },
+        computed: {
+
+        },
         methods: {
+
+        },
+        mounted: function () {
 
         }
     };

@@ -13,6 +13,11 @@ const authApi = new Resource({
             url:'logout',
             method:'POST',
         },
+        {
+            name:'current',
+            url:'current',
+            method:'GET',
+        },
     ]
 });
 

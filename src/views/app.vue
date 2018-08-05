@@ -34,7 +34,7 @@
                 <span>
                   欢迎，
                   <router-link :to="{name:'appUserIndex'}">
-                    <strong>{{user.name}}</strong>
+                    <strong>{{(local.user&&local.user.name) || '未知用户'}}</strong>
                   </router-link>
                   </span>
                     <a href="#" class="pull-right" @click="logout()">退出</a>
@@ -45,7 +45,7 @@
                 </el-main>
                 <!-- 底部 -->
                 <!--<el-footer>-->
-                    <!--<p class="font12">备案号：</p>-->
+                <!--<p class="font12">备案号：</p>-->
                 <!--</el-footer>-->
             </el-container>
         </el-container>
@@ -55,19 +55,23 @@
 <script>
     import SlideNav from "app/common/component/SlideNav.vue";
     import navs from "app/common/config/nav";
-    // import authApi from 'api/authApi';
+    import authApi from 'api/authApi';
     import sys from 'app/common/config/sys';
+    import {mapState} from 'vuex';
+
     export default {
         name: "App",
         data() {
             return {
                 collapse: false,
                 navConfigs: navs,
-                user: {
-                    name: 'Eallon'
-                },
-                sys: sys
+                sys: sys,
             };
+        },
+        computed: {
+            ...mapState([
+                'local'
+            ])
         },
         methods: {
             logout: function () {
@@ -84,7 +88,12 @@
             SlideNav
         },
         beforeRouteEnter: (to, from, next) => {
-            next();
+            authApi.current().then(function (res) {
+                next((vm) => {
+                    vm.$store.commit('setLocal', res.data);
+                });
+            });
+
         }
     };
 </script>
@@ -126,7 +135,8 @@
         position: relative;
         height: 100vh;
     }
-    .el-main{
+
+    .el-main {
         height: 80vh;
         overflow: scroll;
     }

@@ -1,7 +1,5 @@
 // 全局可调用的数据
-window.global_data = {
-
-};
+window.global_data = {};
 
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -14,13 +12,16 @@ import 'app/assets/style/main.less';
 import App from 'app/App.vue';
 import routes from 'app/routes';
 import 'app/common/config/global';
-// import store from 'app/common/config/store';
+import storeConfig from 'app/common/store/index';
 
 
 // 使用插件
 Vue.use(Router);
 Vue.use(ElementUI);
+Vue.use(Vuex);
 
+// vuex状态
+const store = new Vuex.Store(storeConfig);
 
 // 路由
 const router = new Router({routes});
@@ -28,11 +29,11 @@ const router = new Router({routes});
 const root = document.createElement('div');
 document.body.appendChild(root);
 const vm = new Vue({
-  render:(h)=>{
-    return h(App)
-  },
-  router,
-  // store
+    render: (h) => {
+        return h(App)
+    },
+    router,
+    store
 });
 vm.$mount(root);
 

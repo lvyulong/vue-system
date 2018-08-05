@@ -1,6 +1,6 @@
 var router = require('express').Router();
 
-var apis = ['foo','bar']
+var apis = ['user','auth']
 
 
 router.use(function(req,res,next){
