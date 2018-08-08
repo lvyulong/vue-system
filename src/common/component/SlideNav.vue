@@ -107,16 +107,13 @@
     .el-menu {
         border-right: 0 !important;
     }
-
     .el-menu-vertical-demo:not(.el-menu--collapse) {
         width: 200px;
     }
-
     .el-submenu__icon-arrow,
     .el-icon-arrow-down {
         color: white !important;
     }
-
     .router-active {
         background-color: darken(#5699eb, 5%) !important;
     }

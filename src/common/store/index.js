@@ -7,12 +7,12 @@ const storeConfig = {
 
     },
     mutations:{
-        setLocal(state,data){
-            state.local = data;
+        setProp(state,data){
+            state[data.key] = data.val;
         }
     },
     actions:{
 
     }
-}
+};
 export default storeConfig;

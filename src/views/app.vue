@@ -90,7 +90,10 @@
         beforeRouteEnter: (to, from, next) => {
             authApi.current().then(function (res) {
                 next((vm) => {
-                    vm.$store.commit('setLocal', res.data);
+                    vm.$store.commit('setProp', {
+                        key:'local',
+                        val:res.data
+                    });
                 });
             });
 
