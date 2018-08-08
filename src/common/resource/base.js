@@ -38,7 +38,7 @@ export default class Resource {
                     var actionParam = names[1];
                     that[v.name] = function (option) {
                         if(!option.params){
-                            option.params = {};                       
+                            option.params = {};
                         }
                         if(!option.params[actionParam]){
                             option.params[actionParam] = ''
@@ -49,7 +49,7 @@ export default class Resource {
                         };
                         option = Object.assign({}, this[baseOption], selfOption, option);
                         return axios(option)
-                    }                    
+                    }
                 } else {
                     that[v.name] = function (option) {
                         var selfOption = {
@@ -60,7 +60,7 @@ export default class Resource {
                         return axios(option)
                     }
                 }
-                
+
             })
         }
     }
@@ -77,7 +77,7 @@ export default class Resource {
     // view
     get(option) {
         var selfOption = {
-            url: this[url] + this.config.url + '/{id}',
+            url: this[url] + this.config.url + '/' + option.params.id,
             method: 'GET'
         };
         option = Object.assign({}, this[baseOption], selfOption, option);
@@ -94,8 +94,9 @@ export default class Resource {
     }
     // update
     update(option) {
+        var id = (option.params&&option.params.id) || (option.data&&option.data.id);
         var selfOption = {
-            url: this[url] + this.config.url + '/{id}',
+            url: this[url] + this.config.url + '/' +  id,
             method: 'PUT'
         };
         option = Object.assign({}, this[baseOption], selfOption, option);
@@ -103,8 +104,9 @@ export default class Resource {
     }
     //delete
     delete(option) {
+        var id = (option.params&&option.params.id) || (option.data&&option.data.id);
         var selfOption = {
-            url: this[url] + this.config.url + '/{id}',
+            url: this[url] + this.config.url + '/' + id,
             method: 'DELETE'
         };
         option = Object.assign({}, this[baseOption], selfOption, option);
