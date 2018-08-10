@@ -2,7 +2,8 @@ import Vue from 'vue';
 import Back from 'app/common/component/Back';
 import pageList from 'app/common/component/pageList';
 import gender from 'app/common/filter/gender';
-
+import isEnable from 'app/common/filter/isEnable';
+import propMap from 'app/common/filter/propMap';
 // 组件
 const config = {
     component: [
@@ -13,7 +14,9 @@ const config = {
     directive: [],
 
     filter: [
-        {name: 'gender', filter: gender}
+        {name: 'gender', filter: gender},
+        {name: 'isEnable', filter: isEnable},
+        {name: 'propMap', filter: propMap},
     ]
 };
 

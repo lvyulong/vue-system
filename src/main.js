@@ -1,6 +1,5 @@
-// 全局可调用的数据
-window.global_data = {};
 
+// (第三方)库
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Router from 'vue-router';
@@ -8,13 +7,28 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'font-awesome/less/font-awesome.less';
 import 'app/assets/style/main.less';
-
+// 自定义文件
 import App from 'app/App.vue';
 import routes from 'app/routes';
 import 'app/common/config/global';
 import storeConfig from 'app/common/store/index';
+import myTool from 'app/common/myTool/index';
+import underscore from 'underscore';
 
-
+window.global_data = {
+    //除非需要写死域名的地方才会用到，否则需用location.origin动态获取
+    domain:{
+        dev:'',
+        prod:'',
+    },
+    // 开发环境本机的ip
+    devIp: ''
+};
+if (location.hostname === 'localhost' || location.hostname === global_data.devIp) {
+    global_data.isDev = 1;
+}
+window.myTool = myTool;
+window._ = underscore;
 // 使用插件
 Vue.use(Router);
 Vue.use(ElementUI);
