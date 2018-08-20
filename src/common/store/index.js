@@ -1,18 +1,13 @@
-
 const storeConfig = {
-    state:{
-        local:{}
+    state: {
+        local: {}
     },
-    getters:{
-
-    },
-    mutations:{
-        setProp(state,data){
+    getters: {},
+    mutations: {
+        setProp(state, data) {
             state[data.key] = data.val;
         }
     },
-    actions:{
-
-    }
+    actions: {}
 };
 export default storeConfig;

@@ -1,16 +1,16 @@
 <template>
     <div class="user-bg">
         <div class="logo">
-            <img src="~image/login/logo.png" style="width: 200px">
+            <!--<img src="~image/login/logo.png" style="width: 200px">-->
         </div>
         <el-card class="user-panel">
             <!--二维码容器-->
 
             <div class="panel-body">
-                <div id="wx_reg" style="text-align: center" v-if="!key"></div>
-                <div v-if="key" style="text-align: center">
-                    正在登录...
-                </div>
+                登录页面
+            </div>
+            <div>
+                <el-button type="primary" plain @click="login">进入系统</el-button>
             </div>
         </el-card>
     </div>
@@ -24,39 +24,17 @@
                 key: ''
             };
         },
-        methods: {},
-        mounted: function () {
-            var that = this;
-            var origin = location.origin;
-            var key = location.href.split('key=')[1];
-            if (key) {
-                this.key = key;
-                authApi.login({data: {key: this.key}}).then(function (res) {
-                    that.$router.push({name:'appUserIndex'});
+        methods: {
+            login(){
+                let that = this;
+                authApi.login().then(function () {
+                    that.$router.push({name:'appUserIndex'})
+
                 })
-            } else {
-                var domain = origin;
-                // 如果是本地开发环境，换成开发服务器域名
-                if (/localhost/.test(domain) || /10\.21\.109\.77/.test(domain)) {
-                    domain = global_data.domain.dev;
-                }
-                getConfig();
-                setInterval(getConfig,120000);
-                function getConfig() {
-                    authApi.wxConfig().then(function (res) {
-                        var data = res.data.data;
-                        var option = {
-                            "id": "wx_reg",
-                            "appid": data.appId,
-                            "agentid": data.agentId,
-                            "redirect_uri": encodeURIComponent(`${domain}/api/admin/auth/access-code`),
-                            "state": encodeURIComponent(`${data.state}|${location.href}`),
-                            "href": "",
-                        };
-                        window.WwLogin(option);
-                    });
-                }
             }
+        },
+        mounted: function () {
+
         }
     };
 </script>
@@ -93,4 +71,3 @@
         }
     }
 </style>
-

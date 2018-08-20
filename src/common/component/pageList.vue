@@ -54,9 +54,9 @@
                 })
             },
             // 获取列表数据
-            getList(search) {
+            getList() {
                 var that = this;
-                this.pageListApi.query({params: search}).then(function (res) {
+                this.pageListApi.query({params: this.search}).then(function (res) {
                     that.list = res.data.items;
                     that.meta = res.data['_meta'];
                 });
@@ -64,15 +64,15 @@
         },
         created: function () {
             // 初始化页面
-            this.search = this.$route.query;
-            this.getList(this.search);
+            this.search = Object.assign({},this.$route.query);
+            this.getList();
         },
         watch: {
             // 监听路由，刷新列表
             $route: {
                 handler(n, o) {
-                    this.search = this.$route.query;
-                    this.getList(this.search);
+                    this.search = Object.assign({},this.$route.query);
+                    this.getList();
                 },
                 deep: true
             }

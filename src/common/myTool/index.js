@@ -105,7 +105,7 @@ function clearInvalidProp(obj) {
 //将对象转化成url的查询字符串
 function toUrlString(obj) {
     var str = '';
-    for (key in obj){
+    for (var key in obj){
         str += key + '=' + obj[key] + '&';
     }
     str = str.substr(0,str.length-1);

@@ -20,6 +20,7 @@ const webpackBaseConfig = {
             app: path.resolve(__dirname, '../src/'),
             // 快捷用法：api、image、style
             api: path.resolve(__dirname, '../src/common/resource/api/'),
+            component: path.resolve(__dirname, '../src/common/component/'),
             image: path.resolve(__dirname, '../src/assets/image/'),
             style: path.resolve(__dirname, '../src/assets/style/'),
         },

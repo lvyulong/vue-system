@@ -76,8 +76,8 @@
         methods: {
             logout: function () {
                 var that = this;
-                auth.logout().then(function () {
-                    this.$router.push({name: "Login"});
+                authApi.logout().then(function () {
+                    that.$router.push({name: "login"});
                 });
             },
             collapse_switch: function () {
@@ -91,8 +91,8 @@
             authApi.current().then(function (res) {
                 next((vm) => {
                     vm.$store.commit('setProp', {
-                        key:'local',
-                        val:res.data
+                        key: 'local',
+                        val: res.data && res.data.data
                     });
                 });
             });

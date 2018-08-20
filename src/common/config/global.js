@@ -4,11 +4,14 @@ import pageList from 'app/common/component/pageList';
 import gender from 'app/common/filter/gender';
 import isEnable from 'app/common/filter/isEnable';
 import propMap from 'app/common/filter/propMap';
+import timestampTotime from 'app/common/filter/timestampTotime';
+import QrcodeVue from 'qrcode.vue';
 // 组件
 const config = {
     component: [
         {name: 'back', component: Back},
         {name: 'pageList', component: pageList},
+        {name: 'qrcode', component: QrcodeVue},
     ],
 
     directive: [],
@@ -17,6 +20,7 @@ const config = {
         {name: 'gender', filter: gender},
         {name: 'isEnable', filter: isEnable},
         {name: 'propMap', filter: propMap},
+        {name: 'timestampTotime', filter: timestampTotime},
     ]
 };
 

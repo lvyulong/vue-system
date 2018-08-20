@@ -25,12 +25,12 @@ const webpackDevConfig = merge(webpackBaseConfig, {
         // 启动模块热更新
         hot: true,
         proxy: {
-            // "/api": {
-            //   target: "http://localhost:3000",
-            //   pathRewrite: {"^/api" : ""}
-            // }
-            "/api": "http://localhost:3000",
-            changeOrigin: true
+            "/api": {
+                target: "http://localhost:3000",
+                // pathRewrite: {"^/api" : ""},
+                changeOrigin: true
+            }
+
         }
     },
     plugins: [

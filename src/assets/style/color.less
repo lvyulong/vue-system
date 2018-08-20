@@ -1,21 +1,38 @@
 @import 'variable.less';
 // color 字体色
 .red {
-    color: @red;
+  color: @red;
+}
+
+.green {
+  color: @green;
 }
 
 .white {
-    color: @white;
+  color: @white;
 }
 
+.gray {
+  color: @gray;
+}
+
+.primary {
+  color: @primary;
+}
+
+.orange {
+  color: @orange;
+}
 
 // bg-color 背景色
-.bg(@color:@red){
+.bg(@color:@red) {
   background-color: @color;
 }
-.bg-white{
+
+.bg-white {
   .bg(@white)
 }
-.bg-gray{
+
+.bg-gray {
   .bg(@bgGray);
 }
