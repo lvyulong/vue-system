@@ -29,7 +29,7 @@ const webpackProdConfig = merge(webpackBaseConfig, {
             chunkFilename: 'style/[id].[hash].css'
         }),
         // 压缩css文件
-        // new OptimizeCssAssetsWebpackPlugin(),
+        new OptimizeCssAssetsWebpackPlugin(),
         // 每次构建清除dist
         new CleanWebpackPlugin(['dist'], {
             root: path.resolve(__dirname, '../')
