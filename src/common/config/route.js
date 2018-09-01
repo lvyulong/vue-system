@@ -13,31 +13,35 @@
 import handle from 'app/common/config/handle';
 
 export default {
-  default: 'app.user.index',
-  routes: [
-    // 登陆
-    { state: 'login' },
+    default: 'app.user.index',
+    routes: [
+        // 登陆
+        {state: 'login'},
 
-    // 应用主体
-    { state: 'app', defaultLink: 'app.user.index' },
-    // 我的账户
-    { state: 'app.user', type: 'blank', defaultLink: 'app.user.index' },
-    { state: 'app.user.index' },
-    { state: 'app.user.new' },
-    { state: 'app.user.edit' ,params:'/:id'},
-    // 我的计划
-    { state: 'app.plan', type: 'blank' },
-    // 前端
-    { state: 'app.plan.forward', type: 'blank' },
-    { state: 'app.plan.forward.index' },
-    // 后端
-    { state: 'app.plan.backward', type: 'blank' },
-    { state: 'app.plan.backward.index' },
-    // 运动
-    { state: 'app.plan.sport', type: 'blank' },
-    { state: 'app.plan.sport.index' },
-    // 休息
-    { state: 'app.plan.rest', type: 'blank' },
-    { state: 'app.plan.rest.index' }
-  ]
+        // 应用主体
+        {state: 'app', defaultLink: 'app.user.index'},
+        // demo测试页面
+        {state: 'app.demo', type: 'blank', defaultLink: 'app.demo.index'},
+        {state: 'app.demo.index'},
+
+        // 我的账户
+        {state: 'app.user', type: 'blank', defaultLink: 'app.user.index'},
+        {state: 'app.user.index'},
+        {state: 'app.user.new'},
+        {state: 'app.user.edit', params: '/:id'},
+        // 我的计划
+        {state: 'app.plan', type: 'blank'},
+        // 前端
+        {state: 'app.plan.forward', type: 'blank'},
+        {state: 'app.plan.forward.index'},
+        // 后端
+        {state: 'app.plan.backward', type: 'blank'},
+        {state: 'app.plan.backward.index'},
+        // 运动
+        {state: 'app.plan.sport', type: 'blank'},
+        {state: 'app.plan.sport.index'},
+        // 休息
+        {state: 'app.plan.rest', type: 'blank'},
+        {state: 'app.plan.rest.index'}
+    ]
 };

@@ -30,4 +30,10 @@ export default [
             },
         ]
     },
+    {
+        label: '列表Demo',
+        icon: 'fa fa-users font20',
+        path: '/app/demo/index',
+        active: '/app/demo'
+    },
 ]
