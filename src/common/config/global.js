@@ -1,17 +1,27 @@
 import Vue from 'vue';
-import Back from 'app/common/component/Back';
-import pageList from 'app/common/component/pageList';
-import gender from 'app/common/filter/gender';
-import isEnable from 'app/common/filter/isEnable';
-import propMap from 'app/common/filter/propMap';
-import timestampTotime from 'app/common/filter/timestampTotime';
 import QrcodeVue from 'qrcode.vue';
+
+// -----------------------------------------------------
+import Back from 'component/Back';
+import pageList from 'component/pageList';
+import searchInput from 'component/searchInput.vue';
+import fileUpload from 'component/fileUpload.vue';
+import tags from 'component/tags.vue';
+import gender from 'filter/gender';
+import isEnable from 'filter/isEnable';
+import propMap from 'filter/propMap';
+import timestampTotime from 'filter/timestampTotime';
+// -----------------------------------------------------
+
 // 组件
 const config = {
     component: [
         {name: 'back', component: Back},
         {name: 'pageList', component: pageList},
         {name: 'qrcode', component: QrcodeVue},
+        {name: 'searchInput', component: searchInput},
+        {name: 'fileUpload', component: fileUpload},
+        {name: 'tags', component: tags},
     ],
 
     directive: [],

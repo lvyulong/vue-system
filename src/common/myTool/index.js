@@ -95,7 +95,7 @@ function extend(obj1, obj2) {
 }
 //清除对象中的无效字段（空字符串，空数组，空对象）
 function clearInvalidProp(obj) {
-    for (key in obj){
+    for (var key in obj){
         if ((obj[key]==={})||(obj[key]===[])||(!obj[key])){
             delete obj[key]
         }

@@ -16,7 +16,7 @@ const webpackDevConfig = merge(webpackBaseConfig, {
     devServer: {
         contentBase: path.resolve(__dirname, '../dist'),
         compress: true,
-        port: 80,
+        port: 8080,
         host: '0.0.0.0',
         // 编译的错误或警告信息是否显示
         overlay: {

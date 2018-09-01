@@ -10,7 +10,7 @@ const blank = {
 
 var routes = _.filter(config.routes,function(item){
   return item.state.indexOf('.') === -1;
-})
+});
 
 // 构造path
 function stateToPath(route){
@@ -65,7 +65,7 @@ function stateToName (route) {
       } else {
         name += v.replace(/^[a-z]/,v[0].toUpperCase());
       }
-    })
+    });
     return name;
   }
 }

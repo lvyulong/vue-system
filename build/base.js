@@ -11,7 +11,6 @@ const webpackBaseConfig = {
         // 生成入口html
         new HtmlWebpackPlugin({
             template:'index.html',
-            // 网站图标
             favicon:path.resolve(__dirname,'../favicon.ico')
         }),
     ],
@@ -21,6 +20,7 @@ const webpackBaseConfig = {
             // 快捷用法：api、image、style
             api: path.resolve(__dirname, '../src/common/resource/api/'),
             component: path.resolve(__dirname, '../src/common/component/'),
+            filter: path.resolve(__dirname, '../src/common/filter/'),
             image: path.resolve(__dirname, '../src/assets/image/'),
             style: path.resolve(__dirname, '../src/assets/style/'),
         },
