@@ -16,7 +16,7 @@ const webpackDevConfig = merge(webpackBaseConfig, {
     devServer: {
         contentBase: path.resolve(__dirname, '../dist'),
         compress: true,
-        port: 8080,
+        port: 8081,
         host: '0.0.0.0',
         // 编译的错误或警告信息是否显示
         overlay: {
@@ -26,11 +26,10 @@ const webpackDevConfig = merge(webpackBaseConfig, {
         hot: true,
         proxy: {
             "/api": {
-                target: "http://localhost:3000",
+                target: "http://admin.rc-trainingd.hrtps.com",
                 // pathRewrite: {"^/api" : ""},
                 changeOrigin: true
-            }
-
+            },
         }
     },
     plugins: [
@@ -44,6 +43,11 @@ const webpackDevConfig = merge(webpackBaseConfig, {
     ],
     module: {
         rules: [
+            // css文件编译
+            {
+                test:/\.css$/,
+                use:['style-loader','css-loader','postcss-loader']
+            },
             // less文件编译
             {
                 test: /\.less$/,

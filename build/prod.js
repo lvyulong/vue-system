@@ -37,6 +37,20 @@ const webpackProdConfig = merge(webpackBaseConfig, {
     ],
     module: {
         rules: [
+            // css文件编译
+            {
+                test: /\.css$/,
+                use: [
+                    // css文件提取为单独的文件
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../'
+                        }
+                    },
+                    'css-loader',
+                    'postcss-loader']
+            },
             // less文件编译,并提取为单独的文件，方便做浏览器缓存
             {
                 test: /\.less$/,
