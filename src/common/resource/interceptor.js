@@ -19,14 +19,16 @@ export default {
       let errRes = error.response || {};
       if(errRes.status == 401){
         vm.$router.push({name:'login'})
+      }else{
+          if(errRes.data){
+              if(errRes.data.msg){
+                  vm.$message.error(errRes.data.msg)
+              }else{
+                  vm.$message.error(errRes.data)
+              }
+          }
       }
-      if(errRes.data){
-        if(errRes.data.msg){
-          vm.$message.error(errRes.data.msg)
-        }else{
-          vm.$message.error(errRes.data)
-        }
-      }
+
       return Promise.reject(error);
     }
   }
