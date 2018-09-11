@@ -94,7 +94,7 @@
 </template>
 
 <script>
-    import demoApi from 'api/demoApi';
+    // import demoApi from 'api/demoApi';
 
     export default {
         name: "pageDemoIndex",
@@ -102,7 +102,7 @@
             return {
                 routeName: 'pageDemoIndex',
                 // 列表api
-                pageApi: demoApi,
+                // pageApi: demoApi,
                 // 视图中需要的数据/选项
                 views: {
                     searchSelects: [

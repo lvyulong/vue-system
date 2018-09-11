@@ -43,14 +43,14 @@
 </template>
 
 <script>
-    import demoApi from 'api/demoApi';
-    import secondApi from 'api/secondApi';
+    // import demoApi from 'api/demoApi';
+    // import secondApi from 'api/secondApi';
     import axios from 'axios';
     export default {
         name: "appPreExamNew",
         data() {
             return {
-                pageApi:demoApi,
+                // pageApi:demoApi,
                 model: {
                     name: '',
                     desc: '',
