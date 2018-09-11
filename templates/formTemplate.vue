@@ -65,38 +65,33 @@
             }
         },
         methods: {
-            submit(form) {
-                var that = this;
-                var data = Object.assign({}, that.model);
-
-                this.$refs[form].validate((valid) => {
-                    if (valid) {
-                        this.pageApi.save({data: data}).then(function (res) {
-                            that.$message.success('提交成功');
-                            // that.$router.push({name: 'appPreExamIndex'});
-                        })
-                    } else {
-                        that.$message.error('填写有误');
-                        return false;
-                    }
-                });
-            },
+            // submit(form) {
+            //     var that = this;
+            //     var data = Object.assign({}, that.model);
+            //
+            //     this.$refs[form].validate((valid) => {
+            //         if (valid) {
+            //             this.pageApi.save({data: data}).then(function (res) {
+            //                 that.$message.success('提交成功');
+            //                 // that.$router.push({name: 'appPreExamIndex'});
+            //             })
+            //         } else {
+            //             that.$message.error('填写有误');
+            //             return false;
+            //         }
+            //     });
+            // },
 
         },
-        beforeRouteEnter(to, from, next) {
-            axios.all([
-                secondApi.simple()
-            ]).then(function (res) {
-                // 数据渲染到页面
-            });
-        },
+        // beforeRouteEnter(to, from, next) {
+        //     axios.all([
+        //         secondApi.simple()
+        //     ]).then(function (res) {
+        //         // 数据渲染到页面
+        //     });
+        // },
     };
 </script>
 <style lang="less" scoped>
-    .label {
-        padding: 0.4rem 1rem;
-        background: orange;
-        color: white;
-        border-radius: 3px;
-    }
+
 </style>
