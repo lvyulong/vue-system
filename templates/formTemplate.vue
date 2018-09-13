@@ -6,12 +6,7 @@
                 <el-breadcrumb-item :to="{name:'appPreExamIndex'}">上一级页面</el-breadcrumb-item>
                 <el-breadcrumb-item>当前页面</el-breadcrumb-item>
             </el-breadcrumb>
-            <el-button type="primary"
-                       size="mini"
-                       style="position: absolute;top: 0;right: 0"
-                       @click="submit('form')">
-                提交
-            </el-button>
+            <back style="position: absolute;top: 0;right: 0"></back>
         </div>
         <!--表单-->
         <div class="mt2rem">
@@ -36,7 +31,13 @@
                                :inactive-value=0
                                style="margin-top: 10px"></el-switch>
                 </el-form-item>
-
+                <el-form-item>
+                    <el-button type="primary"
+                               size="mini"
+                               @click="submit('form')">
+                        确定
+                    </el-button>
+                </el-form-item>
             </el-form>
         </div>
     </div>
