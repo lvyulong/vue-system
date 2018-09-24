@@ -1,19 +1,20 @@
-
 // (第三方)库
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Router from 'vue-router';
 import ElementUI from 'element-ui';
+import underscore from 'underscore';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'font-awesome/less/font-awesome.less';
 import 'app/assets/style/main.less';
+
 // 自定义文件
 import App from 'app/App.vue';
 import routes from 'app/routes';
-import 'app/common/config/global';
 import storeConfig from 'app/common/store/index';
 import myTool from 'app/common/myTool/index';
-import underscore from 'underscore';
+import 'app/common/config/global';
+
 
 window.global_data = {
     //除非需要写死域名的地方才会用到，否则需用location.origin动态获取

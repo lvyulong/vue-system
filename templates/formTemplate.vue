@@ -21,9 +21,25 @@
                     <el-input v-model="model.name"></el-input>
                 </el-form-item>
 
+                <el-form-item label="类型">
+                    <el-select v-model="model.type"
+                               filterable
+                               style="width: 100%"
+                               placeholder="请选择">
+                        <el-option
+                                v-for="item in view.types"
+                                :key="item.value"
+                                :label="item.label"
+                                :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+
+
                 <el-form-item label="描述" prop="desc">
                     <el-input type="textarea" :rows="4" placeholder="描述" v-model="model.desc"></el-input>
                 </el-form-item>
+
 
                 <el-form-item label="是否启用" prop="is_enable">
                     <el-switch v-model="model.is_enable"
@@ -62,6 +78,12 @@
                         {required: true, message: '请输入名称', trigger: 'blur'},
                     ],
                 },
+                views:{
+                    types:[
+                        {label:'类型1',value:1},
+                        {label:'类型2',value:2},
+                    ]
+                }
 
             }
         },

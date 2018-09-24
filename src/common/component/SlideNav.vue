@@ -1,18 +1,3 @@
-<!--
-usage:
-一、属性：
-    1、"data"：菜单数据，参见common/config/nav
-    2、"collapse":是否折叠
-    3、"uniqueOpened"：只打开一个
-    4、"backgroundColor"：背景色
-    5、"textColor"：文字颜色
-    6、"activeTextColor"：激活的文字颜色
-二、功能：
-    1、把common/config/nav中的配置数据，渲染成一个侧边栏
-    2、根据当前的路由，渲染激活项
--->
-
-
 <template>
     <div>
         <el-menu style="text-align: left"
@@ -55,7 +40,6 @@ usage:
                                 v-if="!child.name"
                                 :class="{'router-active':isActiveState(child.active)}"
                                 style="padding-left: 52px">
-                            {{currentPath}}
                             {{child.label}}
                         </el-menu-item>
                     </template>

@@ -2,13 +2,16 @@
 @import 'color.less';
 @import 'font.less';
 @import 'plugin.less';
+@import 'facade.less';
 
 html,
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px
+  font-size: 14px;
+  color: @theme-font;
+
 }
 
 * {
@@ -36,20 +39,48 @@ a {
 table {
   font-size: 1rem;
 }
+#main{
+  background: #F2F3F8;
+  padding: 0 1rem;
+}
+.page{
 
-.page-title {
-  border-bottom: 1px solid #ccc;
-  padding: 1rem 0;
+}
+.page-header {
+  color: gray;
+  font-weight: bolder;
+  font-size: 1.1rem;
+  padding: 10px 0;
+  position: relative;
+}
+.page-title{
+  color: #818798;
 }
 
 .page-content {
-
+  background: #fff;
+  padding: 1rem;
+  overflow-y: scroll;
 }
+.page-content::-webkit-scrollbar { width: 0 !important }
+//IE 10+
+.page-content { -ms-overflow-style: none; }
+//Firefox
+.page-content { overflow: -moz-scrollbars-none; }
+
+
 
 th{
   background-color: #f5f7fa!important;
 }
+
 .pointer{
   cursor: pointer;
 }
-
+//不显示滚动条
+//chrome 和Safari
+.scrollbar-hide::-webkit-scrollbar { width: 0 !important }
+//IE 10+
+.scrollbar-hide { -ms-overflow-style: none; }
+//Firefox
+.scrollbar-hide { overflow: -moz-scrollbars-none; }

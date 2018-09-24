@@ -1,14 +1,11 @@
-<!--
 
-usage：
-一、属性：
-    1、options：必传，下拉的选项；
-    2、filter：选传，通过filter对象渲染组件；如果没有，默认按options第一个选项渲染；
-
-二、事件
-    1、点击查询，触发submit事件，并把值组成一个对象抛出，父组件中响应submit事件，触发刷新列表即可
-
--->
+<!--usage：-->
+<!--一、属性：-->
+<!--1、options：必传，下拉的选项；-->
+<!--2、filter：选传，通过filter对象渲染组件；如果没有，默认按options第一个选项渲染；-->
+<!--二、查询按钮-->
+<!--1、点击查询，触发submit事件，并把值组成一个对象抛出-->
+<!--2、父组件中响应submit事件，触发刷新列表即可-->
 
 <template>
     <div>
@@ -18,7 +15,7 @@ usage：
             <el-select v-model="selected"
                        slot="prepend"
                        placeholder="请选择"
-                       style="width: 100px">
+                       :style="{width: labelWidth||'80px'}">
                 <el-option
                         v-for="item in options"
                         :key="item.value"
@@ -51,7 +48,8 @@ usage：
                 }
             },
             // filter必须为对象
-            filter:Object
+            filter:Object,
+            labelWidth:String
         },
         computed: {},
         methods: {
@@ -63,7 +61,6 @@ usage：
             this.selected = this.options[0].value;
         },
         destroyed:function () {
-            console.log('destro');
 
         },
         watch:{

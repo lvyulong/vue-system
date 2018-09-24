@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import interceptor from './interceptor';
+import sys from 'config/sys';
 
 // http拦截器
 axios.interceptors.request.use(interceptor.request.success,interceptor.request.error);
@@ -19,7 +20,7 @@ const baseOption = Symbol('baseOption');
 export default class Resource {
     config;
     // url的公共部分
-    [url] = '/api/';
+    [url] = sys.sysApiBase;
     // 基础配置，公用
     [baseOption] = {
 
@@ -38,7 +39,7 @@ export default class Resource {
                     var actionParam = names[1];
                     that[v.name] = function (option) {
                         if(!option.params){
-                            option.params = {};
+                            option.params = {};                       
                         }
                         if(!option.params[actionParam]){
                             option.params[actionParam] = ''
@@ -49,7 +50,7 @@ export default class Resource {
                         };
                         option = Object.assign({}, this[baseOption], selfOption, option);
                         return axios(option)
-                    }
+                    }                    
                 } else {
                     that[v.name] = function (option) {
                         var selfOption = {
@@ -60,7 +61,7 @@ export default class Resource {
                         return axios(option)
                     }
                 }
-
+                
             })
         }
     }

@@ -21,6 +21,7 @@ const webpackBaseConfig = {
       api: path.resolve(__dirname, '../src/common/resource/api/'),
       component: path.resolve(__dirname, '../src/common/component/'),
       filter: path.resolve(__dirname, '../src/common/filter/'),
+      config: path.resolve(__dirname, '../src/common/config/'),
       image: path.resolve(__dirname, '../src/assets/image/'),
       style: path.resolve(__dirname, '../src/assets/style/'),
     },

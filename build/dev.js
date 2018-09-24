@@ -26,7 +26,7 @@ const webpackDevConfig = merge(webpackBaseConfig, {
         hot: true,
         proxy: {
             "/api": {
-                target: "http://admin.rc-trainingd.hrtps.com",
+                target: "http://localhost:3000",
                 // pathRewrite: {"^/api" : ""},
                 changeOrigin: true
             },

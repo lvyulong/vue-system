@@ -1,5 +1,5 @@
-<!--
-功能：
+<!--created By Lvyl-->
+<!--功能：
 1、根据slot内容填充列表，即列表显示的列由调用该组件的父组件决定；
 2、该组件处理了翻页功能，翻页相关的参数_page、_page_size在该组件内设置；
 3、该组件根据地址栏参数来筛选列表，除了翻页相关的参数在该组件内设置，其余的筛选条件都应该在父组件中设置；
@@ -25,7 +25,7 @@
 <script>
     export default {
         name: "pageList",
-        props:['pageListApi'],
+        props:['pageListApi','ignore'],
         data() {
             return {
                 search: {},
@@ -34,7 +34,7 @@
                     _page_size: 20,
                     currentPage: 1
                 },
-                pageSizes: [2, 10, 20, 50, 100],
+                pageSizes: [10, 20, 50, 100],
                 layout: 'total, sizes, prev, pager, next, jumper',
             }
         },
@@ -56,7 +56,14 @@
             // 获取列表数据
             getList() {
                 var that = this;
-                this.pageListApi.query({params: this.search}).then(function (res) {
+                var data;
+                // 如果有需要忽略的字段，则去掉查询参数里面的这些字段
+                if(this.ignore&&this.ignore.length>0){
+                    data = myTool.deleteProps(this.search,this.ignore)
+                }else{
+                    data = Object.assign({},this.search);
+                }
+                this.pageListApi.query({params: data}).then(function (res) {
                     that.list = res.data.items;
                     that.meta = res.data['_meta'];
                 });

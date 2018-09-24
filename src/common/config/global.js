@@ -7,6 +7,8 @@ import pageList from 'component/pageList';
 import searchInput from 'component/searchInput.vue';
 import fileUpload from 'component/fileUpload.vue';
 import tags from 'component/tags.vue';
+import pageHeader from 'component/pageHeader.vue';
+import selectLink from 'component/selectLink.vue';
 import gender from 'filter/gender';
 import isEnable from 'filter/isEnable';
 import propMap from 'filter/propMap';
@@ -22,6 +24,8 @@ const config = {
         {name: 'searchInput', component: searchInput},
         {name: 'fileUpload', component: fileUpload},
         {name: 'tags', component: tags},
+        {name: 'pageHeader', component: pageHeader},
+        {name: 'selectLink', component: selectLink},
     ],
 
     directive: [],
