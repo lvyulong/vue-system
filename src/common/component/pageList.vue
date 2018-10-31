@@ -25,7 +25,12 @@
 <script>
     export default {
         name: "pageList",
-        props:['pageListApi','ignore'],
+        props:[
+            'pageListApi', //列表的api
+            'ignore', //检查查询参数，并去掉ignore中设置的参数；如果不设置，则不检查
+            'need', //检查查询参数，如果参数中包含了need中设置的所有参数，才查询；如果不设置，则不检查
+            'range', //查询范围，设置了此参数，则只在该范围内查询，不在此范围内的查询参数不作为查询条件
+        ],
         data() {
             return {
                 search: {},
@@ -34,7 +39,7 @@
                     _page_size: 20,
                     currentPage: 1
                 },
-                pageSizes: [10, 20, 50, 100],
+                pageSizes: [1, 20, 50, 100],
                 layout: 'total, sizes, prev, pager, next, jumper',
             }
         },
@@ -63,10 +68,34 @@
                 }else{
                     data = Object.assign({},this.search);
                 }
-                this.pageListApi.query({params: data}).then(function (res) {
-                    that.list = res.data.items;
-                    that.meta = res.data['_meta'];
-                });
+
+                // 设置了范围的话，只在该范围内取参数
+                if(this.range&&this.range.length>0){
+                    data = myTool.trimObj(data,this.range);
+                }
+
+                if(this.need&&this.need.length>0){
+                    // 如果设置了need,则data中必须包含need中设置的所有参数，才开始查询
+                    //使用场景：进入某个页面必须携带某个参数才显示列表，否则不显示列表
+                    let isPass = 1;
+                    for(let i=0;i<this.need.length;i++){
+                        if(!data.hasOwnProperty(this.need[i])){
+                            isPass = 0;
+                            break;
+                        }
+                    }
+                    if(isPass){
+                        this.pageListApi.query({params: data}).then(function (res) {
+                            that.list = res.data.items;
+                            that.meta = res.data['_meta'];
+                        });
+                    }
+                }else{
+                    this.pageListApi.query({params: data}).then(function (res) {
+                        that.list = res.data.items;
+                        that.meta = res.data['_meta'];
+                    });
+                }
             }
         },
         created: function () {

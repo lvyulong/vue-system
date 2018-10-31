@@ -1,6 +1,6 @@
 const storeConfig = {
     state: {
-        local: {}
+        local: {},
     },
     getters: {},
     mutations: {

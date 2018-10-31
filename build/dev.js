@@ -14,7 +14,10 @@ const webpackDevConfig = merge(webpackBaseConfig, {
     // 代码映射，方便调错，会把源代码的错误行数报出来
     devtool: 'cheap-module-eval-source-map',
     devServer: {
-        contentBase: path.resolve(__dirname, '../dist'),
+        // 静态访问的文件放到根目录下的static目录下；
+        // 发布到线上的话，对应的静态文件放到域名指向的根目录
+        // dist和static目录下面的文件，可直接通过`/${文件名}.${后缀名}`访问，相当于这些文件都是在根目录下的
+        contentBase: [path.resolve(__dirname, '../dist'), path.resolve(__dirname, '../static')],
         compress: true,
         port: 8081,
         host: '0.0.0.0',

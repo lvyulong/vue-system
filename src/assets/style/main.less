@@ -61,6 +61,7 @@ table {
   background: #fff;
   padding: 1rem;
   overflow-y: scroll;
+  box-shadow: 0 0 10px rgba(188, 190, 197, 0.6);
 }
 .page-content::-webkit-scrollbar { width: 0 !important }
 //IE 10+
@@ -68,19 +69,19 @@ table {
 //Firefox
 .page-content { overflow: -moz-scrollbars-none; }
 
-
-
 th{
   background-color: #f5f7fa!important;
 }
 
-.pointer{
-  cursor: pointer;
+.course-select-popper{
+  .el-cascader-menu{
+    width: 250px;
+  }
 }
-//不显示滚动条
-//chrome 和Safari
-.scrollbar-hide::-webkit-scrollbar { width: 0 !important }
-//IE 10+
-.scrollbar-hide { -ms-overflow-style: none; }
-//Firefox
-.scrollbar-hide { overflow: -moz-scrollbars-none; }
+.nav-icon{
+  width: 20px;
+}
+.answer-detail{
+  padding-left: 1.8rem;
+  text-indent: -0.5rem;
+}

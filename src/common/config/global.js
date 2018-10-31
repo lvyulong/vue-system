@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import QrcodeVue from 'qrcode.vue';
 
 // -----------------------------------------------------
 import Back from 'component/Back';
@@ -9,9 +8,11 @@ import fileUpload from 'component/fileUpload.vue';
 import tags from 'component/tags.vue';
 import pageHeader from 'component/pageHeader.vue';
 import selectLink from 'component/selectLink.vue';
+import vueQr from 'vue-qr';
 import gender from 'filter/gender';
 import isEnable from 'filter/isEnable';
 import propMap from 'filter/propMap';
+import keyToVal from 'filter/keyToVal';
 import timestampTotime from 'filter/timestampTotime';
 // -----------------------------------------------------
 
@@ -20,12 +21,12 @@ const config = {
     component: [
         {name: 'back', component: Back},
         {name: 'pageList', component: pageList},
-        {name: 'qrcode', component: QrcodeVue},
         {name: 'searchInput', component: searchInput},
         {name: 'fileUpload', component: fileUpload},
         {name: 'tags', component: tags},
         {name: 'pageHeader', component: pageHeader},
         {name: 'selectLink', component: selectLink},
+        {name: 'vueQr', component: vueQr},
     ],
 
     directive: [],
@@ -35,6 +36,7 @@ const config = {
         {name: 'isEnable', filter: isEnable},
         {name: 'propMap', filter: propMap},
         {name: 'timestampTotime', filter: timestampTotime},
+        {name: 'keyToVal', filter: keyToVal},
     ]
 };
 

@@ -7,7 +7,6 @@
                  :background-color="backgroundColor"
                  :text-color="textColor"
                  :active-text-color="activeTextColor"
-                 :router="true"
                  @open="handleOpen"
                  @close="handleClose"
                  @select="handleSelect">
@@ -74,11 +73,17 @@
             "activeTextColor"
         ],
         methods: {
-            handleOpen: function () {
+            handleOpen() {
+
             },
-            handleClose: function () {
+            handleClose() {
+
             },
-            handleSelect: function (index, path) {
+            handleSelect(index, path) {
+                // 如果已经是激活状态，则不跳转
+                if (this.currentPath != index) {
+                    this.$router.push({path: index});
+                }
             },
             // 是否为应该激活的路由
             isActiveState(activePath) {

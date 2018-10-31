@@ -66,11 +66,7 @@
 <script>
     export default {
         name: 'tags',
-        props: {
-            tags: Array,
-            active: Number,
-            onlyShow: Boolean
-        },
+        props: ['tags','active','onlyShow'],
         data() {
             return {
                 tagInputShow: '',

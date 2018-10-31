@@ -1,7 +1,20 @@
+<!--
+
+{
+                        data:[
+                            {data:res[2].data.items,link:'train_plan_id',label:'name',value:'id'},
+                            {data:res[1].data.items,label:'name',value:'id'},
+                        ]
+                    }
+
+-->
+
 <template>
     <div>
         <div v-if="selectData.length>0">
             <el-cascader
+                    style="width: 100%"
+                    :popper-class="popperClass"
                     expand-trigger="hover"
                     :options="selectData"
                     v-model="selected"
@@ -14,11 +27,22 @@
 <script>
     export default {
         name: "selectLink",
-        props: ['data'],
+        props: ['data','model','popperClass'],
         data() {
             return {
                 selectData: [],
-                selected:[]
+            }
+        },
+        computed:{
+            selected:{
+                get:function () {
+                    var arr = [];
+                    _.each(this.model,function (v,k) {
+                        arr.push(v);
+                    });
+                    return arr;
+                },
+                set: function (newValue) {}
             }
         },
         methods: {
@@ -51,8 +75,12 @@
                 return newObj;
             },
             handleChange(val){
-                console.log(val);
-
+                var obj = {};
+                var keys = _.keys(this.model);
+                for(var i=0;i<val.length;i++){
+                    obj[keys[i]] = val[i];
+                };
+                this.$emit('update:model', obj)
             }
         },
         watch: {
@@ -61,7 +89,7 @@
                     if (n) {
                         var data = this.buildData(n).data;
                         this.selectData = data[data.length - 1] && data[data.length - 1].data;
-                        console.log(this.selectData)
+                        // console.log(this.selectData)
                     }
                 }
             }

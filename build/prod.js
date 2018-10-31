@@ -11,6 +11,7 @@ const webpackProdConfig = merge(webpackBaseConfig, {
     比如optimization.mnimize在生产环境默认为true，压缩代码*/
     mode: 'production',
     output: {
+        // 此处根据项目需要修改
         path: path.resolve(__dirname, '../dist'),
         filename: 'script/[name].[chunkhash].js',
         chunkFilename: 'script/[name].[chunkhash].js',
@@ -30,7 +31,7 @@ const webpackProdConfig = merge(webpackBaseConfig, {
         }),
         // 压缩css文件
         new OptimizeCssAssetsWebpackPlugin(),
-        // 每次构建清除dist
+        // 每次打包清空（与output.path保持一致）
         new CleanWebpackPlugin(['dist'], {
             root: path.resolve(__dirname, '../')
         }),

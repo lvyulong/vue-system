@@ -30,11 +30,11 @@ if (location.hostname === 'localhost' || location.hostname === global_data.devIp
 }
 window.myTool = myTool;
 window._ = underscore;
+
 // 使用插件
 Vue.use(Router);
 Vue.use(ElementUI);
 Vue.use(Vuex);
-
 // vuex状态
 const store = new Vuex.Store(storeConfig);
 

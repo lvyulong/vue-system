@@ -1,7 +1,7 @@
 {
-  "name": "{{name}}",
+  "name": "vue-demo",
   "version": "1.0.0",
-  "description": "{{description}}",
+  "description": "build vue for demo",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,17 +12,17 @@
     "vue",
     "webpack"
   ],
-  "author": "{{author}}",
+  "author": "Lyl",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
     "echarts": "^4.1.0",
     "element-ui": "^2.4.3",
     "font-awesome": "^4.7.0",
-    "qrcode.vue": "^1.6.0",
     "underscore": "^1.9.1",
     "vue": "^2.5.16",
     "vue-file-upload": "^0.1.12",
+    "vue-qr": "^1.5.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
