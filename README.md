@@ -1,6 +1,6 @@
 # vue-demo
 
-###一、初始化配置
+#一、初始化配置
 
 ####1、build/base
 #####(1).resolve.alias
