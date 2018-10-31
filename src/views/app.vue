@@ -1,20 +1,25 @@
 <template>
     <div class="app">
         <el-container>
-
             <!-- 侧边导航栏 -->
             <el-aside>
-                <div class="padding">
+                <div style="padding-top: 3rem">
                     <div>
-                        <img :src="sys.sysLogo" class="logo">
+                        <img :src="sys.sysLogo2" class="logo2">
                     </div>
-                    <div class="mt10 white f18 title">
+                    <div>
                         <transition name="fade">
-                            <div class="title-words" v-show="!collapse">{{sys.sysName}}</div>
+                            <img :src="sys.sysLogo1" class="logo1" v-show="!collapse">
                         </transition>
                     </div>
+                    <!--<div class="mt10 white font18 title">-->
+                        <!--<transition name="fade">-->
+                            <!--<div class="title-words" v-show="!collapse">{{sys.sysName}}</div>-->
+                        <!--</transition>-->
+                    <!--</div>-->
                 </div>
                 <slide-nav
+                        class="mt3rem"
                         :data="navConfigs"
                         :collapse="collapse"
                         :unique-opened="true"
@@ -30,12 +35,10 @@
             <!-- 中间内容区 -->
             <el-container class="container">
                 <!-- 顶部工具栏 -->
-                <el-header>
+                <el-header style="border: none">
                 <span>
                   欢迎，
-                  <router-link :to="{name:'appUserIndex'}">
-                    <strong>{{(local.user&&local.user.name) || '未知用户'}}</strong>
-                  </router-link>
+                 <strong>{{(local.user&&(local.user.name || local.user.UserId)) || '管理员'}}</strong>
                   </span>
                     <a href="#" class="pull-right" @click="logout()">退出</a>
                 </el-header>
@@ -53,11 +56,11 @@
 </template>
 
 <script>
-    import SlideNav from "app/common/component/SlideNav.vue";
+    import SlideNav from "app/common/component/SlideNav";
     import navs from "app/common/config/nav";
-    import authApi from 'api/authApi';
     import sys from 'app/common/config/sys';
     import {mapState} from 'vuex';
+    import authApi from 'api/authApi';
 
     export default {
         name: "App",
@@ -65,7 +68,8 @@
             return {
                 collapse: false,
                 navConfigs: navs,
-                sys: sys,
+                user: {},
+                sys: sys
             };
         },
         computed: {
@@ -96,12 +100,10 @@
                     });
                 });
             });
-
         }
     };
 </script>
 <style lang="less" scoped>
-
     .title {
         min-height: 2rem;
         padding: 1rem 0;
@@ -112,11 +114,16 @@
         white-space: pre-wrap;
     }
 
-    .logo {
-        width: 50px;
-        height: 50px;
+    .logo1 {
+        width: 130px;
         margin-top: 5px;
-        border-radius: 50%;
+
+    }
+
+    .logo2 {
+        width: 40px;
+        margin-top: 5px;
+        margin-right: 5px;
     }
 
     .el-header {
@@ -141,7 +148,7 @@
 
     .el-main {
         height: 80vh;
-        overflow: scroll;
+        overflow-y: scroll;
     }
 
     .swich {

@@ -4,19 +4,24 @@ const authApi = new Resource({
     url: 'auth',
     actions: [
         {
-            name:'login',
-            url:'login',
+            name:'current',
+            method:'GET',
+            url:'current'
+        },
+        {
+            name:'pre',
             method:'POST',
+            url:'pre'
+        },
+        {
+            name:'login',
+            method:'POST',
+            url:'login'
         },
         {
             name:'logout',
-            url:'logout',
             method:'POST',
-        },
-        {
-            name:'current',
-            url:'current',
-            method:'GET',
+            url:'logout'
         },
     ]
 });
