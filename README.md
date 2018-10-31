@@ -1,9 +1,9 @@
 # vue-demo
 
-###一、初始化配置
+### 一、初始化配置
 
-####1、build/base
-#####(1).resolve.alias
+#### 1、build/base
+##### (1).resolve.alias
 将经常用到模块加入到该配置中，便于引用。根据项目需要可自行配置。<br>
 如：  <pre>api: path.resolve(__dirname, '../src/common/resource/api/')</pre>
 
