@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <div class="page-title">
-            <h3>用户管理</h3>
-        </div>
+    <div class="page">
+        <page-header title="用户管理"></page-header>
+
         <div class="page-content">
             <page-list :pageListApi="pageListApi">
                 <template slot-scope="slotScope">

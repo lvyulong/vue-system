@@ -3,8 +3,8 @@ import sysLogo2 from 'image/logo2.png';
 export default {
     // 系统侧栏
     sysName:'系统后台',
-    sysLogo1:sysLogo1,
-    sysLogo2:sysLogo2,
+    // sysLogo1:sysLogo1,
+    // sysLogo2:sysLogo2,
     // api基础路由
     sysApiBase:'/api/',
 
