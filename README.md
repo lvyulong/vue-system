@@ -11,7 +11,7 @@ api: path.resolve(__dirname, '../src/common/resource/api/')
 ```
 ##### (2).module.rules
 图片与字体处理，如果是生产环境（production）时，请根据生产环境的访问根目录自行调整。<br>
-如，生产环境为“http://xxxx.xxx.xx.com/admin/index.html”,则需要配置成/admin/lib${CURRENT_VERSION}/image(font)/}。
+如，生产环境为`http://xxxx.xxx.xx.com/admin/index.html`,则需要配置成/admin/lib${CURRENT_VERSION}/image(font)/}。
 ```javascript
       // 图片处理
       {
