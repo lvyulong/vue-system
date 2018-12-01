@@ -1,7 +1,7 @@
 <template>
     <div class="user-bg">
         <div class="logo">
-            <img src="~image/login/logo.png" style="width: 200px">
+            <img src="~image/logo1.png" style="width: 200px">
         </div>
         <el-card class="user-panel">
             <div class="panel-body">
@@ -153,7 +153,7 @@
             position: absolute;
             left: 50%;
             top: 50%;
-            margin: -240px 0 0 -250px;
+            margin: -200px 0 0 -250px;
             .panel-body {
                 padding: 15px 25px;
             }

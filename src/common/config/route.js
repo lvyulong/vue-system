@@ -20,28 +20,23 @@ export default {
 
         // 应用主体
         {state: 'app', defaultLink: 'app.user.index'},
-        // demo测试页面
-        {state: 'app.demo', type: 'blank', defaultLink: 'app.demo.index'},
-        {state: 'app.demo.index'},
 
         // 我的账户
         {state: 'app.user', type: 'blank', defaultLink: 'app.user.index'},
         {state: 'app.user.index'},
         {state: 'app.user.new'},
         {state: 'app.user.edit', params: '/:id'},
-        // 我的计划
-        {state: 'app.plan', type: 'blank'},
-        // 前端
-        {state: 'app.plan.forward', type: 'blank'},
-        {state: 'app.plan.forward.index'},
-        // 后端
-        {state: 'app.plan.backward', type: 'blank'},
-        {state: 'app.plan.backward.index'},
-        // 运动
-        {state: 'app.plan.sport', type: 'blank'},
-        {state: 'app.plan.sport.index'},
-        // 休息
-        {state: 'app.plan.rest', type: 'blank'},
-        {state: 'app.plan.rest.index'}
+
+        // demo1
+        {state: 'app.demo1', type: 'blank'},
+        // demo1.1
+        {state: 'app.demo1.demo11', type: 'blank'},
+        {state: 'app.demo1.demo11.index'},
+        {state: 'app.demo1.demo11.new'},
+        {state: 'app.demo1.demo11.edit',params:'/:id'},
+        // demo1.2
+        {state: 'app.demo1.demo12', type: 'blank'},
+        {state: 'app.demo1.demo12.index'},
+
     ]
 };

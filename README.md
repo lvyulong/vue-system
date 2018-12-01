@@ -9,7 +9,45 @@
 ```javascript
 api: path.resolve(__dirname, '../src/common/resource/api/')
 ```
-
+##### (2).module.rules
+图片与字体处理，如果是生产环境（production）时，请根据生产环境的访问根目录自行调整。<br>
+如，生产环境为http://xxxx.xxx.xx.com/admin/index.html,则需要配置成/admin/lib${CURRENT_VERSION}/image(font)/}。
+```javascript
+      // 图片处理
+      {
+        test:/\.(jpe?g|png|svg|gif)$/,
+        include: [path.resolve(__dirname,'../src/assets/image')],
+        use: {
+          loader:'url-loader',
+          options:{
+            // byte 限制,超过该值则打包为文件,否则保存为base64,直接渲染在html中,减少了http请求;大的文件单独保存,方便缓存到浏览器
+              limit: 10000,
+              name: `[name].[ext]`,
+              // 指定文件输出位置
+              outputPath:`lib${CURRENT_VERSION}/image`,
+              // 指定打包后文件的访问路径;
+              // 此处的写法是从根路径开始找,请根据项目具体情况,进行修改production时的访问路径;development时不需修改
+              publicPath:process.env.NODE_ENV=='production'?`/admin/lib${CURRENT_VERSION}/image/`:`/lib${CURRENT_VERSION}/image/`
+          }
+        }
+      },
+      
+```
+```javascript
+    // 字体处理,与图片处理方法一致
+      {
+        test:/\.(woff2?|eot|ttf|svg|otf)$/,
+        use:{
+          loader:'url-loader',
+          options:{
+              limit: 10000,
+              name: `[name].[ext]`,
+              outputPath:`lib${CURRENT_VERSION}/font`,
+              publicPath:process.env.NODE_ENV=='production'?`/admin/lib${CURRENT_VERSION}/font/`:`/lib${CURRENT_VERSION}/font/`
+          }
+        }
+      }
+```
 #### 2、build/dev
 ##### (1).devServer.contentBase
 指定dev server(本地开发服务器)从哪个目录中拿取文件，可指定多个（数组的形式）。
@@ -37,14 +75,14 @@ api: path.resolve(__dirname, '../src/common/resource/api/')
 指定上线前打包的代码输出目录。<br>
 根据项目需要修改path值,如：
 ```javascript
-path: path.resolve(__dirname, '../../../web/admin')
+path: path.resolve(__dirname, '../server/static')
 ```
 ##### (2).plugins
 CleanWebpackPlugin插件，每次打包时，先清空输出的目录。<br>
 根据项目需要修改，清空的目录路径要与output.path值保持一致,如：
 ```javascript
-  new CleanWebpackPlugin(['admin'], {
-         root: path.resolve(__dirname, '../../../web')
+  new CleanWebpackPlugin(['static'], {
+         root: path.resolve(__dirname, '../server/')
      })
 ```
 
@@ -60,8 +98,7 @@ CleanWebpackPlugin插件，每次打包时，先清空输出的目录。<br>
     image/logo2.png
 
 #### 7、字体文件
-src/assets/font目录下summarynumfont字体只是为了做演示，真正写项目时要删除掉。<br>
-可以根据项目需要自行添加用到的字体文件。
+可以根据项目需要自行添加用到的字体文件到src/assets/font目录下。
 另外，需要在src/style/font.less中添加引入字体,如：
 ```css
    @font-face {
@@ -75,7 +112,8 @@ src/assets/font目录下summarynumfont字体只是为了做演示，真正写项
 
 #### 8、main.js
 ##### (1).window.global_data配置
-devIp变量的作用是判断当前的代码运行环境是否为dev环境，从而可以在不同的环境下执行不同的业务逻辑。
+将开发机器的ip地址写到devIp变量中，devIp变量的作用是判断当前的代码运行环境是否为dev环境，从而可以在不同的环境下执行不同的业务逻辑。
+
 ```javascript
     window.global_data = {
         //除非需要写死域名的地方才会用到，否则需用location.origin动态获取
@@ -86,6 +124,12 @@ devIp变量的作用是判断当前的代码运行环境是否为dev环境，从
         // 开发环境本机的ip
         devIp: ''
     };
+```
+#### 9、common/config/sys.js
+##### (1).sysApiBase配置
+配置后端接口的基础访问路径，如/api/；该配置会在common/resource/base.js中用到。
+```javascript
+  sysApiBase:'/api/',
 ```
 
 ### 二、开发指南

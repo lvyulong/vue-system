@@ -1,3 +1,4 @@
+process.env.NODE_ENV = 'development';
 const merge = require('webpack-merge');
 const webpackBaseConfig = require('./base');
 const path = require('path');
@@ -7,9 +8,8 @@ const webpackDevConfig = merge(webpackBaseConfig, {
     mode: 'development',
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: 'script/[name].[hash].js',
-        chunkFilename: 'script/[name].[hash].js'
-        // publicPath:'./dist/'
+        filename: `lib${CURRENT_VERSION}/script/[name].js`,
+        chunkFilename: `lib${CURRENT_VERSION}/script/[name].js`,
     },
     // 代码映射，方便调错，会把源代码的错误行数报出来
     devtool: 'cheap-module-eval-source-map',

@@ -1,0 +1,70 @@
+@import "variable";
+//初始化样式
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: @theme-font;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+table {
+  font-size: 1rem;
+}
+th{
+  background-color: #f5f7fa!important;
+}
+
+//系统通用样式
+#main{
+  background: #F2F3F8;
+  padding: 0 1rem;
+}
+.page{
+
+}
+.page-header {
+  color: gray;
+  font-weight: bolder;
+  font-size: 1.1rem;
+  padding: 10px 0;
+  position: relative;
+}
+.page-title{
+  color: #818798;
+}
+
+.page-content {
+  background: #fff;
+  padding: 1rem;
+  overflow-y: scroll;
+  box-shadow: 0 0 10px rgba(188, 190, 197, 0.6);
+}
+.page-content::-webkit-scrollbar { width: 0 !important }
+//IE 10+
+.page-content { -ms-overflow-style: none; }
+//Firefox
+.page-content { overflow: -moz-scrollbars-none; }

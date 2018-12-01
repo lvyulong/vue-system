@@ -15,7 +15,7 @@
                         </el-table-column>
                         <el-table-column label="头像">
                             <template slot-scope="scope">
-                                <img :src="scope.row.avatar" class="avatar">
+                                <img :src="avatar" class="avatar">
                             </template>
                         </el-table-column>
                         <el-table-column
@@ -69,13 +69,14 @@
 
 <script>
     import userApi from 'api/userApi';
-
+    import avatar from 'image/avatar.jpg';
     export default {
         name: "appUserIndex",
         data() {
             return {
                 pageListApi: userApi,
                 search: {},
+                avatar:avatar
             }
         },
         computed: {

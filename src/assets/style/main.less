@@ -1,87 +1,10 @@
+//----------  通用的样式  ----------------------
 @import 'position.less';
 @import 'color.less';
 @import 'font.less';
 @import 'plugin.less';
 @import 'facade.less';
+@import "sys";
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  color: @theme-font;
+//------------- 全局的业务样式 ------------------
 
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-}
-
-ul, li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-table {
-  font-size: 1rem;
-}
-#main{
-  background: #F2F3F8;
-  padding: 0 1rem;
-}
-.page{
-
-}
-.page-header {
-  color: gray;
-  font-weight: bolder;
-  font-size: 1.1rem;
-  padding: 10px 0;
-  position: relative;
-}
-.page-title{
-  color: #818798;
-}
-
-.page-content {
-  background: #fff;
-  padding: 1rem;
-  overflow-y: scroll;
-  box-shadow: 0 0 10px rgba(188, 190, 197, 0.6);
-}
-.page-content::-webkit-scrollbar { width: 0 !important }
-//IE 10+
-.page-content { -ms-overflow-style: none; }
-//Firefox
-.page-content { overflow: -moz-scrollbars-none; }
-
-th{
-  background-color: #f5f7fa!important;
-}
-
-.course-select-popper{
-  .el-cascader-menu{
-    width: 250px;
-  }
-}
-.nav-icon{
-  width: 20px;
-}
-.answer-detail{
-  padding-left: 1.8rem;
-  text-indent: -0.5rem;
-}

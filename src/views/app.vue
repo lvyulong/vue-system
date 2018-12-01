@@ -12,11 +12,11 @@
                             <img :src="sys.sysLogo1" class="logo1" v-show="!collapse">
                         </transition>
                     </div>
-                    <!--<div class="mt10 white font18 title">-->
-                        <!--<transition name="fade">-->
-                            <!--<div class="title-words" v-show="!collapse">{{sys.sysName}}</div>-->
-                        <!--</transition>-->
-                    <!--</div>-->
+                    <div class="mt10 white font18 title">
+                        <transition name="fade">
+                            <div class="title-words" v-show="!collapse">{{sys.sysName}}</div>
+                        </transition>
+                    </div>
                 </div>
                 <slide-nav
                         class="mt3rem"
@@ -91,16 +91,17 @@
         components: {
             SlideNav
         },
-        beforeRouteEnter: (to, from, next) => {
-            authApi.current().then(function (res) {
-                next((vm) => {
-                    vm.$store.commit('setProp', {
-                        key: 'local',
-                        val: res.data && res.data.data
-                    });
-                });
-            });
-        }
+        // 进入主应用之前访问current接口
+        // beforeRouteEnter: (to, from, next) => {
+        //     authApi.current().then(function (res) {
+        //         next((vm) => {
+        //             vm.$store.commit('setProp', {
+        //                 key: 'local',
+        //                 val: res.data && res.data.data
+        //             });
+        //         });
+        //     });
+        // }
     };
 </script>
 <style lang="less" scoped>

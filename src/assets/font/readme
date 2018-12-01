@@ -1,0 +1,2 @@
+1、将字体文件放到该目录下，文件格式必须在eot、woff、woff2、ttf、svg、otf中选择（因为在webpack打包时，只设置了上面几个格式）；
+2、在style/font.less中引入该目录下的字体文件；
