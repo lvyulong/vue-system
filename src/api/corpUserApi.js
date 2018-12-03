@@ -1,4 +1,4 @@
-import Resource from 'app/common/resource/base';
+import Resource from 'app/common/resource';
 
 const corpUserApi = new Resource({
     url: 'corp-user',

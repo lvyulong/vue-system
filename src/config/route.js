@@ -10,9 +10,10 @@
 // meta:元信息，未封装
 // beforeEnter 此处只能做一些认证之类的操作，但是无法往组件里面传数据；推荐在组件内使用beforeRouterEnter操作，next可以有回调;
 
-import handle from 'app/common/config/handle';
+import handle from 'config/handle';
+import route from 'app/common/route';
 
-export default {
+const config = {
     default: 'app.user.index',
     routes: [
         // 登陆
@@ -33,10 +34,12 @@ export default {
         {state: 'app.demo1.demo11', type: 'blank'},
         {state: 'app.demo1.demo11.index'},
         {state: 'app.demo1.demo11.new'},
-        {state: 'app.demo1.demo11.edit',params:'/:id'},
+        {state: 'app.demo1.demo11.edit', params: '/:id'},
         // demo1.2
         {state: 'app.demo1.demo12', type: 'blank'},
         {state: 'app.demo1.demo12.index'},
 
     ]
 };
+const routes = route(config);
+export default routes;

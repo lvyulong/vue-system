@@ -17,10 +17,10 @@ const webpackBaseConfig = {
     // 定义别名，方便在vue组件中引用
     alias: {
       app: path.resolve(__dirname, '../src/'),
-      api: path.resolve(__dirname, '../src/common/resource/api/'),
+      api: path.resolve(__dirname, '../src/api/'),
       component: path.resolve(__dirname, '../src/common/component/'),
       filter: path.resolve(__dirname, '../src/common/filter/'),
-      config: path.resolve(__dirname, '../src/common/config/'),
+      config: path.resolve(__dirname, '../src/config/'),
       image: path.resolve(__dirname, '../src/assets/image/'),
       style: path.resolve(__dirname, '../src/assets/style/'),
     },

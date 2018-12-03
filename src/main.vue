@@ -1,3 +1,4 @@
+<!--应用的入口-->
 <template>
     <div>
         <router-view/>
@@ -6,7 +7,6 @@
 
 <script>
     export default {
-        name: "app",
         data() {
             return {}
         }

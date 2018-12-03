@@ -1,7 +1,6 @@
-import Vue from 'vue';
-
+import register from 'app/common/register';
 // -----------------------------------------------------
-import Back from 'component/Back';
+import back from 'component/Back';
 import pageList from 'component/pageList';
 import searchInput from 'component/searchInput.vue';
 import fileUpload from 'component/fileUpload.vue';
@@ -19,7 +18,7 @@ import timestampTotime from 'filter/timestampTotime';
 // 组件
 const config = {
     component: [
-        {name: 'back', component: Back},
+        {name: 'back', component: back},
         {name: 'pageList', component: pageList},
         {name: 'searchInput', component: searchInput},
         {name: 'fileUpload', component: fileUpload},
@@ -28,9 +27,7 @@ const config = {
         {name: 'selectLink', component: selectLink},
         {name: 'vueQr', component: vueQr},
     ],
-
     directive: [],
-
     filter: [
         {name: 'gender', filter: gender},
         {name: 'isEnable', filter: isEnable},
@@ -39,12 +36,4 @@ const config = {
         {name: 'keyToVal', filter: keyToVal},
     ]
 };
-
-// 自执行函数上面代码的分号不能省
-((config) => {
-    for (let k in config) {
-        config[k].map((val, key) => {
-            Vue[k](val.name, val[k])
-        })
-    }
-})(config);
+register(config);

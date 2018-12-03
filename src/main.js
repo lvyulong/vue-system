@@ -9,11 +9,11 @@ import 'font-awesome/less/font-awesome.less';
 import 'app/assets/style/main.less';
 
 // 自定义文件
-import App from 'app/App.vue';
-import routes from 'app/routes';
+import main from 'app/main.vue';
+import routes from 'config/route';
 import storeConfig from 'app/common/store/index';
 import myTool from 'app/common/myTool/index';
-import 'app/common/config/global';
+import 'config/global';
 
 
 window.global_data = {
@@ -45,7 +45,7 @@ const root = document.createElement('div');
 document.body.appendChild(root);
 const vm = new Vue({
     render: (h) => {
-        return h(App)
+        return h(main)
     },
     router,
     store

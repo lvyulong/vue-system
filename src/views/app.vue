@@ -56,9 +56,9 @@
 </template>
 
 <script>
-    import SlideNav from "app/common/component/SlideNav";
-    import navs from "app/common/config/nav";
-    import sys from 'app/common/config/sys';
+    import SlideNav from "component/SlideNav";
+    import navs from "config/nav";
+    import sys from 'config/sys';
     import {mapState} from 'vuex';
     import authApi from 'api/authApi';
 
