@@ -1,8 +1,6 @@
-
 import axios from 'axios';
 import interceptor from './interceptor';
 import sys from 'config/sys';
-
 // http拦截器
 axios.interceptors.request.use(interceptor.request.success,interceptor.request.error);
 axios.interceptors.response.use(interceptor.response.success,interceptor.response.error);

@@ -9,10 +9,7 @@
 // props ：设置为true，route.params 将会被设置为组件属性；如果 props 是一个对象，它会被按原样设置为组件属性。
 // meta:元信息，未封装
 // beforeEnter 此处只能做一些认证之类的操作，但是无法往组件里面传数据；推荐在组件内使用beforeRouterEnter操作，next可以有回调;
-
 import handle from 'config/handle';
-import route from 'app/common/route';
-
 const config = {
     default: 'app.user.index',
     routes: [
@@ -41,5 +38,4 @@ const config = {
 
     ]
 };
-const routes = route(config);
-export default routes;
+export default config;

@@ -1,5 +1,6 @@
 import {_} from 'underscore';
 function createRoutes(config) {
+    const base = 'views';
     const blank = {
         render: (h) => {
             return h('div', [
@@ -45,7 +46,8 @@ function createRoutes(config) {
             let path = '';
             stateArray.map((v, k) => {
                 path += `/${v}`;
-            })
+            });
+            // path = base + path;
             return () => import(`app/views${path}.vue`)
         }
     }
@@ -137,4 +139,6 @@ function createRoutes(config) {
     return index;
 }
 
-export default createRoutes;
+export default {
+    create:createRoutes
+};

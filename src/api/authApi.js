@@ -1,17 +1,11 @@
-import Resource from 'app/common/resource';
-
-const authApi = new Resource({
+import Vue from 'vue';
+const authApi = new Vue.Resource({
     url: 'auth',
     actions: [
         {
             name:'current',
             method:'GET',
             url:'current'
-        },
-        {
-            name:'pre',
-            method:'POST',
-            url:'pre'
         },
         {
             name:'login',
@@ -25,5 +19,4 @@ const authApi = new Resource({
         },
     ]
 });
-
 export default authApi;
