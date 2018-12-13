@@ -10,6 +10,7 @@ import 'app/assets/style/main.less';
 import routesDesign from 'vue-routes-design';
 import axios from 'axios';
 import vueAxiosResource from 'vue-axios-resource';
+// import i18n from './i18n/i18n';
 
 // 自定义文件
 import main from 'app/main.vue';
@@ -17,7 +18,7 @@ import routeConfig from 'config/route';
 import storeConfig from 'app/common/store/index';
 import myTool from 'app/common/myTool/index';
 import 'config/global';
-
+import interceptor from 'config/interceptor'
 
 window.global_data = {
     //除非需要写死域名的地方才会用到，否则需用location.origin动态获取
@@ -41,6 +42,7 @@ Vue.use(Vuex);
 Vue.use(vueAxiosResource,{
     handler:axios,
     baseUrl:'/api/',
+    interceptor:interceptor
 });
 // vuex状态
 const store = new Vuex.Store(storeConfig);
@@ -55,9 +57,14 @@ const vm = new Vue({
     render: (h) => {
         return h(main)
     },
+    // i18n,
     router,
     store
 });
+
+// // 英文版
+// localStorage.setItem('lang', 'en');
+
 vm.$mount(root);
 // 将vue实例绑定到全局，方便使用其属性
 window.vm = vm;

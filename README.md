@@ -131,6 +131,47 @@ CleanWebpackPlugin插件，每次打包时，先清空输出的目录。<br>
 ```javascript
   sysApiBase:'/api/',
 ```
+#### 10、开启i18n（中英文语言切换）
+根据自己的业务需求，可以选择是否开启该功能。开启流程如下：<br>
+
+1、main.js
+
+```javascript
+import i18n from './i18n/i18n';
+
+const vm = new Vue({
+    render: (h) => {
+        return h(main)
+    },
+    // i18n,
+    router,
+    store
+});
+
+ localStorage.setItem('lang', 'en');
+```
+2、src/i18n
+
+i18n的配置文件在src/i18n目录下，elementUI框架的语言切换配置已经整合进去了，我们只需要把自己业务里面需要的加进去即可。
+
+```javascript
+//langs/cn.js
+const cn = {
+     login: {
+         btn: '登录'
+     },
+    ...enLocale
+};
+
+//langs/en.js
+const en = {
+     login: {
+         btn: 'Login'
+     },
+    ...enLocale
+};
+```
+
 
 ### 二、开发指南
 #### 1、下载依赖

@@ -50,12 +50,18 @@
                 type: String,
                 required: true
             },
+            // 文件数量限制
             max: {
                 type: Number
             },
+            // 支持多文件上传
             multiple: Boolean,
+            // 文件类型控制
             accept: Array,
-            size:Number
+            // 文件大小
+            size:Number,
+            // 文件大小的单位，支持MB、KB，其他的字符全部按B来处理
+            sizeUnit: String
         },
         data() {
             return {
@@ -71,6 +77,15 @@
                 completeCount:0,
                 errorFiles:[],
                 loadObj:null
+            }
+        },
+        mounted: function () {
+            // 去掉input file元素默认的title，默认会在鼠标放到元素上时显示“未选择任何文件”
+            var input_eles = document.getElementsByTagName('input');
+            for (var i in input_eles) {
+                if (input_eles[i].type == 'file') {
+                    input_eles[i].title = ' ';
+                }
             }
         },
         methods: {
@@ -120,8 +135,13 @@
                             this.$message.error("超过最大文件数限制");
                         }
                         if (failFilter.name=="sizeFilter"){
-                            console.log(file)
-                            this.$message.error(`单个文件大小不能超过${this.size}`);
+                            var sizeUnit;
+                            if(this.sizeUnit!='MB'&&this.sizeUnit!='KB'){
+                                sizeUnit = 'B';
+                            }else{
+                                sizeUnit = this.sizeUnit;
+                            }
+                            this.$message.error(`单个文件大小不能超过${this.size}${sizeUnit}`);
                         }
                     }
                 }
@@ -161,9 +181,17 @@
                     })
                 }
                 if (that.size) {
+                    var size;
+                    if (that.sizeUnit == 'MB') {
+                        size = that.size * 1024 * 1024;
+                    }else if(that.sizeUnit == 'KB'){
+                        size = that.size * 1024;
+                    } else{
+                        size = that.size;
+                    }
                     current.push({
                         name:'sizeFilter',
-                        fn:sizeFn(that.size)
+                        fn:sizeFn(size)
                     })
                 }
                 return current;

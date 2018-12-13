@@ -23,6 +23,7 @@
     "vue": "^2.5.16",
     "vue-axios-resource": "^1.2.0",
     "vue-file-upload": "^0.1.12",
+    "vue-i18n": "^8.4.0",
     "vue-qr": "^1.5.2",
     "vue-router": "^3.0.1",
     "vue-routes-design": "^1.1.3",

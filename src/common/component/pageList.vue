@@ -10,12 +10,13 @@
         <slot v-bind:list="list"></slot>
         <div class="mt10">
             <el-pagination
+                    :class="{'pull-right':position=='right'}"
                     @size-change="sizeChange"
                     @current-change="pageChange"
                     :current-page="meta.currentPage"
                     :page-sizes="pageSizes"
                     :page-size="meta.perPage"
-                    :layout="layout"
+                    :layout="layoutShow"
                     :total="meta.totalCount">
             </el-pagination>
         </div>
@@ -30,6 +31,8 @@
             'ignore', //检查查询参数，并去掉ignore中设置的参数；如果不设置，则不检查
             'need', //检查查询参数，如果参数中包含了need中设置的所有参数，才查询；如果不设置，则不检查
             'range', //查询范围，设置了此参数，则只在该范围内查询，不在此范围内的查询参数不作为查询条件
+            'layout',   //显示哪些
+            'position', //显示在哪儿，默认left,可传的值right
         ],
         data() {
             return {
@@ -41,6 +44,11 @@
                 },
                 pageSizes: [1, 20, 50, 100],
                 layout: 'total, sizes, prev, pager, next, jumper',
+            }
+        },
+        computed:{
+            layoutShow:function () {
+                return this.layout || 'total, sizes, prev, pager, next, jumper';
             }
         },
         methods: {
