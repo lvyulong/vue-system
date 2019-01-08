@@ -28,6 +28,7 @@ const webpackProdConfig = merge(webpackBaseConfig, {
         }),
         // 提取css文件为单独的文件
         new MiniCssExtractPlugin({
+            // filename和chunkFilename都是路径的写法，甚至可以写成相对路径，如：'../style/[name].css'
             filename: `lib${CURRENT_VERSION}/style/[name].css`,
             chunkFilename: `lib${CURRENT_VERSION}/style/[id].css`
         }),
