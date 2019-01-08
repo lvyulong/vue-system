@@ -43,7 +43,6 @@
                     currentPage: 1
                 },
                 pageSizes: [1, 20, 50, 100],
-                layout: 'total, sizes, prev, pager, next, jumper',
             }
         },
         computed:{

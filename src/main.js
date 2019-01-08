@@ -6,6 +6,7 @@ import ElementUI from 'element-ui';
 import underscore from 'underscore';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'font-awesome/less/font-awesome.less';
+import 'lv-common-css/dist/style/pc.css';
 import 'app/assets/style/main.less';
 import routesDesign from 'vue-routes-design';
 import axios from 'axios';

@@ -1,6 +1,5 @@
-import Resource from 'app/common/resource';
-
-const demo11Api = new Resource({
+import Vue from 'vue';
+const demo11Api = new Vue.Resource({
     url: 'demo11',
     actions: [
 
