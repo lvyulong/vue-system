@@ -125,7 +125,7 @@ CleanWebpackPlugin插件，每次打包时，先清空输出的目录。<br>
         devIp: ''
     };
 ```
-#### 9、common/config/sys.js
+#### 9、config/sys.js
 ##### (1).sysApiBase配置
 配置后端接口的基础访问路径，如/api/；该配置会在common/resource/base.js中用到。
 ```javascript
