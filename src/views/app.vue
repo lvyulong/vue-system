@@ -92,16 +92,16 @@
             SlideNav
         },
         // 进入主应用之前访问current接口
-        beforeRouteEnter: (to, from, next) => {
-            authApi.current().then(function (res) {
-                next((vm) => {
-                    vm.$store.commit('setProp', {
-                        key: 'local',
-                        val: res.data && res.data.data
-                    });
-                });
-            });
-        }
+        // beforeRouteEnter: (to, from, next) => {
+        //     authApi.current().then(function (res) {
+        //         next((vm) => {
+        //             vm.$store.commit('setProp', {
+        //                 key: 'local',
+        //                 val: res.data && res.data.data
+        //             });
+        //         });
+        //     });
+        // }
     };
 </script>
 <style lang="less" scoped>

@@ -19,7 +19,13 @@ import routeConfig from 'config/route';
 import storeConfig from 'app/common/store/index';
 import myTool from 'app/common/myTool/index';
 import 'config/global';
+import sys from 'config/sys';
 import interceptor from 'config/interceptor'
+
+import('./test').then(function (module) {
+    console.log(module.default);
+
+})
 
 window.global_data = {
     //除非需要写死域名的地方才会用到，否则需用location.origin动态获取
@@ -42,7 +48,7 @@ Vue.use(ElementUI);
 Vue.use(Vuex);
 Vue.use(vueAxiosResource,{
     handler:axios,
-    baseUrl:'/api/',
+    baseUrl:sys.sysApiBase,
     interceptor:interceptor
 });
 // vuex状态

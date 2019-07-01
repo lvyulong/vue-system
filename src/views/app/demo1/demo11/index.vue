@@ -2,7 +2,7 @@
     <div class="page">
         <page-header title="demo11列表"></page-header>
         <div class="page-content">
-            <div>
+            <div class="clean-float">
                 <router-link :to="{name:'appDemo1Demo11New'}">
                     <el-button type="primary" plain>创建新项</el-button>
                 </router-link>
@@ -29,8 +29,6 @@
                     </el-option>
                 </el-select>
             </div>
-            <!--清除浮动-->
-            <div class="clear-both"></div>
             <!--三、表格部分-->
             <div class="mt1rem">
                 <page-list :pageListApi="pageListApi" ref="pageList">

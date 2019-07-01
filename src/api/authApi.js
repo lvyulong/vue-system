@@ -8,6 +8,11 @@ const authApi = new Vue.Resource({
             url:'current'
         },
         {
+            name:'pre',
+            method:'POST',
+            url:'pre'
+        },
+        {
             name:'login',
             method:'POST',
             url:'login'

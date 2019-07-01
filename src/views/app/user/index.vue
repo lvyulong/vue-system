@@ -3,7 +3,7 @@
         <page-header title="用户管理"></page-header>
 
         <div class="page-content">
-            <div>
+            <div class="clean-float">
                 <!--输入框搜索-->
                 <search-input
                         :options="views.searchSelects"
@@ -13,7 +13,6 @@
                 </search-input>
             </div>
             <!--清除浮动-->
-            <div class="clear-both"></div>
             <div class="mt1rem">
                 <page-list :pageListApi="pageListApi">
                     <template slot-scope="slotScope">
