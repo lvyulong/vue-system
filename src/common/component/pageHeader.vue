@@ -37,7 +37,7 @@ usage:
                 <slot name="nav"></slot>
             </div>
             <!--返回按钮 back-->
-            <back style="position: absolute;bottom: 10px;right: 0" v-if="back"></back>
+            <back style="position: absolute;bottom: 10px;right: 0" v-if="back" :route="backRoute"></back>
         </div>
     </div>
 </template>
@@ -48,6 +48,7 @@ usage:
         name: "pageHeader",
         props:[
             "back",  //布尔值，true显示
+            "backRoute",  //对象
             'title',    //title的内容，有则显示，没有不显示
             "nav",      //nav的数据
             "slotNav"   //布尔值，true显示；如果要显示，还需传入插槽的内容

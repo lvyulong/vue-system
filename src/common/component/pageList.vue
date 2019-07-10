@@ -42,7 +42,7 @@
                     _page_size: 20,
                     currentPage: 1
                 },
-                pageSizes: [1, 20, 50, 100],
+                pageSizes: [20, 50, 100],
             }
         },
         computed:{
