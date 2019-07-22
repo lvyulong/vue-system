@@ -22,11 +22,6 @@ import 'config/global';
 import sys from 'config/sys';
 import interceptor from 'config/interceptor'
 
-import('./test').then(function (module) {
-    console.log(module.default);
-
-})
-
 window.global_data = {
     //除非需要写死域名的地方才会用到，否则需用location.origin动态获取
     domain: {
