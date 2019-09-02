@@ -63,6 +63,8 @@
                     // 2、将当前的值赋到params中
                     params[this.selected] = this.inputValue;
                     params = myTool.clearInvalidProp(params);
+                    // 每次筛选都删掉_page参数，默认显示第一页
+                    delete params._page;
                     this.$router.push({
                         name: this.$route.name,
                         query: params
