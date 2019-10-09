@@ -5,9 +5,6 @@
             <el-aside>
                 <div style="padding-top: 3rem">
                     <div>
-                        <img :src="sys.sysLogo2" class="logo2">
-                    </div>
-                    <div>
                         <transition name="fade">
                             <img :src="sys.sysLogo1" class="logo1" v-show="!collapse">
                         </transition>
@@ -161,6 +158,4 @@
         color: white;
         background-color: lighten(#353D55, 10%);
     }
-
 </style>
-

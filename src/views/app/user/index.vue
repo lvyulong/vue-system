@@ -89,6 +89,9 @@
             return {
                 pageListApi: userApi,
                 search: {},
+                test:{
+                    name:'test'
+                },
                 avatar: avatar,
                 views: {
                     searchSelects: [
@@ -99,9 +102,8 @@
             }
         },
         computed: {},
-        methods: {},
-        mounted: function () {
 
+        mounted: function () {
         }
     };
 </script>
