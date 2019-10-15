@@ -13,7 +13,7 @@ const webpackProdConfig = merge(webpackBaseConfig, {
     mode: 'production',
     output: {
         // 指定js文件输出位置
-        path: path.resolve(__dirname, '../dist'),
+        path: path.resolve(__dirname, '{{output}}/{{name}}'),
         filename: `lib${CURRENT_VERSION}/script/[name].js`,
         // 非入口(non-entry) chunk 文件的名称
         chunkFilename: `lib${CURRENT_VERSION}/script/[name].js`,
@@ -35,8 +35,8 @@ const webpackProdConfig = merge(webpackBaseConfig, {
         // 压缩css文件
         new OptimizeCssAssetsWebpackPlugin(),
         // 每次打包清空（与output.path保持一致）
-        new CleanWebpackPlugin(['dist'], {
-            root: path.resolve(__dirname, '../')
+        new CleanWebpackPlugin(['{{name}}'], {
+            root: path.resolve(__dirname, '{{output}}')
         }),
     ],
     module: {

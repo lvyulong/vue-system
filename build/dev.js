@@ -19,7 +19,7 @@ const webpackDevConfig = merge(webpackBaseConfig, {
         // dist和static目录下面的文件，可直接通过`/${文件名}.${后缀名}`访问，相当于这些文件都是在根目录下的
         contentBase: [path.resolve(__dirname, '../dist'), path.resolve(__dirname, '../static')],
         compress: true,
-        port: 8081,
+        port: '{{port}}',
         host: '0.0.0.0',
         // 编译的错误或警告信息是否显示
         overlay: {
@@ -29,7 +29,7 @@ const webpackDevConfig = merge(webpackBaseConfig, {
         hot: true,
         proxy: {
             "/api": {
-                target: "http://localhost:3000",
+                target: "http://{{domain}}",
                 // pathRewrite: {"^/api" : ""},
                 changeOrigin: true
             },

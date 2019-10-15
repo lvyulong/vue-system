@@ -59,7 +59,7 @@ const webpackBaseConfig = {
               outputPath:`lib${CURRENT_VERSION}/image`,
               // 指定打包后文件的访问路径;
               // 此处的写法是从根路径开始找,请根据项目具体情况,进行修改production时的访问路径;development时不需修改
-              publicPath:process.env.NODE_ENV=='production'?`/admin/lib${CURRENT_VERSION}/image/`:`/lib${CURRENT_VERSION}/image/`
+              publicPath:process.env.NODE_ENV=='production'?`/{{name}}/lib${CURRENT_VERSION}/image/`:`/lib${CURRENT_VERSION}/image/`
           }
         }
       },
@@ -72,7 +72,7 @@ const webpackBaseConfig = {
               limit: 10000,
               name: `[name].[ext]`,
               outputPath:`lib${CURRENT_VERSION}/font`,
-              publicPath:process.env.NODE_ENV=='production'?`/admin/lib${CURRENT_VERSION}/font/`:`/lib${CURRENT_VERSION}/font/`
+              publicPath:process.env.NODE_ENV=='production'?`/{{name}}/lib${CURRENT_VERSION}/font/`:`/lib${CURRENT_VERSION}/font/`
           }
         }
       }
