@@ -47,8 +47,8 @@
         props: {
             // 向后端提交的接口
             url: {
-                type: String,
-                required: true
+                type:String,
+                default:''
             },
             // 文件数量限制
             max: {
@@ -103,7 +103,7 @@
                         if(this.completeCount == this.files.length){
                             this.$refs.vueFileUploader.clearAll();
                             this.files =  [];
-                            this.$emit('complete',this.errorFiles);
+                            this.$emit('complete',this.errorFiles,response);
                             if(this.loadObj){
                                 this.loadObj.close();
                                 this.loadObj = null;
@@ -199,6 +199,10 @@
             // 上传文件
             upload(data) {
                 var that = this;
+                if(this.files.length==0){
+                    this.$message.error("未选择任何文件");
+                    return;
+                }
                 // 开始上传文件，显示loading
                 this.loadObj = this.$loading({
                     text:'正在上传,请耐心等待...'
@@ -214,6 +218,7 @@
             // 添加新文件时触发
             onAddItem(files){
                this.files = files;
+               this.$emit('add',files);
             },
             //移除单个文件
             deleteItem(file){
