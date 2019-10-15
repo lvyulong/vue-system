@@ -25,11 +25,11 @@ import interceptor from 'config/interceptor'
 window.global_data = {
     //除非需要写死域名的地方才会用到，否则需用location.origin动态获取
     domain: {
-        dev: '',
-        prod: '',
+        dev: 'http://{{domain}}',
+        prod: '{{prod}}',
     },
     // 开发环境本机的ip
-    devIp: ''
+    devIp: '{{ip}}'
 };
 if (location.hostname === 'localhost' || location.hostname === global_data.devIp) {
     global_data.isDev = 1;
