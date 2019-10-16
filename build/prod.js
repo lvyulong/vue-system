@@ -36,7 +36,7 @@ const webpackProdConfig = merge(webpackBaseConfig, {
         new OptimizeCssAssetsWebpackPlugin(),
         // 每次打包清空（与output.path保持一致）
         new CleanWebpackPlugin(['{{name}}'], {
-            root: path.resolve(__dirname, '{{output}}')
+            root: path.resolve(__dirname, '{{output}}/')
         }),
     ],
     module: {

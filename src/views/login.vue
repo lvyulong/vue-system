@@ -5,7 +5,7 @@
         </div>
         <el-card class="user-panel">
             <div class="panel-body">
-                <div v-if="loginUseWechat">
+                <div v-if="loginType == 'wx'">
                     <!--一、企业号登陆---------------------------------------------------->
                     <!--二维码容器，如果没有key时显示二维码-->
                     <div id="wx_reg" style="text-align: center" v-if="!key"></div>
@@ -49,7 +49,7 @@
         name: "Login",
         data() {
             return {
-                loginUseWechat:sys.loginUseWechat,
+                loginType:sys.loginType,
                 loginTitle:sys.loginTitle,
                 model:{
                     name:'',
@@ -88,7 +88,7 @@
         },
         mounted: function () {
             var that = this;
-            if(sys.loginUseWechat){
+            if(sys.loginType == 'wx'){
                 // 二维码登陆
                 var key = this.$route.query && this.$route.query.key;
                 if (key) {
@@ -121,8 +121,6 @@
                         });
                     }
                 }
-            }else{
-                // 账号密码登陆
             }
         }
     };
