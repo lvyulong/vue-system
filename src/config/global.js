@@ -12,6 +12,7 @@ import gender from 'filter/gender';
 import isEnable from 'filter/isEnable';
 import propMap from 'filter/propMap';
 import keyToVal from 'filter/keyToVal';
+import ellipsis from 'filter/ellipsis';
 import timestampTotime from 'filter/timestampTotime';
 // -----------------------------------------------------
 
@@ -34,6 +35,7 @@ const config = {
         {name: 'propMap', filter: propMap},
         {name: 'timestampTotime', filter: timestampTotime},
         {name: 'keyToVal', filter: keyToVal},
+        {name: 'ellipsis', filter: ellipsis},
     ]
 };
 register(config);

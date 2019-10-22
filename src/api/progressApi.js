@@ -1,0 +1,22 @@
+import Vue from 'vue';
+const progressApi = new Vue.Resource({
+    url: '/common/progress',
+    actions: [
+        {
+            name:'getOne',
+            method:'GET',
+            url:'get-one'
+        },
+        {
+            name:'getMulti',
+            method:'GET',
+            url:'get-multi'
+        },
+        {
+            name:'cancel',
+            method:'POST',
+            url:'cancel'
+        }
+    ]
+});
+export default progressApi;

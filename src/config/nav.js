@@ -7,25 +7,25 @@ export default [
         path: '/app/user/index',
         active: '/app/user'
     },
-    {
-        label: '模块一',
-        icon: 'fa fa-file-text font20',
-        // 有子菜单的话，此处设置的path似乎点击没有路由的跳转，只是一个容器；
-        path: '/app/demo1/demo11/index',
-        active: '/app/demo1',
-        children: [
-            {
-                name: '模块1.1',
-                items: [
-                    {path: '/app/demo1/demo11/index', label: '列表', active: '/app/demo1/demo11/index'},
-                ]
-            },
-            {
-                name: '模块1.2',
-                items: [
-                    {path: '/app/demo1/demo12/index', label: '列表', active: '/app/demo1/demo12/index'},
-                ]
-            },
-        ]
-    }
+    // {
+    //     label: '模块一',
+    //     icon: 'fa fa-file-text font20',
+    //     // 有子菜单的话，此处设置的path似乎点击没有路由的跳转，只是一个容器；
+    //     path: '/app/demo1/demo11/index',
+    //     active: '/app/demo1',
+    //     children: [
+    //         {
+    //             name: '模块1.1',
+    //             items: [
+    //                 {path: '/app/demo1/demo11/index', label: '列表', active: '/app/demo1/demo11/index'},
+    //             ]
+    //         },
+    //         {
+    //             name: '模块1.2',
+    //             items: [
+    //                 {path: '/app/demo1/demo12/index', label: '列表', active: '/app/demo1/demo12/index'},
+    //             ]
+    //         },
+    //     ]
+    // }
 ]

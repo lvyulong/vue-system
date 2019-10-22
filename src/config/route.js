@@ -25,17 +25,6 @@ const config = {
         {state: 'app.user.new'},
         {state: 'app.user.edit', params: '/:id'},
 
-        // demo1
-        {state: 'app.demo1', type: 'blank'},
-        // demo1.1
-        {state: 'app.demo1.demo11', type: 'blank'},
-        {state: 'app.demo1.demo11.index'},
-        {state: 'app.demo1.demo11.new'},
-        {state: 'app.demo1.demo11.edit', params: '/:id'},
-        // demo1.2
-        {state: 'app.demo1.demo12', type: 'blank'},
-        {state: 'app.demo1.demo12.index'},
-
     ]
 };
 export default config;

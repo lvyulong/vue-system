@@ -10,6 +10,7 @@
         <slot v-bind:list="list"></slot>
         <div class="mt10">
             <el-pagination
+                    v-if="!hidePage"
                     :class="{'pull-right':position=='right'}"
                     @size-change="sizeChange"
                     @current-change="pageChange"
@@ -33,6 +34,8 @@
             'range', //查询范围，设置了此参数，则只在该范围内查询，不在此范围内的查询参数不作为查询条件
             'layout',   //显示哪些
             'position', //显示在哪儿，默认left,可传的值right
+            'hidePage', // 隐藏翻页
+            'noAuto',
         ],
         data() {
             return {
@@ -66,7 +69,7 @@
                 })
             },
             // 获取列表数据
-            getList() {
+            getList(cb) {
                 var that = this;
                 var data;
                 // 如果有需要忽略的字段，则去掉查询参数里面的这些字段
@@ -81,6 +84,10 @@
                     data = myTool.trimObj(data,this.range);
                 }
 
+                if(this.hidePage){
+                    data._page_size = -1;
+                }
+
                 if(this.need&&this.need.length>0){
                     // 如果设置了need,则data中必须包含need中设置的所有参数，才开始查询
                     //使用场景：进入某个页面必须携带某个参数才显示列表，否则不显示列表
@@ -92,30 +99,37 @@
                         }
                     }
                     if(isPass){
-                        this.pageListApi.query({params: data}).then(function (res) {
-                            that.list = res.data.items;
-                            that.meta = res.data['_meta'];
-                        });
+                        queryData();
                     }
                 }else{
-                    this.pageListApi.query({params: data}).then(function (res) {
+                    queryData();
+                }
+
+                function queryData() {
+                    that.pageListApi.query({params: data}).then(function (res) {
                         that.list = res.data.items;
                         that.meta = res.data['_meta'];
+                        cb && cb(that.list);
                     });
                 }
+
             }
         },
         created: function () {
             // 初始化页面
             this.search = Object.assign({},this.$route.query);
-            this.getList();
+            if(!this.noAuto){
+                this.getList();
+            }
         },
         watch: {
             // 监听路由，刷新列表
             $route: {
                 handler(n, o) {
                     this.search = Object.assign({},this.$route.query);
-                    this.getList();
+                    if(!this.noAuto){
+                        this.getList();
+                    }
                 },
                 deep: true
             }
