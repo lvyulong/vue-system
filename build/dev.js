@@ -33,6 +33,14 @@ const webpackDevConfig = merge(webpackBaseConfig, {
                 // pathRewrite: {"^/api" : ""},
                 changeOrigin: true
             },
+            "/static":{
+                target: "http://{{domain}}",
+                changeOrigin: true
+            },
+            "/template":{
+                target: "http://{{domain}}",
+                changeOrigin: true
+            },
         }
     },
     plugins: [

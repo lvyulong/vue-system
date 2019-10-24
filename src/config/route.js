@@ -15,15 +15,16 @@ const config = {
     routes: [
         // 登陆
         {state: 'login'},
-
-        // 应用主体
         {state: 'app', defaultLink: 'app.user.index'},
-
-        // 我的账户
+        // 我的
+        {state: 'app.my',type: 'blank', defaultLink: 'app.my.pwd'},
+        {state: 'app.my.pwd'},
+        // 授权管理
         {state: 'app.user', type: 'blank', defaultLink: 'app.user.index'},
         {state: 'app.user.index'},
         {state: 'app.user.new'},
         {state: 'app.user.edit', params: '/:id'},
+        {state: 'app.user.resource'},
 
     ]
 };

@@ -21,6 +21,7 @@ import myTool from 'app/common/myTool/index';
 import 'config/global';
 import sys from 'config/sys';
 import interceptor from 'config/interceptor'
+import lvlPlugin from 'app/common/plugin/lvlPlugin';
 
 window.global_data = {
     //除非需要写死域名的地方才会用到，否则需用location.origin动态获取
@@ -38,6 +39,7 @@ window.myTool = myTool;
 window._ = underscore;
 
 // 使用插件
+Vue.use(lvlPlugin);
 Vue.use(Router);
 Vue.use(ElementUI);
 Vue.use(Vuex);
@@ -66,8 +68,13 @@ const vm = new Vue({
 
 // // 英文版
 // localStorage.setItem('lang', 'en');
+window.global_data.lang_type = 'cn';
 
-vm.$mount(root);
+axios.get('/static/scripts/errorEnumData.json').then(function (res) {
+    // 获取到errorEnumData.json之后才渲染vue组件
+    window.global_data.errorEnumData = res.data.data;
+    vm.$mount(root);
+});
 // 将vue实例绑定到全局，方便使用其属性
 window.vm = vm;
 export default vm;

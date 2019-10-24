@@ -13,7 +13,7 @@
             <!-- 主菜单 -->
             <template v-for="(config,confIndex) in data">
                 <!-- 有子菜单 -->
-                <el-submenu :index="config.path" v-if="config.children">
+                <el-submenu :index="config.path" v-if="config.children&&pmsCheckPass(config)">
                     <template slot="title">
                         <i :class="config.icon" v-if="config.icon"></i>
                         &nbsp;
@@ -22,10 +22,11 @@
                     <!-- 二级菜单 -->
                     <template v-for="(child,childIndex) in config.children">
                         <!-- 分组 -->
-                        <el-menu-item-group v-if="child.name">
+                        <el-menu-item-group v-if="child.name&&pmsCheckPass(child)" >
                             <template slot="title">{{child.name}}</template>
                             <template v-for="(item,itemIndex) in child.items">
                                 <el-menu-item
+                                        v-if="pmsCheckPass(item)"
                                         :index="item.path"
                                         :class="{'router-active':isActiveState(item.active)}"
                                         style="padding-left: 52px">
@@ -36,7 +37,7 @@
                         <!-- 无分组 -->
                         <el-menu-item
                                 :index="child.path"
-                                v-if="!child.name"
+                                v-if="!child.name&&pmsCheckPass(child)"
                                 :class="{'router-active':isActiveState(child.active)}"
                                 style="padding-left: 52px">
                             {{child.label}}
@@ -45,7 +46,7 @@
                 </el-submenu>
                 <!-- 无二级菜单 -->
                 <el-menu-item :index="config.path"
-                              v-if="!config.children"
+                              v-if="!config.children&&pmsCheckPass(config)"
                               :class="{'router-active':isActiveState(config.active)}">
                     <i :class="config.icon" v-if="config.icon"></i>
                     &nbsp;
@@ -79,6 +80,22 @@
             handleClose() {
 
             },
+            pmsCheckPass(config){
+                var that = this;
+                var isPass = false;
+                if(config.checkPms && config.checkPms.length > 0){
+                    for(let i=0;i<config.checkPms.length;i++){
+                        if(that.$store.state.userPms[config.checkPms[i]]){
+                            isPass = true;
+                            break;
+                        }
+                    }
+                }else{
+                    isPass = true;
+                }
+                return isPass;
+            },
+
             handleSelect(index, path) {
                 // 如果已经是激活状态，则不跳转
                 if (this.currentPath != index) {

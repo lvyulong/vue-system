@@ -35,8 +35,10 @@
                 <el-header style="border: none">
                 <span>
                   欢迎，
-                 <strong>{{(local.user&&(local.user.name || local.user.UserId)) || '管理员'}}</strong>
-                  </span>
+                    <router-link :to="{name:'appMyPwd'}">
+                         <strong>{{(local.user&&(local.user.name || local.user.UserId)) || '管理员'}}</strong>
+                    </router-link>
+                </span>
                     <a href="#" class="pull-right" @click="logout()">退出</a>
                 </el-header>
                 <!-- 主内容区 -->
@@ -51,14 +53,13 @@
         </el-container>
     </div>
 </template>
-
 <script>
     import SlideNav from "component/SlideNav";
     import navs from "config/nav";
     import sys from 'config/sys';
     import {mapState} from 'vuex';
     import authApi from 'api/authApi';
-
+    import enumConfig  from 'config/enum';
     export default {
         name: "App",
         data() {
@@ -89,16 +90,43 @@
             SlideNav
         },
         // 进入主应用之前访问current接口
-        // beforeRouteEnter: (to, from, next) => {
-        //     authApi.current().then(function (res) {
-        //         next((vm) => {
-        //             vm.$store.commit('setProp', {
-        //                 key: 'local',
-        //                 val: res.data && res.data.data
-        //             });
-        //         });
-        //     });
-        // }
+        beforeRouteEnter: (to, from, next) => {
+            authApi.current().then(function (res) {
+                next((vm) => {
+                    // 所有权限的枚举表
+                    // var pmsObj = res.data.data.static.mgr_permission;
+                    // var pmsEnum = {};
+                    // _.each(pmsObj, function (p) {
+                    //     _.each(p.items, function (c) {
+                    //         pmsEnum[c.key] = c.id;
+                    //         pmsEnum[c.id] = c.key;
+                    //     })
+                    // });
+                    // // 该用户的权限
+                    // var userPms = {};
+                    // if (res.data.data.user.type == enumConfig['USER_TYPE_ADMIN']) {
+                    //     // 管理员账户，则把所有权限都绑过去
+                    //     _.each(pmsEnum,function (v,k) {
+                    //         if(typeof v == 'number'){
+                    //             userPms[k] = v;
+                    //         }
+                    //     })
+                    // } else {
+                    //     // 其他类型的账号，则根据permissions来绑定
+                    //     var permissions = res.data.data.user.permissions;
+                    //     for (let i = 0; i < permissions.length; i++) {
+                    //         userPms[pmsEnum[permissions[i]]] = permissions[i];
+                    //     }
+                    // }
+
+                    vm.$store.commit('setProp', [
+                        {key: 'local', val: res.data && res.data.data},
+                        // {key: 'pmsEnum', val: pmsEnum},
+                        // {key: 'userPms', val: userPms},
+                    ]);
+                });
+            });
+        }
     };
 </script>
 <style lang="less" scoped>
@@ -108,8 +136,8 @@
     }
 
     .title-words {
-        max-width: 172px;
         white-space: pre-wrap;
+        text-align: center;
     }
 
     .logo1 {

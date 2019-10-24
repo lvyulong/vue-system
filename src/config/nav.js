@@ -5,6 +5,7 @@ export default [
         label: '用户管理',
         icon: 'fa fa-users font20',
         path: '/app/user/index',
+        checkPms:[],
         active: '/app/user'
     },
     // {
@@ -12,16 +13,19 @@ export default [
     //     icon: 'fa fa-file-text font20',
     //     // 有子菜单的话，此处设置的path似乎点击没有路由的跳转，只是一个容器；
     //     path: '/app/demo1/demo11/index',
+    //     checkPms:[],
     //     active: '/app/demo1',
     //     children: [
     //         {
     //             name: '模块1.1',
+    //             checkPms:[],
     //             items: [
     //                 {path: '/app/demo1/demo11/index', label: '列表', active: '/app/demo1/demo11/index'},
     //             ]
     //         },
     //         {
     //             name: '模块1.2',
+    //             checkPms:[],
     //             items: [
     //                 {path: '/app/demo1/demo12/index', label: '列表', active: '/app/demo1/demo12/index'},
     //             ]
