@@ -24,7 +24,7 @@
                                  :rules="rules"
                                  ref="form">
                             <el-form-item prop="name">
-                                <el-input placeholder="账号" v-model="model.name" autocomplete="off"></el-input>
+                                <el-input placeholder="账号" v-model="model.name" auto-complete="off"></el-input>
                             </el-form-item>
 
                             <el-form-item prop="password">

@@ -111,11 +111,11 @@ function extend(obj1, obj2) {
     return obj1;
 }
 
-//清除对象中的无效字段（空字符串，空数组，空对象）
+//清除对象中的无效字段（空字符串，空数组，空对象、undefined/null）
 function clearInvalidProp(obj) {
     for (var key in obj) {
         var item = obj[key];
-        if ((JSON.stringify(item) === '{}') || (JSON.stringify(item) === '[]') || (!item)) {
+        if (JSON.stringify(item) === '{}' || JSON.stringify(item) === '[]' || item === '' || item === undefined || item === null) {
             delete obj[key]
         }
     }
