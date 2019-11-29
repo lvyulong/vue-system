@@ -44,7 +44,7 @@
 <script>
     import authApi from 'api/authApi';
     import sys from 'config/sys';
-
+    import configEnum from 'config/enum';
     export default {
         name: "Login",
         data() {
@@ -75,10 +75,12 @@
         methods: {
             submit(){
                 var that = this;
+                var data = _.extend({},that.model);
+                data.type = configEnum['LOGIN_TYPE_BY_PWD'];
                 this.$refs.form.validate((valid)=>{
                     if(valid){
                         authApi.login({
-                            data:that.model
+                            data:data
                         }).then(function (res) {
                             that.$router.push(that.appRouterEnter);
                         })
