@@ -1,0 +1,59 @@
+{
+    "data": [
+        {
+            "code": -1,
+            "en": "network anomaly",
+            "cn": "网络异常"
+        },
+        {
+            "code": 10001,
+            "en": "system maintaining, please try again later",
+            "cn": "系统维护中，请稍后再试"
+        },
+        {
+            "code": 10002,
+            "en": "system error",
+            "cn": "系统错误"
+        },
+        {
+            "code": 10003,
+            "en": "function failed",
+            "cn": "功能失败"
+        },
+        {
+            "code": 10004,
+            "en": "params invalid",
+            "cn": "参数错误"
+        },
+        {
+            "code": 10005,
+            "en": "not login",
+            "cn": "未登录"
+        },
+        {
+            "code": 10006,
+            "en": "login failed",
+            "cn": "登录失败"
+        },
+        {
+            "code": 10007,
+            "en": "login authorization expired",
+            "cn": "登录授权已过期"
+        },
+        {
+            "code": 10008,
+            "en": "user name or password",
+            "cn": "用户名或密码错误"
+        },
+        {
+            "code": 10009,
+            "en": "insufficient permissions",
+            "cn": "权限不足"
+        },
+        {
+            "code": 10010,
+            "en": "data not found",
+            "cn": "数据不存在"
+        }
+    ]
+}
