@@ -1,4 +1,5 @@
 // (第三方)库
+import 'babel-polyfill';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Router from 'vue-router';

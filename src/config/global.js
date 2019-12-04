@@ -7,7 +7,7 @@ import fileUpload from 'component/fileUpload.vue';
 import tags from 'component/tags.vue';
 import pageHeader from 'component/pageHeader.vue';
 import selectLink from 'component/selectLink.vue';
-import vueQr from 'vue-qr';
+// import vueQr from 'vue-qr';
 import gender from 'filter/gender';
 import isEnable from 'filter/isEnable';
 import propMap from 'filter/propMap';
@@ -26,7 +26,7 @@ const config = {
         {name: 'tags', component: tags},
         {name: 'pageHeader', component: pageHeader},
         {name: 'selectLink', component: selectLink},
-        {name: 'vueQr', component: vueQr},
+        // {name: 'vueQr', component: vueQr},
     ],
     directive: [],
     filter: [

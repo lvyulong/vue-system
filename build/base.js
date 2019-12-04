@@ -33,7 +33,14 @@ const webpackBaseConfig = {
             // es6语法编译;node_modules目录下的文件除外
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
+                include: [
+                    path.resolve(__dirname, '../src'),
+                    // element-ui使用了es6的一些语法，所以要编译
+                    path.resolve(__dirname, "../node_modules/element-ui/src"),
+                    path.resolve(__dirname, "../node_modules/element-ui/packages"),
+                    // vue-routes-design
+                    path.resolve(__dirname, "../node_modules/vue-routes-design/lib")
+                ],
                 use: {
                     loader: 'babel-loader'
                 }
