@@ -30,7 +30,8 @@ window.global_data = {
         prod: '{{prod}}',
     },
     // 开发环境本机的ip
-    devIp: '{{ip}}'
+    devIp: '{{ip}}',
+    routeState:{},
 };
 if (location.hostname === 'localhost' || location.hostname === global_data.devIp) {
     global_data.isDev = 1;
@@ -54,6 +55,14 @@ const store = new Vuex.Store(storeConfig);
 // 路由
 var routes = routesDesign.create(routeConfig);
 const router = new Router({routes});
+router.afterEach((to, from) => {
+    if(from && from.name){
+        window.global_data.routeState[from.name] = {
+            query:from.query,
+            params:from.params
+        }
+    }
+});
 // 挂载dom
 const root = document.createElement('div');
 document.body.appendChild(root);
