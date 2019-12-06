@@ -3,6 +3,7 @@ import register from 'app/common/register';
 import back from 'component/Back';
 import pageList from 'component/pageList';
 import searchInput from 'component/searchInput.vue';
+import searchSelect from 'component/searchSelect.vue';
 import fileUpload from 'component/fileUpload.vue';
 import tags from 'component/tags.vue';
 import pageHeader from 'component/pageHeader.vue';
@@ -22,6 +23,7 @@ const config = {
         {name: 'back', component: back},
         {name: 'pageList', component: pageList},
         {name: 'searchInput', component: searchInput},
+        {name: 'searchSelect', component: searchSelect},
         {name: 'fileUpload', component: fileUpload},
         {name: 'tags', component: tags},
         {name: 'pageHeader', component: pageHeader},
