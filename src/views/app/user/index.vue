@@ -23,7 +23,6 @@
                 <page-list :pageListApi="pageListApi">
                     <template slot-scope="slotScope">
                         <el-table :data="slotScope.list"
-                                  height="820"
                                   border
                                   size="mini"
                                   style="width: 100%">
@@ -90,7 +89,6 @@
 
                             <el-table-column
                                     v-if="checkPms(['ADMIN_PM_USER_EDIT','ADMIN_PM_USER_RESOURCE'],userPms)"
-                                    fixed="right"
                                     width="250"
                                     label="操作">
                                 <template slot-scope="slotScope"

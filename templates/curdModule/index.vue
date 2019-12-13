@@ -44,7 +44,6 @@
                 <page-list :pageListApi="pageListApi" :ignore="[]" ref="pageList">
                     <template slot-scope="slotScope">
                         <el-table :data="slotScope.list"
-                                  height="820"
                                   border
                                   size="mini"
                                   style="width: 100%">
@@ -59,7 +58,6 @@
                             </el-table-column>
 
                             <el-table-column
-                                    fixed="right"
                                     width="250"
                                     label="操作">
                                 <template slot-scope="slotScope">
