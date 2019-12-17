@@ -10,7 +10,7 @@ const webpackBaseConfig = {
         // 生成入口html
         new HtmlWebpackPlugin({
             template: 'index.html',
-            favicon: path.resolve(__dirname, '../favicon.ico')
+            // favicon: path.resolve(__dirname, '../favicon.ico')
         }),
     ],
     resolve: {
