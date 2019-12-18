@@ -27,8 +27,8 @@
                                 <el-input placeholder="账号" v-model="model.name" auto-complete="off"></el-input>
                             </el-form-item>
 
-                            <el-form-item prop="password">
-                                <el-input type="password" placeholder="密码" v-model="model.password"></el-input>
+                            <el-form-item prop="pwd">
+                                <el-input type="password" placeholder="密码" v-model="model.pwd"></el-input>
                             </el-form-item>
                             <el-form-item class="text-center">
                                 <el-button class="submit" type="primary" round @click="submit">登录</el-button>
@@ -36,7 +36,6 @@
                         </el-form>
                     </div>
                 </div>
-
             </div>
         </el-card>
     </div>
@@ -53,11 +52,11 @@
                 loginTitle:sys.loginTitle,
                 model:{
                     name:'',
-                    password:''
+                    pwd:''
                 },
                 formRules:[
                     {key:'name',label:'账号'},
-                    {key:'password',label:'密码'}
+                    {key:'pwd',label:'密码'}
                 ],
                 key: '',
                 loginError: '',
