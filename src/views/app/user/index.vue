@@ -6,8 +6,8 @@
                 <div>
                     <router-link :to="{name:'appUserNew'}"
                                  v-if="userPms['ADMIN_PM_USER_ADD']">
-                        <el-button type="primary">
-                            新增用户
+                        <el-button type="primary" size="mini">
+                            新增
                         </el-button>
                     </router-link>
                 </div>

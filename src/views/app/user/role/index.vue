@@ -5,7 +5,7 @@
             <div class="page-search">
                 <div>
                     <router-link :to="{name:'appUserRoleNew'}">
-                        <el-button type="primary">新增角色</el-button>
+                        <el-button type="primary" size="mini">新增</el-button>
                     </router-link>
                 </div>
                 <div>
