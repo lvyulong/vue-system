@@ -2,21 +2,24 @@
     <div class="page" v-if="userPms">
         <page-header title="用户管理"></page-header>
         <div class="page-content">
-            <div class="clean-float">
-                <router-link :to="{name:'appUserNew'}"
-                             v-if="userPms['ADMIN_PM_USER_ADD']">
-                    <el-button type="primary">
-                        新增用户
-                    </el-button>
-                </router-link>
-
-                <!--输入框搜索-->
-                <search-input
-                        :options="views.searchSelects"
-                        :label-width="'110px'"
-                        style="width: 400px"
-                        class="pull-right">
-                </search-input>
+            <div class="page-search">
+                <div>
+                    <router-link :to="{name:'appUserNew'}"
+                                 v-if="userPms['ADMIN_PM_USER_ADD']">
+                        <el-button type="primary">
+                            新增用户
+                        </el-button>
+                    </router-link>
+                </div>
+                <div>
+                    <!--输入框搜索-->
+                    <search-input
+                            :options="views.searchSelects"
+                            :label-width="'110px'"
+                            style="width: 400px"
+                            class="pull-right">
+                    </search-input>
+                </div>
             </div>
             <!--清除浮动-->
             <div class="mt1rem">
@@ -55,7 +58,7 @@
                             </el-table-column>
                             <el-table-column
                                     label="角色">
-                                <template slot-scope="slotScope" >
+                                <template slot-scope="slotScope">
                                     <span v-for="(item,index) in slotScope.row.role_ids"
                                           v-if="slotScope.row.type == configEnum['USER_TYPE_IMPLEMENTER']"
                                           :key="index">
@@ -159,20 +162,20 @@
                     ],
                     roles: []
                 },
-                userPms:null
+                userPms: null
             }
         },
-        computed:{
+        computed: {
             ...mapState(['local'])
         },
         methods: {
-            toResource(id){
-              this.$router.push({
-                  name:'appUserResource',
-                  query:{
-                      user_id:id
-                  }
-              })
+            toResource(id) {
+                this.$router.push({
+                    name: 'appUserResource',
+                    query: {
+                        user_id: id
+                    }
+                })
             },
             enableItem(item) {
                 var that = this;

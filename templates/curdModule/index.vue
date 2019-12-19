@@ -1,95 +1,184 @@
 <template>
     <div class="page">
-        <!--标题-->
-        <page-header title="Demo"></page-header>
-        <!--面包屑-->
-        <!--<page-header :back="1"-->
-        <!--:slotNav="1"-->
-        <!--:backRoute="{name:'appDemoPIndex'}">-->
-        <!--<template slot="nav">-->
-        <!--<el-breadcrumb separator-class="el-icon-arrow-right">-->
-        <!--<el-breadcrumb-item :to="{name:'appDemoPIndex'}">-->
-        <!--Demo的老父亲-->
-        <!--</el-breadcrumb-item>-->
-        <!--<el-breadcrumb-item>-->
-        <!--Demo管理-->
-        <!--</el-breadcrumb-item>-->
-        <!--</el-breadcrumb>-->
-        <!--</template>-->
-        <!--</page-header>-->
-
+        <page-header title="客户管理"></page-header>
         <div class="page-content">
-            <!--清除浮动-->
-            <div class="clean-float">
-                <router-link
-                        :to="{
-                        name:'appDemoNew',
-                        query:{
-                            demo_id:$route.query.demo_id,
-                            demo_name:$route.query.demo_name
-                        }}">
-                    <el-button type="primary">新增Demo</el-button>
-                </router-link>
-
-                <!--输入框搜索-->
-                <search-input
-                        :options="views.searchSelects"
-                        :label-width="'110px'"
-                        style="width: 400px"
-                        class="pull-right">
-                </search-input>
-
+            <div class="page-search">
+                <!--左侧-->
+                <div>
+                    <router-link :to="{name:'appClientNew'}">
+                        <el-button type="primary" size="small">
+                            新增
+                        </el-button>
+                    </router-link>
+                </div>
+                <!--右侧-->
+                <div>
+                    <!--输入框搜索-->
+                    <search-input
+                            :options="views.searchSelects"
+                            :label-width="'110px'"
+                            style="width: 400px">
+                    </search-input>
+                </div>
             </div>
+            <!--清除浮动-->
             <div class="mt1rem">
-                <page-list :pageListApi="pageListApi" :ignore="[]" ref="pageList">
+                <page-list :pageListApi="pageListApi" ref="pageList">
                     <template slot-scope="slotScope">
                         <el-table :data="slotScope.list"
                                   border
                                   size="mini"
                                   style="width: 100%">
                             <el-table-column
-                                    prop="id"
                                     width="50"
+                                    prop="id"
+                                    align="center"
                                     label="ID">
                             </el-table-column>
                             <el-table-column
+                                    align="center"
+                                    width="100"
+                                    prop="key"
+                                    label="KEY">
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="token"
+                                    label="TOKEN">
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
                                     prop="name"
                                     label="名称">
                             </el-table-column>
-
                             <el-table-column
-                                    width="250"
+                                    align="center"
+                                    prop="full_name"
+                                    label="全称">
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    prop="en_name"
+                                    label="英文名">
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    width="100"
+                                    prop="created_at"
+                                    label="创建时间">
+                            </el-table-column>
+                            <el-table-column
+                                    align="center"
+                                    width="100"
+                                    prop="created_by_name"
+                                    label="创建人">
+                            </el-table-column>
+                            <el-table-column prop="is_enable"
+                                             width="100"
+                                             align="center"
+                                             label="启用状态">
+                                <template slot-scope="slotScope">
+                                    <i style="font-size: 1.5rem"
+                                       :class="slotScope.row.is_enable | isEnable"></i>
+                                </template>
+                            </el-table-column>
+                            <el-table-column
+                                    width="150"
+                                    align="center"
+                                    label="管理">
+                                <template slot-scope="slotScope">
+                                    <ul>
+                                        <li>
+                                            <router-link
+                                                    :to="{
+                                            name:'appClientExamIndex',
+                                            query:{client_id:slotScope.row.id},
+                                            }">
+                                                <el-button
+                                                        type="primary"
+                                                        size="mini">
+                                                    问卷
+                                                </el-button>
+                                            </router-link>
+                                            <router-link
+                                                    :to="{
+                                            name:'appClientCustomStyle',
+                                            query:{client_id:slotScope.row.id},
+                                            }">
+                                                <el-button
+                                                        type="primary"
+                                                        size="mini">
+                                                    定制
+                                                </el-button>
+                                            </router-link>
+                                        </li>
+                                        <li class="mt5">
+                                            <router-link
+                                                    :to="{
+                                            name:'appClientConfig',
+                                            query:{client_id:slotScope.row.id},
+                                            }">
+                                                <el-button
+                                                        type="primary"
+                                                        size="mini">
+                                                    配置
+                                                </el-button>
+                                            </router-link>
+                                            <router-link
+                                                    :to="{
+                                            name:'appClientConfig',
+                                            query:{client_id:slotScope.row.id},
+                                            }">
+                                                <el-button
+                                                        type="primary"
+                                                        size="mini">
+                                                    汇总
+                                                </el-button>
+                                            </router-link>
+                                        </li>
+                                    </ul>
+                                </template>
+                            </el-table-column>
+                            <!--v-if="checkPms(['ADMIN_PM_USER_EDIT','ADMIN_PM_USER_RESOURCE'],userPms)"-->
+                            <el-table-column
+                                    width="80"
+                                    align="center"
                                     label="操作">
                                 <template slot-scope="slotScope">
-                                    <router-link
-                                            :to="{
-                                                name:'appProjectTextEdit',
-                                                params:{id:slotScope.row.id},
-                                                query:{
-                                                    project_id:$route.query.project_id,
-                                                    project_name:$route.query.project_name
-                                                }}">
-                                        <el-button
-                                                type="primary"
-                                                plain
-                                                size="mini">
-                                            编辑
-                                        </el-button>
-                                    </router-link>
-                                    <el-button size="mini"
-                                               type="danger"
-                                               plain
-                                               v-if="slotScope.row.is_enable"
-                                               @click="enableItem(slotScope.row)">
-                                        禁用
-                                    </el-button>
-                                    <el-button size="mini"
-                                               type="success"
-                                               plain
-                                               v-if="!slotScope.row.is_enable"
-                                               @click="enableItem(slotScope.row)">
-                                        启用
-                                    </el-button>
+                                    <ul>
+                                        <li>
+                                            <router-link
+                                                    :to="{
+                                            name:'appClientEdit',
+                                            params:{id:slotScope.row.id},
+                                            }">
+                                                <el-button
+                                                        type="primary"
+                                                        size="mini"
+                                                        plain>
+                                                    编辑
+                                                </el-button>
+                                            </router-link>
+                                        </li>
+                                        <li class="mt5">
+                                            <el-button size="mini"
+                                                       type="danger"
+                                                       plain
+                                                       v-if="slotScope.row.is_enable"
+                                                       @click="enableItem(slotScope.row)">
+                                                禁用
+                                            </el-button>
+                                            <el-button size="mini"
+                                                       type="success"
+                                                       plain
+                                                       v-if="!slotScope.row.is_enable"
+                                                       @click="enableItem(slotScope.row)">
+                                                启用
+                                            </el-button>
+                                        </li>
+                                    </ul>
+
+
                                 </template>
                             </el-table-column>
                         </el-table>
@@ -100,17 +189,20 @@
     </div>
 </template>
 <script>
-    import demoApi from 'api/demoApi';
+    import clientApi from 'api/clientApi';
     export default {
-        name: "appDemoIndex",
+        name: "appClientIndex",
         data() {
             return {
-                pageListApi: demoApi,
+                pageListApi: clientApi,
+                search: {},
                 views: {
                     searchSelects: [
-                        {label: '名称', value: 'name'},
-                    ]
+                        {label: '名称', value: 'like_name'},
+                    ],
+                    user:[]
                 },
+                userPms:null
             }
         },
         methods: {
@@ -131,7 +223,10 @@
             },
         },
         created: function () {
-
+            var that = this;
+            // setTimeout(function () {
+            //     that.userPms = that.$store.state.userPms;
+            // })
         }
     };
 </script>

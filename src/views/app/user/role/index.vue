@@ -2,17 +2,21 @@
     <div class="page">
         <page-header title="角色管理"></page-header>
         <div class="page-content">
-            <div class="clean-float">
-                <router-link :to="{name:'appUserRoleNew'}">
-                    <el-button type="primary">新增角色</el-button>
-                </router-link>
-                <!--输入框搜索-->
-                <search-input
-                        :options="views.searchSelects"
-                        :label-width="'110px'"
-                        style="width: 400px"
-                        class="pull-right">
-                </search-input>
+            <div class="page-search">
+                <div>
+                    <router-link :to="{name:'appUserRoleNew'}">
+                        <el-button type="primary">新增角色</el-button>
+                    </router-link>
+                </div>
+                <div>
+                    <!--输入框搜索-->
+                    <search-input
+                            :options="views.searchSelects"
+                            :label-width="'110px'"
+                            style="width: 400px"
+                            class="pull-right">
+                    </search-input>
+                </div>
             </div>
             <!--清除浮动-->
             <div class="mt1rem">

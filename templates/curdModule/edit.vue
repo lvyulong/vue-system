@@ -1,28 +1,31 @@
 <template>
     <div class="page">
         <!--title-->
-        <page-header back="1" slotNav="1">
-            <template slot="nav">
-                <el-breadcrumb separator-class="el-icon-arrow-right">
-                    <el-breadcrumb-item :to="{name:'appDemoIndex'}">
-                        Demo管理
-                    </el-breadcrumb-item>
-                    <el-breadcrumb-item>
-                        编辑Demo
-                    </el-breadcrumb-item>
-                </el-breadcrumb>
-            </template>
-        </page-header>
+        <page-header :back="true" title="编辑客户"></page-header>
         <!--表单-->
-        <div class="page-content" style="height: 90%">
+        <div class="page-content">
             <el-form :model="model"
+                     v-if="model"
                      :rules="rules"
                      ref="form"
                      label-width="150px"
                      style="width: 800px"
                      class="mt2rem">
-                <el-form-item label="内容" prop="content">
-                    <el-input v-model="model.content" type="textarea" rows="10"></el-input>
+                <el-form-item label="key" prop="key">
+                    <el-input v-model="model.key" disabled></el-input>
+                    <div class="red">* key：关键名称，一经创建，无法修改。</div>
+                </el-form-item>
+                <el-form-item label="名称" prop="name">
+                    <el-input v-model="model.name"></el-input>
+                </el-form-item>
+                <el-form-item label="全称" prop="full_name">
+                    <el-input v-model="model.full_name"></el-input>
+                </el-form-item>
+                <el-form-item label="英文名称" prop="en_name">
+                    <el-input v-model="model.en_name"></el-input>
+                </el-form-item>
+                <el-form-item label="启用" prop="is_enable">
+                    <el-switch v-model="model.is_enable" class="mt10"></el-switch>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary"
@@ -36,20 +39,16 @@
     </div>
 </template>
 <script>
-    import demoApi from 'api/demoApi';
+    import clientApi from 'api/clientApi';
     export default {
-        name: "appDemoNew",
+        name: "appClientNew",
         data() {
             return {
-                pageApi: demoApi,
-                model: {
-                    content:''
-                },
-                views: {
-
-                },
+                pageApi: clientApi,
+                model:null,
                 formRules: [
-                    {key: 'content', label: '内容'},
+                    {key: 'key', label: 'key'},
+                    {key: 'name', label: '名称'},
                 ],
             }
         },
@@ -63,10 +62,9 @@
             submit(form) {
                 var that = this;
                 var data = Object.assign({}, that.model);
-                data.project_id = that.$route.query.project_id;
                 this.$refs[form].validate((valid) => {
                     if (valid) {
-                        this.pageApi.save({data: data}).then(function (res) {
+                        this.pageApi.update({data: data}).then(function (res) {
                             that.$message.success('提交成功');
                             history.back();
                         })
@@ -78,8 +76,8 @@
             },
         },
         created:function () {
-            var that = this;
-            demoApi.get({
+            let that = this;
+            clientApi.get({
                 params:{
                     id:that.$route.params.id
                 }
