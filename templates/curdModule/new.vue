@@ -24,7 +24,10 @@
                     <el-input v-model="model.en_name"></el-input>
                 </el-form-item>
                 <el-form-item label="启用" prop="is_enable">
-                    <el-switch v-model="model.is_enable" class="mt10"></el-switch>
+                    <el-switch v-model="model.is_enable"
+                               :active-value=1
+                               :inactive-value=0
+                               class="mt10"></el-switch>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary"
