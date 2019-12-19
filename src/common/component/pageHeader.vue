@@ -25,7 +25,11 @@ usage:
     <div>
         <div class="page-header mt1rem">
             <!--标题 title-->
-            <h3 class="page-title" v-if="title">{{title}}</h3>
+            <h3 class="page-title" v-if="title">
+                {{title}}
+                <!--title的扩展内容-->
+                <slot name="titleExtend"></slot>
+            </h3>
             <!--数据驱动 nav-->
             <div class="page-title mt10" v-if="nav">
                 <el-breadcrumb separator-class="el-icon-arrow-right">

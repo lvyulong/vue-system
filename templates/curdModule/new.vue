@@ -49,7 +49,7 @@
                     name:'',
                     full_name:'',
                     en_name:'',
-                    is_enable:true
+                    is_enable:1
                 },
                 formRules: [
                     {key: 'key', label: 'key'},
