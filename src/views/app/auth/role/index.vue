@@ -2,7 +2,7 @@
     <div class="page">
         <page-header title="角色管理"></page-header>
         <div class="page-content">
-            <div class="clean-float">
+            <div class="page-search">
                 <router-link :to="{name:'appAuthRoleEdit'}">
                     <el-button type="primary" size="small">新增</el-button>
                 </router-link>

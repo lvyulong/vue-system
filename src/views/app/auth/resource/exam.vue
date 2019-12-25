@@ -49,7 +49,6 @@
     </div>
 </template>
 <script>
-    import clientApi from 'api/clientApi';
     import clientExamApi from 'api/clientExamApi';
     import userApi from 'api/userApi';
     import enumConfig from 'config/enum';

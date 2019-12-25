@@ -1,35 +1,26 @@
 // 必要属性：label、path、active；如果有children，与父级格式一致
 // active：定义路由为何值时菜单栏显示激活状态
+// 只支持两级
 export default [
     {
-        label: '用户管理',
+        label: '授权管理',
         icon: 'fa fa-users font20',
-        path: '/app/user/index',
+        path: '/app/auth',
         checkPms:[],
-        active: '/app/user'
+        children:[
+            {
+                label: '用户管理',
+                path: '/app/auth/user/index',
+                checkPms:[],
+                active: '/app/auth/user',
+            },
+            {
+                label: '角色管理',
+                path: '/app/auth/role/index',
+                checkPms:[],
+                active: '/app/auth/role',
+            }
+        ]
     },
-    // {
-    //     label: '模块一',
-    //     icon: 'fa fa-file-text font20',
-    //     // 有子菜单的话，此处设置的path似乎点击没有路由的跳转，只是一个容器；
-    //     path: '/app/demo1/demo11/index',
-    //     checkPms:[],
-    //     active: '/app/demo1',
-    //     children: [
-    //         {
-    //             name: '模块1.1',
-    //             checkPms:[],
-    //             items: [
-    //                 {path: '/app/demo1/demo11/index', label: '列表', active: '/app/demo1/demo11/index'},
-    //             ]
-    //         },
-    //         {
-    //             name: '模块1.2',
-    //             checkPms:[],
-    //             items: [
-    //                 {path: '/app/demo1/demo12/index', label: '列表', active: '/app/demo1/demo12/index'},
-    //             ]
-    //         },
-    //     ]
-    // }
+
 ]
