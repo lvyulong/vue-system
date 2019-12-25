@@ -1,6 +1,5 @@
 <template>
    <div>
-
        <!--到用户中心登录-->
        <div class="login-page"
             v-if="loginType == 'uc'"
@@ -49,7 +48,6 @@
                </div>
            </el-card>
        </div>
-
    </div>
 </template>
 <script>
@@ -74,7 +72,9 @@
                 loginError: '',
                 appRouterEnter:{
                     name:'appUserIndex'
-                }
+                },
+                loading:true,
+                loadingText:''
             };
         },
         computed:{
@@ -208,6 +208,10 @@
     }
     .submit{
         padding: 1rem 190px;
+    }
+    .login-page{
+        width: 100vw;
+        height: 100vh;
     }
 </style>
 
