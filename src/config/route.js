@@ -28,9 +28,9 @@ const config = {
         {state: 'app.auth.role', type: 'blank', defaultLink: 'app.auth.role.index'},
         {state: 'app.auth.role.index'},
         {state: 'app.auth.role.edit'},
-        // {state: 'app.auth.resource', type: 'blank', defaultLink: 'app.auth.resource.client'},
-        // {state: 'app.auth.resource.client'},
-        // {state: 'app.auth.resource.exam'},
+        {state: 'app.auth.resource', type: 'blank', defaultLink: 'app.auth.resource.client'},
+        {state: 'app.auth.resource.client'},
+        {state: 'app.auth.resource.exam'},
 
     ]
 };

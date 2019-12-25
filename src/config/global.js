@@ -15,6 +15,7 @@ import propMap from 'filter/propMap';
 import keyToVal from 'filter/keyToVal';
 import ellipsis from 'filter/ellipsis';
 import timestampTotime from 'filter/timestampTotime';
+import formatTime from 'filter/formatTime';
 // -----------------------------------------------------
 
 // 组件
@@ -38,6 +39,7 @@ const config = {
         {name: 'timestampTotime', filter: timestampTotime},
         {name: 'keyToVal', filter: keyToVal},
         {name: 'ellipsis', filter: ellipsis},
+        {name: 'formatTime', filter: formatTime},
     ]
 };
 register(config);

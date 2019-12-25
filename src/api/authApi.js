@@ -1,6 +1,6 @@
 import Vue from 'vue';
 const authApi = new Vue.Resource({
-    url: '/{{name}}/auth',
+    url: '/admin/auth',
     actions: [
         {
             name:'current',
