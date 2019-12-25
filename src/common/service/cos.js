@@ -65,7 +65,7 @@ export default {
             });
 
             // 先触发一次
-            config.onPreUploaded(filesProgress);
+            config.onPreUploaded && config.onPreUploaded(filesProgress);
 
             // 所有的文件都提交完成
             Promise.all(promises).then(function (res) {

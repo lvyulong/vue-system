@@ -1,13 +1,15 @@
 <template>
     <div class="page">
-        <page-header back="1" slotNav="1">
+        <page-header back="1"
+                     slotNav="1">
             <template slot="nav">
                 <el-breadcrumb separator-class="el-icon-arrow-right">
-                    <el-breadcrumb-item :to="{name:'appUserIndex'}">
+                    <el-breadcrumb-item :to="{name:'appAuthUserIndex'}">
                         用户管理
                     </el-breadcrumb-item>
                     <el-breadcrumb-item>
-                        绑定资源
+                        绑定问卷
+                        <span v-if="views.user">( {{views.user.name}} )</span>
                     </el-breadcrumb-item>
                 </el-breadcrumb>
             </template>
@@ -16,17 +18,10 @@
             <div class="clean-float">
                 <el-button type="primary" @click="selectAll">全选</el-button>
                 <el-button type="default" @click="cancelAll">全不选</el-button>
-                <!--输入框搜索-->
-                <search-input
-                        class="pull-right"
-                        :options="views.searchSelects"
-                        :label-width="'110px'"
-                        style="width: 400px">
-                </search-input>
             </div>
             <div class="mt1rem">
                 <el-table
-                        :data="list"
+                        :data="listRender"
                         @row-click="onRowClick"
                         style="width: 100%">
                     <el-table-column
@@ -45,24 +40,7 @@
                     </el-table-column>
                     <el-table-column
                             prop="name"
-                            label="客户名称">
-                    </el-table-column>
-                    <el-table-column
-                            prop="key"
-                            label="关键名称"
-                            width="180">
-                    </el-table-column>
-                    <el-table-column
-                            prop="full_name"
-                            label="全称">
-                    </el-table-column>
-                    <el-table-column
-                            prop="en_name"
-                            label="英文名称">
-                    </el-table-column>
-                    <el-table-column
-                            prop="en_short_name"
-                            label="英文简称">
+                            label="问卷名称">
                     </el-table-column>
                 </el-table>
             </div>
@@ -72,83 +50,92 @@
 </template>
 <script>
     import clientApi from 'api/clientApi';
+    import clientExamApi from 'api/clientExamApi';
     import userApi from 'api/userApi';
     import enumConfig from 'config/enum';
-
+    import axios from 'axios';
     export default {
-        name: 'appUserResource',
+        name: 'appAuthResourceExam',
         data() {
             return {
                 search: {},
-                list: [],
+                listModel: [],
+                listRender: [],
                 views: {
-                    searchSelects: [
-                        {label: '名称', value: 'name'},
-                    ],
+                    user: null
                 },
             }
         },
         methods: {
             selectAll() {
                 var that = this;
-                that.list.forEach(function (v) {
+                that.listModel.forEach(function (v) {
                     that.$set(v, 'checked', true);
                 });
                 that.changeData();
             },
             cancelAll() {
                 var that = this;
-                that.list.forEach(function (v) {
+                that.listModel.forEach(function (v) {
                     that.$set(v, 'checked', false);
                 });
                 that.changeData();
             },
             onRowClick(row) {
                 var that = this;
-                that.$set(row, 'checked', row.checked ? false : true);
+                var itemModel = _.findWhere(that.listModel, {id: row.id});
+                that.$set(itemModel, 'checked', itemModel.checked ? false : true);
                 that.changeData();
             },
             changeData() {
                 var that = this;
-                var resourceItems = _.where(that.list, {checked: true});
+                var resourceItems = _.where(that.listModel, {checked: true});
                 var resource = _.pluck(resourceItems, 'id');
                 userApi.setResource({
                     data: {
-                        type: enumConfig['ADMIN_RESOURCE_CLIENT'],
+                        type: enumConfig['RESOURCE_TYPE_EXAM'],
                         user_id: that.$route.query.user_id,
                         resource: resource
                     }
-                }).then(function (res) {
+                }).then(function () {
+                    that.listRender = myTool.copyArray(that.listModel);
                     that.$message.success("更新成功");
                 })
             }
         },
         created: function () {
             var that = this;
-            clientApi.query({
-                params: {
-                    _page_size: -1
-                }
-            }).then(function (resClient) {
-                that.list = resClient.data.items;
+            axios.all([
+                clientExamApi.query({
+                    params: {
+                        _page_size: -1,
+                        client_id:that.$route.query.client_id
+                    }
+                }),
                 userApi.getResource({
-                    params:{
-                        type: enumConfig['ADMIN_RESOURCE_CLIENT'],
+                    params: {
+                        type: enumConfig['RESOURCE_TYPE_EXAM'],
                         user_id: that.$route.query.user_id,
                     }
-                }).then(function (resResource) {
-                    var resource = resResource.data.resource;
-                    if(Array.isArray(resource)){
-                        that.list.forEach(function (v) {
-                            if(resource.indexOf(v.id) >= 0){
-                                that.$set(v, 'checked', true);
-                            }
-                        });
+                }),
+                userApi.get({
+                    params:{
+                        id:that.$route.query.user_id
                     }
-
                 })
+            ]).then(function (res) {
+                that.views.user = res[2].data;
+                that.listModel = res[0].data.items;
+                var resource = res[1].data.resource;
+                if (Array.isArray(resource)) {
+                    that.listModel.forEach(function (v) {
+                        if (resource.indexOf(v.id) >= 0) {
+                            that.$set(v, 'checked', true);
+                        }
+                    });
+                }
+                that.listRender = myTool.copyArray(that.listModel);
             })
         }
-
     }
 </script>

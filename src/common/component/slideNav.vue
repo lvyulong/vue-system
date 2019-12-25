@@ -2,6 +2,7 @@
     <div>
         <el-menu style="text-align: left"
                  :collapse="collapse"
+                 ref="slideNav"
                  :unique-opened="uniqueOpened"
                  class="el-menu-vertical-demo"
                  :background-color="backgroundColor"
@@ -108,7 +109,17 @@
             }
         },
         mounted: function () {
-            this.currentPath = this.$route.path;
+            let that = this;
+            that.currentPath = that.$route.path;
+            for (let i = 0; i < that.data.length; i++) {
+                let curItem = that.data[i];
+                if (curItem.children && curItem.children.length > 0) {
+                    if (that.isActiveState(curItem.path)) {
+                        this.$refs['slideNav'].open(curItem.path);
+                        break;
+                    }
+                }
+            }
         },
         watch: {
             // 监听路由变化

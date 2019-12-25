@@ -8,7 +8,7 @@
                         用户管理
                     </el-breadcrumb-item>
                     <el-breadcrumb-item>
-                        新增用户
+                        新增
                     </el-breadcrumb-item>
                 </el-breadcrumb>
             </template>
@@ -39,7 +39,7 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="是否启用" prop="is_enable">
+                <el-form-item label="启用" prop="is_enable">
                     <el-switch v-model="model.is_enable"
                                :active-value=1
                                :inactive-value=0

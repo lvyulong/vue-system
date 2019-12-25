@@ -36,6 +36,7 @@
             'position', //显示在哪儿，默认left,可传的值right
             'hidePage', // 隐藏翻页
             'noAuto',
+            'expand',  // 从后端获取的额外的字段
         ],
         data() {
             return {
@@ -87,7 +88,9 @@
                 if(this.hidePage){
                     data._page_size = -1;
                 }
-
+                if(this.expand){
+                    data.expand = this.expand;
+                }
                 if(this.need&&this.need.length>0){
                     // 如果设置了need,则data中必须包含need中设置的所有参数，才开始查询
                     //使用场景：进入某个页面必须携带某个参数才显示列表，否则不显示列表

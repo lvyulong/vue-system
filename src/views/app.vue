@@ -5,18 +5,23 @@
             <el-aside>
                 <div style="padding-top: 3rem">
                     <div>
-                        <transition name="fade">
-                            <img :src="sys.sysLogo1" class="logo1" v-show="!collapse">
-                        </transition>
+                        <div>
+                            <transition name="fade">
+                                <img :src="sys.sysLogo1" class="logo1" v-show="!collapse">
+                            </transition>
+                            <transition name="fade">
+                                <img :src="sys.sysLogo2" class="logo2" v-show="collapse">
+                            </transition>
+                        </div>
                     </div>
-                    <div class="mt10 white font18 title">
-                        <transition name="fade">
-                            <div class="title-words" v-show="!collapse">{{sys.sysName}}</div>
-                        </transition>
-                    </div>
+                    <!--<div class="mt10 white font18 title">-->
+                        <!--<transition name="fade">-->
+                            <!--<div class="title-words" v-show="!collapse">{{sys.sysName}}</div>-->
+                        <!--</transition>-->
+                    <!--</div>-->
                 </div>
                 <slide-nav
-                        class="mt3rem"
+                        style="margin-top: 2rem"
                         :data="navConfigs"
                         :collapse="collapse"
                         :unique-opened="true"

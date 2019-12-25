@@ -1,6 +1,6 @@
 import Vue from 'vue';
 const authApi = new Vue.Resource({
-    url: '/{{name}}/auth',
+    url: '/admin/auth',
     actions: [
         {
             name:'current',
@@ -9,7 +9,7 @@ const authApi = new Vue.Resource({
         },
         {
             name:'pre',
-            method:'POST',
+            method:'GET',
             url:'pre'
         },
         {
@@ -21,7 +21,7 @@ const authApi = new Vue.Resource({
             name:'logout',
             method:'POST',
             url:'logout'
-        },
+        }
     ]
 });
 export default authApi;

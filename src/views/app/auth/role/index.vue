@@ -2,21 +2,17 @@
     <div class="page">
         <page-header title="角色管理"></page-header>
         <div class="page-content">
-            <div class="page-search">
-                <div>
-                    <router-link :to="{name:'appUserRoleNew'}">
-                        <el-button type="primary" size="small">新增</el-button>
-                    </router-link>
-                </div>
-                <div>
-                    <!--输入框搜索-->
-                    <search-input
-                            :options="views.searchSelects"
-                            :label-width="'110px'"
-                            style="width: 400px"
-                            class="pull-right">
-                    </search-input>
-                </div>
+            <div class="clean-float">
+                <router-link :to="{name:'appAuthRoleEdit'}">
+                    <el-button type="primary" size="small">新增</el-button>
+                </router-link>
+                <!--输入框搜索-->
+                <search-input
+                        :options="views.searchSelects"
+                        :label-width="'110px'"
+                        style="width: 400px"
+                        class="pull-right">
+                </search-input>
             </div>
             <!--清除浮动-->
             <div class="mt1rem">
@@ -29,11 +25,13 @@
                                   style="width: 100%">
                             <el-table-column
                                     width="50"
+                                    align="center"
                                     prop="id"
                                     label="ID">
                             </el-table-column>
 
                             <el-table-column
+                                    align="center"
                                     prop="name"
                                     label="名称">
                             </el-table-column>
@@ -44,32 +42,31 @@
                             </el-table-column>
 
                             <el-table-column
-                                    width="160"
-                                    prop="created_at"
+                                    align="center"
+                                    width="150"
                                     label="创建时间">
+                                <template slot-scope="slotScope">
+                                    {{slotScope.row.created_at | formatTime()}}
+                                </template>
                             </el-table-column>
-                            <el-table-column
-                                    width="160"
-                                    prop="updated_at"
-                                    label="更新时间">
-                            </el-table-column>
-
-                            <el-table-column prop="is_enable"
-                                             label="启用状态">
+                            <el-table-column align="center"
+                                             width="50"
+                                             label="启用">
                                 <template slot-scope="slotScope">
                                     <i style="font-size: 1.5rem"
                                        :class="slotScope.row.is_enable | isEnable"></i>
                                 </template>
                             </el-table-column>
                             <el-table-column
+                                    align="center"
                                     fixed="right"
-                                    width="350"
+                                    width="180"
                                     label="操作">
                                 <template slot-scope="slotScope">
                                     <router-link
                                             :to="{
-                                            name:'appUserRoleEdit',
-                                            params:{id:slotScope.row.id},
+                                            name:'appAuthRoleEdit',
+                                            query:{id:slotScope.row.id},
                                             }">
                                         <el-button
                                                 type="primary"
@@ -104,7 +101,7 @@
 <script>
     import authRoleApi from 'api/authRoleApi';
     export default {
-        name: "appUserRoleIndex",
+        name: "appAuthRoleIndex",
         data() {
             return {
                 pageListApi: authRoleApi,

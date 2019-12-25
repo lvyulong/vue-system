@@ -28,7 +28,7 @@ usage:
             <h3 class="page-title" v-if="title">
                 {{title}}
                 <!--title的扩展内容-->
-                <slot name="titleExtend"></slot>
+                <slot name="titleExt"></slot>
             </h3>
             <!--数据驱动 nav-->
             <div class="page-title mt10" v-if="nav">

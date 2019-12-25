@@ -4,11 +4,11 @@
         <page-header back="1" slotNav="1">
             <template slot="nav">
                 <el-breadcrumb separator-class="el-icon-arrow-right">
-                    <el-breadcrumb-item :to="{name:'appUserRoleIndex'}">
+                    <el-breadcrumb-item :to="{name:'appAuthRoleIndex'}">
                         角色管理
                     </el-breadcrumb-item>
                     <el-breadcrumb-item>
-                        新增角色
+                        {{isEdit?'编辑':'新增'}}
                     </el-breadcrumb-item>
                 </el-breadcrumb>
             </template>
@@ -20,7 +20,6 @@
                      ref="form"
                      label-width="80"
                      class="mt2rem">
-
                 <el-row>
                     <el-col :span="10">
                         <el-card class="box-card" style="height: 70vh">
@@ -33,7 +32,7 @@
                             <el-form-item label="描述" prop="desc">
                                 <el-input v-model="model.desc" type="textarea" rows="5"></el-input>
                             </el-form-item>
-                            <el-form-item label="是否启用" prop="is_enable">
+                            <el-form-item label="启用" prop="is_enable">
                                 <el-switch v-model="model.is_enable"
                                            :active-value=1
                                            :inactive-value=0
@@ -78,7 +77,8 @@
                 formRules: [
                     {key: 'name', label: '名称'}
                 ],
-                pmsList:[]
+                pmsList: [],
+                isEdit: false
             }
         },
         computed: {
@@ -95,7 +95,8 @@
                 data.permission = pms;
                 this.$refs[form].validate((valid) => {
                     if (valid) {
-                        this.pageApi.save({data: data}).then(function (res) {
+                        let method = that.isEdit?'update':'save';
+                        this.pageApi[method]({data: data}).then(function (res) {
                             that.$message.success('提交成功');
                             history.back();
                         })
@@ -109,11 +110,27 @@
         components: {
             bindPms
         },
-        mounted: function () {
-            var that = this;
-            setTimeout(function () {
-                that.$refs['bindPms'].initList(JSON.parse(JSON.stringify(that.$store.state.local.static.admin_permission)));
-            })
+        created: function () {
+            let that = this;
+            let id = that.$route.query.id;
+            if (id) {
+                // 编辑
+                that.isEdit = true;
+                authRoleApi.get({
+                    params: {
+                        id: id
+                    }
+                }).then(function (res) {
+                    that.model = res.data;
+                    that.$refs['bindPms'].initList(JSON.parse(JSON.stringify(that.$store.state.local.static.admin_permission)));
+                    that.$refs['bindPms'].initData(that.model.permission);
+                });
+            } else {
+                // 新增
+                setTimeout(function () {
+                    that.$refs['bindPms'].initList(JSON.parse(JSON.stringify(that.$store.state.local.static.admin_permission)));
+                })
+            }
         }
     };
 </script>

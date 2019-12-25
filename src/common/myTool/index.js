@@ -131,7 +131,12 @@ function toUrlString(obj) {
     str = str.substr(0, str.length - 1);
     return str;
 }
-
+// 复制数组
+function copyArray(array) {
+    if(Array.isArray(array)){
+        return JSON.parse(JSON.stringify(array));
+    }
+}
 
 export default {
     // 删除数组中指定id的项
@@ -152,5 +157,7 @@ export default {
     extend,
     deleteProps,
     // form表单规则
-    rule
+    rule,
+    // 复制一个数组
+    copyArray
 }
