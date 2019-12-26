@@ -1,6 +1,6 @@
 import Vue from 'vue';
 const clientApi = new Vue.Resource({
-    url: '/admin/client',
+    url: '/{{name}}/client',
     actions: [
 
     ]

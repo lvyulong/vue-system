@@ -1,6 +1,6 @@
 import Vue from 'vue';
 const clientExamApi = new Vue.Resource({
-    url: '/admin/client-exam',
+    url: '/{{name}}/client-exam',
     actions: [
 
     ]

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 const userApi = new Vue.Resource({
-    url: '/admin/user',
+    url: '/{{name}}/user',
     actions: [
         {
             name:'simple',

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 const fileApi = new Vue.Resource({
-    url: '/admin/file',
+    url: '/{{name}}/file',
     actions: [
         // 上传到腾讯云
         {
