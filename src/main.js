@@ -28,7 +28,7 @@ window.global_data = {
     //除非需要写死域名的地方才会用到，否则需用location.origin动态获取
     domain: {
         dev: 'http://{{domain}}',
-        prod: '{{prod}}',
+        prod: '',
     },
     // 开发环境本机的ip
     devIp: '{{ip}}',
