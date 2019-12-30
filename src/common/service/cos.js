@@ -1,4 +1,5 @@
-import COS from 'cos-js-sdk-v5';
+import COS from 'cos-js-sdk-v5/dist/cos-js-sdk-v5';
+
 export default {
     send:function (config) {
         // 获取上传云存储必要的信息，默认使用resourcesApi里面的getCloudKeys方法
