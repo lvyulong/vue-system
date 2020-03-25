@@ -1,8 +1,7 @@
 import Vue from 'vue';
-const clientApi = new Vue.Resource({
+export default new Vue.Resource({
     url: '/{{name}}/client',
     actions: [
 
     ]
 });
-export default clientApi;

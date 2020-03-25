@@ -1,5 +1,5 @@
 import Vue from 'vue';
-const authApi = new Vue.Resource({
+export default new Vue.Resource({
     url: '/{{name}}/auth',
     actions: [
         {
@@ -24,4 +24,3 @@ const authApi = new Vue.Resource({
         }
     ]
 });
-export default authApi;

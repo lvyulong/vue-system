@@ -1,5 +1,5 @@
 import Vue from 'vue';
-const progressApi = new Vue.Resource({
+export default new Vue.Resource({
     url: '/common/progress',
     actions: [
         {
@@ -19,4 +19,3 @@ const progressApi = new Vue.Resource({
         }
     ]
 });
-export default progressApi;

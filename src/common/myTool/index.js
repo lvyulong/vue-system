@@ -137,6 +137,10 @@ function copyArray(array) {
         return JSON.parse(JSON.stringify(array));
     }
 }
+// 深复制对象
+function copy(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
 
 export default {
     // 删除数组中指定id的项
@@ -159,5 +163,6 @@ export default {
     // form表单规则
     rule,
     // 复制一个数组
-    copyArray
+    copyArray,
+    copy
 }

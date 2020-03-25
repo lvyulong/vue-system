@@ -1,5 +1,5 @@
 import Vue from 'vue';
-const fileApi = new Vue.Resource({
+export default new Vue.Resource({
     url: '/{{name}}/file',
     actions: [
         // 上传到腾讯云
@@ -10,4 +10,3 @@ const fileApi = new Vue.Resource({
         },
     ]
 });
-export default fileApi;

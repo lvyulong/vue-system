@@ -1,5 +1,5 @@
 import Vue from 'vue';
-const authRoleApi = new Vue.Resource({
+export default new Vue.Resource({
     url: '/{{name}}/auth-role',
     actions: [
         {
@@ -9,4 +9,3 @@ const authRoleApi = new Vue.Resource({
         },
     ]
 });
-export default authRoleApi;

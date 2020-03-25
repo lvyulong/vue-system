@@ -1,5 +1,5 @@
 import Vue from 'vue';
-const userApi = new Vue.Resource({
+export default new Vue.Resource({
     url: '/{{name}}/user',
     actions: [
         {
@@ -30,5 +30,3 @@ const userApi = new Vue.Resource({
 
     ]
 });
-
-export default userApi;
