@@ -139,7 +139,6 @@
                     }
                 }
             }
-
             // 用户中心登录
             if (sys.loginType == 'uc') {
                 that.loading = true;
@@ -171,7 +170,6 @@
                     })
                 }
             }
-
         }
     };
 </script>
