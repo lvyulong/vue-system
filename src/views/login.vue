@@ -108,7 +108,7 @@
                 var key = this.$route.query && this.$route.query.key;
                 if (key) {
                     this.key = key;
-                    authApi.login({data: {key: this.key}}).then(function (res) {
+                    authApi.login({data: {key: this.key,type:configEnum['LOGIN_TYPE_BY_CORP_WX']}}).then(function (res) {
                         that.$router.push(that.appRouterEnter);
                     }).catch(function (err) {
                         let errRes = err.response || {};
@@ -146,7 +146,8 @@
                     that.loadingText = '正在登录';
                     authApi.login({
                         data: {
-                            code: that.$route.query.code
+                            code: that.$route.query.code,
+                            type:configEnum['LOGIN_TYPE_BY_CORP_UCENTER']
                         }
                     }).then(function (res) {
                         that.$router.push({
