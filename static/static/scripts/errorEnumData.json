@@ -1,0 +1,269 @@
+{
+    "data": [
+        {
+            "code": 0,
+            "en": "system anomaly",
+            "cn": "系统异常"
+        },
+        {
+            "code": -1,
+            "en": "network anomaly",
+            "cn": "网络异常"
+        },
+        {
+            "code": 10001,
+            "en": "not login",
+            "cn": "未登录"
+        },
+        {
+            "code": 10002,
+            "en": "login failed",
+            "cn": "登录失败"
+        },
+        {
+            "code": 10003,
+            "en": "user lock",
+            "cn": "账户锁定"
+        },
+        {
+            "code": 10004,
+            "en": "incorrect user name or password",
+            "cn": "用户名或密码错误"
+        },
+        {
+            "code": 10005,
+            "en": "two inputs are inconsistent",
+            "cn": "两次输入不一致"
+        },
+        {
+            "code": 10006,
+            "en": "password incorrect",
+            "cn": "密码错误"
+        },
+        {
+            "code": 10008,
+            "en": "parameter error",
+            "cn": "参数错误"
+        },
+        {
+            "code": 10009,
+            "en": "system maintaining, please try again later",
+            "cn": "系统维护中，请稍后再试"
+        },
+        {
+            "code": 10010,
+            "en": "save failed",
+            "cn": "保存失败"
+        },
+        {
+            "code": 10011,
+            "en": "update failed",
+            "cn": "更新失败"
+        },
+        {
+            "code": 10012,
+            "en": "delete failed",
+            "cn": "删除失败"
+        },
+        {
+            "code": 10013,
+            "en": "data unavailable",
+            "cn": "数据不存在"
+        },
+        {
+            "code": 10014,
+            "en": "user already exists",
+            "cn": "用户已存在"
+        },
+        {
+            "code": 10015,
+            "en": "company not found",
+            "cn": "公司不存在"
+        },
+        {
+            "code": 10016,
+            "en": "token invalid",
+            "cn": "令牌无效"
+        },
+        {
+            "code": 10017,
+            "en": "WeChat authentication failed",
+            "cn": "微信认证失败"
+        },
+        {
+            "code": 10018,
+            "en": "signature invalid",
+            "cn": "签名无效"
+        },
+        {
+            "code": 10019,
+            "en": "registration failed",
+            "cn": "注册失败"
+        },
+        {
+            "code": 10020,
+            "en": "WeChat company authorization invalid",
+            "cn": "微信授权无效"
+        },
+        {
+            "code": 10021,
+            "en": "insufficient permissions",
+            "cn": "权限不足"
+        },
+        {
+            "code": 10022,
+            "en": "download file failed",
+            "cn": "下载文件失败"
+        },
+        {
+            "code": 10023,
+            "en": "function invalid",
+            "cn": "功能无效"
+        },
+        {
+            "code": 10024,
+            "en": "questionnaire invalid",
+            "cn": "无效问卷"
+        },
+        {
+            "code": 10025,
+            "en": "question invalid",
+            "cn": "问题无效"
+        },
+        {
+            "code": 10026,
+            "en": "task execution failed",
+            "cn": "任务执行失败"
+        },
+        {
+            "code": 10027,
+            "en": "user not found",
+            "cn": "用户不存在"
+        },
+        {
+            "code": 10028,
+            "en": "send failed",
+            "cn": "发送失败"
+        },
+        {
+            "code": 10029,
+            "en": "progress does not exist",
+            "cn": "进度不存在"
+        },
+        {
+            "code": 10030,
+            "en": "upload file failed",
+            "cn": "上传文件失败"
+        },
+        {
+            "code": 10031,
+            "en": "cache expired",
+            "cn": "缓存已过期"
+        },
+        {
+            "code": 10032,
+            "en": "audit failed",
+            "cn": "审核失败"
+        },
+        {
+            "code": 10033,
+            "en": "timeout",
+            "cn": "超时"
+        },
+        {
+            "code": 20001,
+            "en": "failed to initialize the company database",
+            "cn": "初始化公司数据库失败"
+        },
+        {
+            "code": 20002,
+            "en": "customer WeChat not authorized",
+            "cn": "客户微信未授权"
+        },
+        {
+            "code": 20003,
+            "en": "login token created failed",
+            "cn": "登录令牌创建失败"
+        },
+        {
+            "code": 20004,
+            "en": "the authorization has been used",
+            "cn": "该授权已被使用"
+        },
+        {
+            "code": 20005,
+            "en": "the MP role not configured",
+            "cn": "MP端角色未配置"
+        },
+        {
+            "code": 20006,
+            "en": "the record has been referenced. please delete the relevant record and try again",
+            "cn": "该记录已被引用，请删除相关记录后重试"
+        },
+        {
+            "code": 30001,
+            "en": "candidate not found",
+            "cn": "候选人不存在"
+        },
+        {
+            "code": 30002,
+            "en": "answer not exist",
+            "cn": "答卷不存在"
+        },
+        {
+            "code": 30003,
+            "en": "copy questionnaire failed",
+            "cn": "复制问卷失败"
+        },
+        {
+            "code": 30004,
+            "en": "reached the questionnaire upper limit",
+            "cn": "达到问卷上限"
+        },
+        {
+            "code": 30005,
+            "en": "again answer failed",
+            "cn": "复答失败"
+        },
+        {
+            "code": 40001,
+            "en": "incorrect email address",
+            "cn": "错误邮箱地址"
+        },
+        {
+            "code": 40002,
+            "en": "content already exists",
+            "cn": "内容已存在"
+        },
+        {
+            "code": 50003,
+            "en": "apply failed",
+            "cn": "申请失败"
+        },
+        {
+            "code": 50004,
+            "en": "questionnaire unavailable",
+            "cn": "无可答问卷"
+        },
+        {
+            "code": 50005,
+            "en": "question answer failed",
+            "cn": "答题失败"
+        },
+        {
+            "code": 50006,
+            "en": "get question failed",
+            "cn": "获取题目失败"
+        },
+        {
+            "code": 50007,
+            "en": "Completed evaluation",
+            "cn": "已完成测评"
+        },
+        {
+            "code": 60001,
+            "en": "answer request exception",
+            "cn": "答题请求异常"
+        }
+    ]
+}
