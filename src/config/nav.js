@@ -3,22 +3,30 @@
 // 只支持两级
 export default [
     {
-        label: '授权管理',
-        icon: 'fa fa-users font20',
-        path: '/app/auth',
+        label: '总览',
+        icon: 'fa fa-home font20',
+        path: '/app/overview/index',
+        active: '/app/overview/index',
         checkPms:[],
+    },
+    {
+        label: '用户',
+        icon: 'fa fa-users font20',
+        path: '/app/user',
+        active: '/app/user',
+        checkPms:['PM_USER_VIEW', 'PM_USER_APPLY'],
         children:[
             {
-                label: '用户管理',
-                path: '/app/auth/user/index',
-                checkPms:[],
-                active: '/app/auth/user',
+                label: '用户',
+                path: '/app/user/index',
+                checkPms:['PM_USER_VIEW'],
+                active: '/app/user/index',
             },
             {
-                label: '角色管理',
-                path: '/app/auth/role/index',
-                checkPms:[],
-                active: '/app/auth/role',
+                label: '客户授权',
+                path: '/app/user/apply',
+                checkPms:['PM_USER_APPLY'],
+                active: '/app/user/apply',
             }
         ]
     },

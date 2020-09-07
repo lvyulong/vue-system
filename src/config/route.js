@@ -11,7 +11,7 @@
 // beforeEnter 此处只能做一些认证之类的操作，但是无法往组件里面传数据；推荐在组件内使用beforeRouterEnter操作，next可以有回调;
 import handle from 'config/handle';
 const config = {
-    default: 'app.auth.user.index',
+    default: 'app.overview.index',
     routes: [
         // 登陆
         {state: 'login'},
@@ -23,17 +23,12 @@ const config = {
         {state: 'app.overview', type: 'blank', defaultLink: 'app.overview.index'},
         {state: 'app.overview.index'},
         // ----------------------------------授权管理-----------------------------------
-        {state: 'app.auth', type: 'blank', defaultLink: 'app.auth.user.index'},
-        {state: 'app.auth.user', type: 'blank', defaultLink: 'app.auth.user.index'},
-        {state: 'app.auth.user.index'},
-        {state: 'app.auth.user.new'},
-        {state: 'app.auth.user.edit', params: '/:id'},
-        {state: 'app.auth.role', type: 'blank', defaultLink: 'app.auth.role.index'},
-        {state: 'app.auth.role.index'},
-        {state: 'app.auth.role.edit'},
-        {state: 'app.auth.resource', type: 'blank', defaultLink: 'app.auth.resource.client'},
-        {state: 'app.auth.resource.client'},
-        {state: 'app.auth.resource.exam'},
+        // 用户
+        {state: 'app.user', type: 'blank', defaultLink: 'app.user.index'},
+        {state: 'app.user.index'},
+        {state: 'app.user.edit',params:'/:id'},
+        {state: 'app.user.apply'},
+        {state: 'app.user.resource'},
 
     ]
 };

@@ -47,7 +47,6 @@ usage:
 </template>
 
 <script>
-    import Back from 'component/Back';
     export default {
         name: "pageHeader",
         props:[
@@ -61,9 +60,6 @@ usage:
             return {
 
             }
-        },
-        components:{
-            Back
         }
     }
 </script>

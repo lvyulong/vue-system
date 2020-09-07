@@ -40,14 +40,8 @@ export default {
             if (errRes.status == 401) {
                 vm.$router.push({name: 'login'})
             } else {
-                if (errRes.data) {
-                    // 通过code去取错误信息
-                    let msg = handle.findMsgByCode(global_data.errorEnumData, global_data.lang_type, errRes.data.code);
-                    if (msg) {
-                        vm.$message.error(msg)
-                    } else {
-                        vm.$message.error(`未知的错误 Unknown error`)
-                    }
+                if (errRes.data && errRes.data.message) {
+                    vm.$message.error(errRes.data.message);
                 } else {
                     vm.$message.error(`未知的错误 Unknown error`)
                 }

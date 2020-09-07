@@ -13,7 +13,6 @@ import routesDesign from 'vue-routes-design';
 import axios from 'axios';
 import vueAxiosResource from 'vue-axios-resource';
 import VueClipboard from 'vue-clipboard2';
-import 'lib/wwLogin';
 // import i18n from './i18n/i18n';
 // 自定义文件
 import main from 'app/main.vue';
@@ -82,11 +81,7 @@ const vm = new Vue({
 // // 英文版
 // localStorage.setItem('lang', 'en');
 window.global_data.lang_type = 'cn';
-axios.get('/static/scripts/errorEnumData.json').then(function (res) {
-    // 获取到errorEnumData.json之后才渲染vue组件
-    window.global_data.errorEnumData = res.data.data;
-    vm.$mount(root);
-});
+vm.$mount(root);
 // 将vue实例绑定到全局，方便使用其属性
 window.vm = vm;
 export default vm;
