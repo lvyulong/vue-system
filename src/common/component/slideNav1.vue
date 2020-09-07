@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-menu style="text-align: left"
-                 :collapse="true"
+                 :collapse="collapse"
                  ref="slideNav"
                  :unique-opened="uniqueOpened"
                  class="el-menu-vertical-demo"
@@ -14,16 +14,11 @@
             <!-- 主菜单 -->
             <template v-for="(config,confIndex) in data">
                 <!-- 有子菜单 -->
-                <el-submenu :index="config.path"
-                            v-if="config.children&&pmsCheckPass(config)">
+                <el-submenu :index="config.path" v-if="config.children&&pmsCheckPass(config)">
                     <template slot="title">
-                       <a class="nav-item"
-                            :class="{'router-active':isActiveState(config.active)}">
-                          <div>
-                              <div><i :class="config.icon" v-if="config.icon"></i></div>
-                              <div class="mt5">{{config.label}}</div>
-                          </div>
-                       </a>
+                        <i :class="config.icon" v-if="config.icon"></i>
+                        &nbsp;
+                        <span>{{config.label}}</span>
                     </template>
                     <!-- 二级菜单 -->
                     <template v-for="(child,childIndex) in config.children">
@@ -44,27 +39,19 @@
                         <el-menu-item
                                 :index="child.path"
                                 v-if="!child.name&&pmsCheckPass(child)"
+                                :class="{'router-active':isActiveState(child.active)}"
                                 style="padding-left: 52px">
-
-                            <a class="nav-item-right"
-                               :class="{'router-active-right':isActiveState(child.active)}">
-                                {{child.label}}
-                            </a>
+                            {{child.label}}
                         </el-menu-item>
                     </template>
                 </el-submenu>
                 <!-- 无二级菜单 -->
                 <el-menu-item :index="config.path"
-                              v-if="!config.children&&pmsCheckPass(config)">
-                    <div class="nav-item"
-                         :class="{'router-active':isActiveState(config.active)}">
-                        <div>
-                            <div>
-                                <i :class="config.icon" v-if="config.icon"></i>
-                            </div>
-                            <div class="mt5">{{config.label}}</div>
-                        </div>
-                    </div>
+                              v-if="!config.children&&pmsCheckPass(config)"
+                              :class="{'router-active':isActiveState(config.active)}">
+                    <i :class="config.icon" v-if="config.icon"></i>
+                    &nbsp;
+                    <span slot="title">{{config.label}}</span>
                 </el-menu-item>
             </template>
         </el-menu>
@@ -80,6 +67,8 @@
         },
         props: [
             "data",
+            // "defaultActive",
+            "collapse",
             "uniqueOpened",
             "backgroundColor",
             "textColor",
@@ -122,6 +111,15 @@
         mounted: function () {
             let that = this;
             that.currentPath = that.$route.path;
+            for (let i = 0; i < that.data.length; i++) {
+                let curItem = that.data[i];
+                if (curItem.children && curItem.children.length > 0) {
+                    if (that.isActiveState(curItem.path)) {
+                        this.$refs['slideNav'].open(curItem.path);
+                        break;
+                    }
+                }
+            }
         },
         watch: {
             // 监听路由变化
@@ -136,53 +134,22 @@
     };
 </script>
 <style lang="less" scoped>
-    @media screen and (max-height: 760px) {
-        .nav-item{
-            height: 53px !important;
-        }
-    }
-    .nav-item{
-        display: block;
-        text-align: center;
-        width: 100%;
-        height: 70px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-    }
-    .nav-item:hover{
-        background-color: lighten(#333333, 10%) !important;
-        cursor: pointer;
-    }
-    .nav-item-right{
-        display: block;
-        width: calc(100% - 40px);
-        padding: 10px 10px 10px 30px!important;
-        background: #ffffff!important;
-        color: #000000!important;
-        text-decoration: none;
-    }
-    .nav-item-right:hover{
-        background-color: #F2F2F2 !important;
-        color: #000000!important;
-    }
     .el-menu {
         border-right: 0 !important;
     }
+
     .el-menu-vertical-demo:not(.el-menu--collapse) {
         width: 200px;
     }
+
     .el-submenu__icon-arrow,
     .el-icon-arrow-down {
         color: white !important;
     }
+
     .router-active {
-        background-color: lighten(#333333, 20%) !important;
+        background-color: darken(#5699eb, 5%) !important;
     }
-    .router-active-right{
-        background-color: lighten(#333333, 60%) !important;
-        color: white!important;
-    }
+
 </style>
 

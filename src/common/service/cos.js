@@ -1,17 +1,29 @@
 import COS from 'cos-js-sdk-v5/dist/cos-js-sdk-v5';
+import resourceApi from 'api/resourceApi';
+
+/**
+ * config:{
+ *     files[Array],
+ *     type,
+ *     onProgressChange[Call],
+ *     onPreUploaded[Call],
+ *     onSuccess,
+ *     onFailed
+ * }
+ *
+ * */
 
 export default {
-    send:function (config) {
+    send: function (config) {
         // 获取上传云存储必要的信息，默认使用resourcesApi里面的getCloudKeys方法
         // 用于存放文件上传进度的数组
         var filesProgress = [];
-        var names = _.pluck(config.files,'name');
+        var names = _.pluck(config.files, 'name');
         // 获取云存储的必要信息
-
-        config.preUpload.api[config.preUpload.action]({
-            data:{
-                names:names,
-                type:config.type
+        resourceApi.preUpload({
+            data: {
+                names: names,
+                type: config.type
             }
         }).then(function (res) {
             var resData = res.data;
@@ -34,7 +46,7 @@ export default {
                         callback(resData.items[k].token);
                     }
                 });
-                var promise = new Promise(function (resolve,reject) {
+                var promise = new Promise(function (resolve, reject) {
                     // 提交到云存储
                     cos.putObject({
                         Bucket: bucket,
@@ -74,7 +86,8 @@ export default {
                     config.onSuccess({
                         success: 1,
                         hasError: 0,
-                        keys:_.pluck(resData.items,'key'),
+                        keys: _.pluck(resData.items, 'key'),
+                        urls: _.pluck(resData.items, 'url'),
                         files_name: names
                     })
                 }
@@ -83,7 +96,7 @@ export default {
                     config.onFailed({
                         success: 0,
                         hasError: 1,
-                        keys:_.pluck(resData.items,'key')
+                        keys: _.pluck(resData.items, 'key')
                     })
                 }
             });

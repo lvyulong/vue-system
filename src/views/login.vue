@@ -108,7 +108,7 @@
                 var key = this.$route.query && this.$route.query.key;
                 if (key) {
                     this.key = key;
-                    authApi.login({data: {key: this.key,type:configEnum['LOGIN_TYPE_BY_CORP_WX']}}).then(function (res) {
+                    authApi.login({data: {key: this.key}}).then(function (res) {
                         that.$router.push(that.appRouterEnter);
                     }).catch(function (err) {
                         let errRes = err.response || {};
@@ -139,6 +139,7 @@
                     }
                 }
             }
+
             // 用户中心登录
             if (sys.loginType == 'uc') {
                 that.loading = true;
@@ -146,12 +147,11 @@
                     that.loadingText = '正在登录';
                     authApi.login({
                         data: {
-                            code: that.$route.query.code,
-                            type:configEnum['LOGIN_TYPE_BY_CORP_UCENTER']
+                            code: that.$route.query.code
                         }
                     }).then(function (res) {
                         that.$router.push({
-                            name: 'appAuthUserIndex'
+                            name: 'appOverviewIndex'
                         });
                         that.loading = false;
                     });
@@ -171,6 +171,7 @@
                     })
                 }
             }
+
         }
     };
 </script>

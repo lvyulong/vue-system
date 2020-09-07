@@ -14,7 +14,7 @@
 <template>
     <div>
         <div class="file-block">
-            <el-button class="file-button" type="primary" size="small">
+            <el-button class="file-button" type="primary" size="mini">
                 {{label}}
             </el-button>
             <vue-file-upload
@@ -43,7 +43,10 @@
 </template>
 <script>
     import VueFileUpload from 'vue-file-upload';
-
+    /**
+     * event:add/complete
+     *
+     * */
     export default {
         name: 'fileUpload',
         props: {
@@ -71,6 +74,12 @@
             hideList: {
                 type: Boolean,
                 default: false
+            },
+            /**
+             * 额外的参数，向父元素传递事件时带上
+            * */
+            extra:{
+                type:Object
             }
         },
         data() {
@@ -113,7 +122,7 @@
                         if (this.completeCount == this.files.length) {
                             this.$refs.vueFileUploader.clearAll();
                             this.files = [];
-                            this.$emit('complete', this.errorFiles, response);
+                            this.$emit('complete', this.errorFiles, response,this.extra);
                             if (this.loadObj) {
                                 this.loadObj.close();
                                 this.loadObj = null;
@@ -139,10 +148,16 @@
                     // },
                     onAddFileFail: (file, failFilter) => {
                         if (failFilter.name == "typeFilter") {
-                            this.$message.error("文件类型不正确");
+                            this.$notify.error({
+                                title: '提示',
+                                message:'文件类型不正确'
+                            });
                         }
                         if (failFilter.name == "maxLimit") {
-                            this.$message.error("超过最大文件数限制");
+                            this.$notify.error({
+                                title: '提示',
+                                message:'超过最大文件数限制'
+                            });
                         }
                         if (failFilter.name == "sizeFilter") {
                             var sizeUnit;
@@ -151,7 +166,10 @@
                             } else {
                                 sizeUnit = this.sizeUnit;
                             }
-                            this.$message.error(`单个文件大小不能超过${this.size}${sizeUnit}`);
+                            this.$notify.error({
+                                title: '提示',
+                                message:`单个文件大小不能超过${this.size}${sizeUnit}`
+                            });
                         }
                     }
                 }
@@ -165,7 +183,6 @@
                 // 所有的过滤器（后续再加）
                 function filterFn(types) {
                     var fn = function (file) {
-                        console.log(file.type);
                         let pass = false;
                         for (var i = 0; i < types.length; i++) {
                             if (file.type.indexOf(types[i]) !== -1) {
@@ -214,7 +231,10 @@
             upload(data) {
                 var that = this;
                 if (this.files.length == 0) {
-                    this.$message.error("未选择任何文件");
+                    this.$notify.error({
+                        title: '提示',
+                        message:'未选择任何文件'
+                    });
                     return;
                 }
                 // 开始上传文件，显示loading
@@ -232,7 +252,7 @@
             // 添加新文件时触发
             onAddItem(files) {
                 this.files = files;
-                this.$emit('add', files);
+                this.$emit('add', files,this.extra);
             },
             //移除单个文件
             deleteItem(file) {

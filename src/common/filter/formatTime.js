@@ -16,8 +16,7 @@ export default function (value, type) {
     if (!value) {
         return '-'
     }
-    let time = value * 1000;
-    let date = new Date(time);
+    let date = new Date(value);
     let year = date.getFullYear().toString();
     let MM = (date.getMonth() + 1).toString();
     let dd = date.getDate().toString();
@@ -34,8 +33,10 @@ export default function (value, type) {
         ss = `0${ss}`;
     }
     if (!type) {
-        return `${year}-${monthMap[MM]}-${dd} ${hh}:${mm}`;
+        return `${year}-${MM}-${dd} ${hh}:${mm}`;
     } else if (type == 'yyyy-MM-dd HH:mm:ss') {
-        return `${year}-${monthMap[MM]}-${dd} ${hh}:${mm}:${ss}`;
+        return `${year}-${MM}-${dd} ${hh}:${mm}:${ss}`;
+    } else if (type == 'yyyy-MM-dd') {
+        return `${year}-${MM}-${dd}`;
     }
 }

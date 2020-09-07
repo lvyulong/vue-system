@@ -85,14 +85,20 @@
                     this.model = Object.assign({},currentTag);
                     this.tagInputShow = 'edit';
                 } else {
-                    this.$message.error("未选中任何项");
+                    this.$notify.error({
+                        title: '提示',
+                        message:"未选中任何项"
+                    });
                 }
 
 
             },
             submit() {
                 if (!this.model.name) {
-                    this.$message.error("输入信息不能为空");
+                    this.$notify.error({
+                        title: '提示',
+                        message:"输入信息不能为空"
+                    });
                     return;
                 }
                 this.$emit(this.tagInputShow, this.model);

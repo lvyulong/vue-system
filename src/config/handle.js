@@ -23,8 +23,8 @@ export default {
             console.error("length 必须大于3")
             return;
         }
-        var PWDLENGTH = 8 || length;
-        var pwdSetArray = ['abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '0123456789'];
+        var PWDLENGTH = length || 8;
+        var pwdSetArray = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz', '1234567890', '!@#$%&*()'];
         var pwdSets = pwdSetArray.join('');
         var PWDINDEX = [];
         for (var i = 0; i < PWDLENGTH; i++) {

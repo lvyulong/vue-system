@@ -26,7 +26,6 @@ usage：
 </template>
 <script>
     export default {
-        name: 'Back',
         props: [
             'type',               //按钮的样式
             'plain',            //朴素
@@ -48,8 +47,7 @@ usage：
             back: function () {
                 if (this.route) {
                     // 优先从全局的路由缓存中取（该路由缓存在全局变量中，所以刷新之后就销毁了）
-                    var routeState = window.global_data.routeState;
-                    var query = (routeState[this.route.name] && routeState[this.route.name].query) || this.route.query || {};
+                    var query = this.route.query || {};
                     this.$router.push({
                         name: this.route.name,
                         query: query

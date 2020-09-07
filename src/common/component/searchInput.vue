@@ -5,29 +5,62 @@
 <!--二、查询按钮-->
 <!--1、点击查询，触发submit事件，并把值组成一个对象抛出-->
 <!--2、父组件中响应submit事件，触发刷新列表即可-->
-
 <template>
-    <div>
-        <el-input placeholder="请输入内容"
-                  v-model="inputValue"
-                  class="input-with-select">
+    <div class="search-input-wrap">
+        <div style="display: flex;align-items: center">
             <el-select v-model="selected"
-                       slot="prepend"
+                       class="search-select"
+                       size="small"
                        placeholder="请选择"
-                       :style="{width: labelWidth||'80px'}">
+                       :style="{width: labelWidth || dynamicWidth}">
                 <el-option
                         v-for="item in options"
-                        :key="item.value"
+                        :key="item.key"
                         :label="item.label"
-                        :value="item.value">
+                        :value="item.key">
                 </el-option>
             </el-select>
-            <el-button
-                    slot="append"
-                    icon="el-icon-search"
-                    @click="submit">
-            </el-button>
-        </el-input>
+            <!--下拉选择（多选、单选）-->
+            <el-autocomplete
+                    v-if="activeItem.option"
+                    class="search-input"
+                    size="small"
+                    :readonly="readonly"
+                    :style="{width:searchWidth || '500px'}"
+                    v-model="inputValue"
+                    :debounce="0"
+                    :fetch-suggestions="getSuggestions"
+                    :placeholder="activeItem.desc || ''"
+                    @select="handleSelect">
+                <template slot-scope="{ item }">
+                    <div v-if="item">{{ item.label }}</div>
+                </template>
+                <el-button
+                        slot="append"
+                        icon="el-icon-search"
+                        @click="submit">
+                </el-button>
+            </el-autocomplete>
+            <!--文本输入-->
+            <el-input
+                    v-if="!activeItem.option"
+                    class="search-input"
+                    size="small"
+                    :readonly="readonly"
+                    @keyup.enter.native="submit"
+                    :style="{width:searchWidth || '500px'}"
+                    v-model="inputValue"
+                    :placeholder="activeItem.desc || ''">
+                <el-button
+                        slot="append"
+                        icon="el-icon-search"
+                        @click="submit">
+                </el-button>
+            </el-input>
+        </div>
+        <div>
+            <slot></slot>
+        </div>
     </div>
 </template>
 <script>
@@ -35,11 +68,14 @@
         name: 'searchInput',
         data() {
             return {
+                readonly: false,
                 selected: '',
                 inputValue: '',
+                dynamicWidth: '100px',   // 优先使用父组件传的labelWidth，如果没传则根据label的字符串长度动态计算
             }
         },
         props: {
+            searchWidth:String,
             // options必须为数组，并且长度大于0
             options: {
                 validator: function (value) {
@@ -49,15 +85,44 @@
             labelWidth: String,
             useData: String, //使用该参数，则该组件不会将参数放到url中，而是发布一个submit事件，并将参数抛出去，让父组件去处理
         },
+        computed: {
+            activeItem: function () {
+                let item = _.findWhere(this.options, {key: this.selected}) || {};
+                return item;
+            }
+        },
         methods: {
+            handleSelect() {
+                this.$emit('submit', {
+                    key: this.selected,
+                    value: this.inputValue
+                });
+                this.inputValue = '';
+            },
+            getSuggestions(queryString, cb) {
+                let options = [];
+                if(this.activeItem && this.activeItem.option){
+                    options = JSON.parse(JSON.stringify(this.activeItem.option));
+                    options = _.filter(options,function (item) {
+                        return !item.selected;
+                    });
+                }
+                let result = queryString?options.filter(this.createFilter(queryString)):options;
+                cb(result);
+            },
+            createFilter(queryString) {
+                return (option) => {
+                    return (option.label.toLowerCase().indexOf(queryString.toLowerCase()) >= 0);
+                };
+            },
             submit() {
                 if (!this.useData) {
-                    var params = Object.assign({}, this.$route.query);
+                    let params = Object.assign({}, this.$route.query);
                     // 1、删除params中所有包含在options中的参数
-                    for (var i = 0; i < this.options.length; i++) {
-                        var item = this.options[i];
-                        if (params.hasOwnProperty(item.value)) {
-                            delete params[item.value];
+                    for (let i = 0; i < this.options.length; i++) {
+                        let item = this.options[i];
+                        if (params.hasOwnProperty(item.key)) {
+                            delete params[item.key];
                         }
                     }
                     // 2、将当前的值赋到params中
@@ -70,18 +135,22 @@
                         query: params
                     })
                 } else {
-                    this.$emit('submit',{
-                        [this.selected]:this.inputValue
-                    })
+                    this.$emit('submit', {
+                        key: this.selected,
+                        value: this.inputValue
+                    });
+                    this.inputValue = '';
                 }
             },
+
+            // 填充参数
             fillComponent(params) {
                 if (!params) {
-                    var params = this.$route.query;
+                    let params = this.$route.query;
                 }
                 // 所有的值
-                var values = _.pluck(this.options, "value");
-                var hasProp = 0;
+                let values = _.pluck(this.options, "key");
+                let hasProp = 0;
                 for (let i = 0; i < values.length; i++) {
                     // 如果filter对象中有options中对应的属性值，则渲染到组件中;找到一个就终止
                     if (params.hasOwnProperty(values[i])) {
@@ -93,18 +162,65 @@
                 }
                 // 如果filter中没有对应的属性，默认渲染第一个option
                 if (!hasProp) {
-                    this.selected = this.options[0].value;
+                    this.selected = this.options[0].key;
                     this.inputValue = '';
                 }
             }
         },
         created: function () {
-            this.fillComponent();
+            // this.fillComponent();
+            // 默认渲染第一个
+            if(Array.isArray(this.options) && this.options.length > 0){
+                this.selected = this.options[0].key;
+            }
+        },
+        watch: {
+            'selected': function (n, o) {
+                let item = _.findWhere(this.options, {key: n});
+                if(!item){
+                    return;
+                }
+                // 动态计算label宽度
+                if(item.width){
+                    this.dynamicWidth = item.width + 'px';
+                }else if (item.label) {
+                    this.dynamicWidth = (item.label.length * 20 + 35) + 'px';
+                } else {
+                    this.dynamicWidth = '100px';
+                }
+                this.readonly = item.readonly?true:false;
+            }
         }
     }
 </script>
-<style scoped>
+<style scoped lang="less">
+    .search-input-wrap{
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .search-input{
+        margin-left: -5px;
+    }
+    /deep/ .search-input .el-input__inner{
+        border-radius: 0!important;
+    }
+    /deep/ .search-input .el-input__inner:focus{
+        border-color: #DCDFE6;
+    }
+    /deep/ .search-input .el-input__inner:hover{
+        border-color: #DCDFE6;
+    }
 
+    /deep/ .search-select .el-input__inner{
+        border-radius: 4px 0 0 4px;
+    }
+    /deep/ .search-select .el-input__inner:focus{
+        border-color: #DCDFE6;
+    }
+    /deep/ .search-select .el-input__inner:hover{
+        border-color: #DCDFE6;
+    }
 </style>
 
 

@@ -8,7 +8,7 @@
 <template>
     <div>
         <slot v-bind:list="list"></slot>
-        <div class="mt10">
+        <div class="mt10 clean-float">
             <el-pagination
                     v-if="!hidePage"
                     :class="{'pull-right':position=='right'}"

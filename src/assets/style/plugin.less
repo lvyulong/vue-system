@@ -1,17 +1,4 @@
 //第三方库的样式修改
-.el-submenu__title {
-  i {
-    color: white!important;
-  }
-}
-
-.el-menu-item {
-  border-radius: 50px 0 0 50px;
-  i {
-    color: white!important;
-  }
-}
-
 .fade-enter-active {
   transition: opacity .5s;
 }
@@ -22,6 +9,9 @@
   .el-tag__close{
     color: white!important;
   }
+}
+.tox .tox-menu{
+  z-index: 20020000!important;
 }
 //vue-file-upload插件的样式美化
 .vue-file-upload{
@@ -51,16 +41,42 @@
 .el-button+.el-button{
   margin: 0;
 }
-//富文本编辑器
-.wangeditor{
-  ul{
-    li{
-      list-style: disc!important;
-    }
+
+.el-menu-item,.el-submenu__title{
+  i {
+    color: white!important;
   }
-  ol{
-    li{
-      list-style: decimal!important;
-    }
-  }
+  padding: 0!important;
+  line-height: normal!important;
+  background: #333333!important;
+  height: auto;
+  cursor: pointer;
 }
+.el-menu{
+  width: 100%;
+}
+.el-menu--popup{
+  padding: 0;
+}
+.el-color-picker__trigger{
+  width: 300px;
+}
+.el-drawer__wrapper{
+  z-index: 1001!important;
+}
+.el-drawer:focus {
+  outline: none;
+}
+.v-modal{
+  z-index: 1000!important;
+}
+.tox-notifications-container{
+  display: none;
+}
+
+.el-drawer{
+  overflow: auto;
+}
+//table th{
+//  background-color: #F5F6FA!important;
+//}

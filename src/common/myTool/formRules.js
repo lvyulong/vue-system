@@ -41,7 +41,7 @@ const rule = function (array) {
         var item = array[i];
         rules[item.key] = [];
         // 只要required不是0，都默认验证必填
-        if (item.required !== 0) {
+        if (item.required) {
             rules[item.key].push({
                 required: true,
                 message: `${item.label}必填`,

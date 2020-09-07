@@ -36,7 +36,7 @@
 </template>
 <script>
     export default {
-        name: "BindPms",
+        name: "bindPms",
         props: [
             'height',
         ],

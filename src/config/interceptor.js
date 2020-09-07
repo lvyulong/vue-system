@@ -52,7 +52,7 @@ export default {
                     vm.$message.error(`未知的错误 Unknown error`)
                 }
             }
-            return Promise.reject(error.response);
+            return Promise.reject(error);
         }
     }
 };

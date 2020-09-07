@@ -4,7 +4,8 @@ import rule from './formRules';
 function deleteById(array, id) {
     if (!array) {
         return;
-    };
+    }
+    ;
     for (let i = 0; i < array.length; i++) {
         if (array[i].id == id) {
             array.splice(i, 1);
@@ -31,6 +32,61 @@ function trimObj(obj, keys) {
         }
     }
     return newObj
+}
+
+
+function objIsSame(obj1,obj2) {
+    let isSame = true;
+    for(let key in obj1){
+        if(!obj2.hasOwnProperty(key)){
+            isSame = false;
+            break;
+        }else if(isObject(obj1[key])){
+            // 如果该属性是对象
+            isSame = objIsSame(obj1[key],obj2[key]);
+            if(!isSame){
+                break;
+            }
+        }else if(Array.isArray(obj1[key])){
+            // 如果该属性是数组
+            let arr1 = JSON.stringify(obj1[key]);
+            let arr2 = JSON.stringify(obj2[key]);
+            if(arr1!==arr2){
+                isSame = false;
+                break;
+            }
+        }else if(obj1[key]!==obj2[key]){
+            isSame = false;
+            break;
+        }
+    }
+    if(!isSame){
+        return false;
+    }
+    for(let key in obj2){
+        if(!obj1.hasOwnProperty(key)){
+            isSame = false;
+            break;
+        }else if(isObject(obj2[key])){
+            // 如果该属性是对象
+            isSame = objIsSame(obj2[key],obj1[key]);
+            if(!isSame){
+                break;
+            }
+        }else if(Array.isArray(obj2[key])){
+            // 如果该属性是数组
+            let arr1 = JSON.stringify(obj1[key]);
+            let arr2 = JSON.stringify(obj2[key]);
+            if(arr1!==arr2){
+                isSame = false;
+                break;
+            }
+        }else if(obj1[key]!==obj2[key]){
+            isSame = false;
+            break;
+        }
+    }
+    return isSame;
 }
 
 // 删除指定的属性
@@ -112,9 +168,10 @@ function extend(obj1, obj2) {
 }
 
 //清除对象中的无效字段（空字符串，空数组，空对象、undefined/null）
-function clearInvalidProp(obj) {
-    for (var key in obj) {
-        var item = obj[key];
+function clearInvalidProp(src) {
+    let obj = JSON.parse(JSON.stringify(src));
+    for (let key in obj) {
+        let item = obj[key];
         if (JSON.stringify(item) === '{}' || JSON.stringify(item) === '[]' || item === '' || item === undefined || item === null) {
             delete obj[key]
         }
@@ -131,18 +188,142 @@ function toUrlString(obj) {
     str = str.substr(0, str.length - 1);
     return str;
 }
+
 // 复制数组
 function copyArray(array) {
-    if(Array.isArray(array)){
+    if (Array.isArray(array)) {
         return JSON.parse(JSON.stringify(array));
     }
 }
+
 // 深复制对象
 function copy(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
+// 从原数组中提取指定的字段，并可重命名字段名，组成一个新的精简数组
+function trimArray(list, aliasObj) {
+    var newList = [];
+    if (Array.isArray(list) && list.length > 0) {
+        for (var i = 0; i < list.length; i++) {
+            var item = list[i];
+            var newItem = {};
+            for (var aliasKey in aliasObj) {
+                var aliasVal = aliasObj[aliasKey];
+                if (item.hasOwnProperty(aliasKey)) {
+                    newItem[aliasVal] = item[aliasKey]
+                }
+            }
+            newList.push(newItem)
+        }
+    }
+    return newList;
+}
+
+function setProp(origin, str, value) {
+    if (!isObject(origin)) {
+        throw new TypeError("The first param is not a object");
+    }
+    let keys = str.split('.');
+    let curKey = keys[0];
+    let newStr = keys.slice(1).join('.');
+    if (keys.length > 0) {
+        if (keys.length == 1) {
+            // 到达终点，设置值，结束
+            origin[curKey] = value;
+        } else if (!origin.hasOwnProperty(curKey) || !isObject(origin[curKey])) {
+            // 还没到达终点，并且该层没有这个属性或者该属性不是一个对象，则设置该属性为空对象
+            origin[curKey] = {};
+            setProp(origin[curKey], newStr, value);
+        } else {
+            // 还没到达终点，但是该层有这个属性，则继续往下层找
+            setProp(origin[curKey], newStr, value);
+        }
+    }
+}
+
+function handleModules(files) {
+    // 处理webpack的requre.context方法返回的files，返回一个对象，key是module名
+    let modules = {};
+    files.keys().forEach(key => {
+        let module = files(key).default;
+        let reg = /[\.\/]/;
+        let names = key.split(reg);
+        modules[names[names.length - 2]] = module;
+    });
+    return modules;
+}
+
+function getItems(list, key, targets) {
+    let result = [];
+    list.forEach(item => {
+        if (targets.indexOf(item[key]) >= 0) {
+            let newItem = JSON.parse(JSON.stringify(item));
+            result.push(newItem);
+        }
+    });
+    return result;
+}
+
+function setItemId(list) {
+    // 该方法改变的是原数组，不会返回新数组
+    if (!Array.isArray(list)) {
+        throw new Error("list 必须是一个数组");
+    }
+    if(list.length > 0){
+        list.forEach((item, index) => {
+            if (!isObject(item)) {
+                throw new Error("item 必须是一个对象");
+            }
+            // 如果没有id属性时，将索引作为ID
+            if(!item.hasOwnProperty('id')){
+                item.id = index + 1;
+            }
+        })
+    }
+}
+
+
+// 最大化合并JSON
+// function merge(obj1,obj2) {
+//
+//     if(!isObject(obj1) || !isObject(obj2)){
+//         throw new Error("两个参数都必须是对象");
+//     }
+//     let outPut = JSON.parse(JSON.stringify(obj1));
+//     let target = JSON.parse(JSON.stringify(obj2));
+//
+//     for(let key2 in target){
+//         // 如果obj1中没有obj2中的属性，则添加该属性
+//         if(!obj1.hasOwnProperty(key2)){
+//             obj
+//         }
+//     }
+//
+//     mergeObj(outPut,target);
+//
+//
+//
+//     function isObject(obj) {
+//         return Object.prototype.toString.call(obj) == '[object Object]';
+//     }
+//     function mergeObj(src,target) {
+//
+//         for(let key2 in target){
+//             // 如果obj1中没有obj2中的属性，则添加该属性
+//             if(!obj1.hasOwnProperty(key2)){
+//                 obj
+//             }
+//         }
+//
+//     }
+//     return outPut
+// }
+
+
 export default {
+    // 两个对象是否一样
+    objIsSame,
     // 删除数组中指定id的项
     deleteById,
     //修剪object，挑选其中指定的属性，返回一个新对象
@@ -153,6 +334,7 @@ export default {
     getSearch,
     //找对象下面的属性值，逐层寻找
     getProp,
+    setProp,
     //将对象转化成url的查询字符串
     toUrlString,
     //清除对象中的无效字段（空字符串，空数组，空对象）
@@ -164,5 +346,9 @@ export default {
     rule,
     // 复制一个数组
     copyArray,
-    copy
+    copy,
+    trimArray,
+    handleModules,
+    getItems,
+    setItemId
 }

@@ -1,45 +1,33 @@
 import register from 'app/common/register';
-// -----------------------------------------------------
-import back from 'component/Back';
-import pageList from 'component/pageList';
-import searchInput from 'component/searchInput.vue';
-import searchSelect from 'component/searchSelect.vue';
-import fileUpload from 'component/fileUpload.vue';
-import tags from 'component/tags.vue';
-import pageHeader from 'component/pageHeader.vue';
-import selectLink from 'component/selectLink.vue';
-// import vueQr from 'vue-qr';
-import gender from 'filter/gender';
-import isEnable from 'filter/isEnable';
-import propMap from 'filter/propMap';
-import keyToVal from 'filter/keyToVal';
-import ellipsis from 'filter/ellipsis';
-import timestampTotime from 'filter/timestampTotime';
-import formatTime from 'filter/formatTime';
-// -----------------------------------------------------
-
 // 组件
 const config = {
-    component: [
-        {name: 'back', component: back},
-        {name: 'pageList', component: pageList},
-        {name: 'searchInput', component: searchInput},
-        {name: 'searchSelect', component: searchSelect},
-        {name: 'fileUpload', component: fileUpload},
-        {name: 'tags', component: tags},
-        {name: 'pageHeader', component: pageHeader},
-        {name: 'selectLink', component: selectLink},
-        // {name: 'vueQr', component: vueQr},
-    ],
+    component: [],
     directive: [],
-    filter: [
-        {name: 'gender', filter: gender},
-        {name: 'isEnable', filter: isEnable},
-        {name: 'propMap', filter: propMap},
-        {name: 'timestampTotime', filter: timestampTotime},
-        {name: 'keyToVal', filter: keyToVal},
-        {name: 'ellipsis', filter: ellipsis},
-        {name: 'formatTime', filter: formatTime},
-    ]
+    filter: []
 };
+// 加载common/component/global下的所有文件，注册为全局的组件
+const components = require.context('../common/component/global',false,/\.vue/);
+components.keys().forEach(key => {
+    let component = components(key).default;
+    let reg = /\.\/(\S+)\.vue/;
+    let name = reg.exec(key)[1];
+    config.component.push({
+        name:name,
+        component:component
+    })
+});
+
+// 加载common/filter/下的所有文件，注册为全局的filter
+const filters = require.context('../common/filter',false,/\.js/);
+filters.keys().forEach(key => {
+    if(key !== './index.js'){
+        let filter = filters(key).default;
+        let reg = /\.\/(\S+)\.js/;
+        let name = reg.exec(key)[1];
+        config.filter.push({
+            name:name,
+            filter:filter
+        })
+    }
+});
 register(config);

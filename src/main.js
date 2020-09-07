@@ -12,8 +12,9 @@ import 'app/assets/style/main.less';
 import routesDesign from 'vue-routes-design';
 import axios from 'axios';
 import vueAxiosResource from 'vue-axios-resource';
+import VueClipboard from 'vue-clipboard2';
+import 'lib/wwLogin';
 // import i18n from './i18n/i18n';
-
 // 自定义文件
 import main from 'app/main.vue';
 import routeConfig from 'config/route';
@@ -21,9 +22,8 @@ import storeConfig from 'app/common/store/index';
 import myTool from 'app/common/myTool/index';
 import 'config/global';
 import sys from 'config/sys';
-import interceptor from 'config/interceptor'
+import interceptor from 'config/interceptor';
 import lvlPlugin from 'app/common/plugin/lvlPlugin';
-
 window.global_data = {
     //除非需要写死域名的地方才会用到，否则需用location.origin动态获取
     domain: {
@@ -39,31 +39,34 @@ if (location.hostname === 'localhost' || location.hostname === global_data.devIp
 }
 window.myTool = myTool;
 window._ = underscore;
+// window.tinymce = tinymce;
 
-// 使用插件
-Vue.use(lvlPlugin);
+// ElementUI导航栏3.0版本以上重复点菜单报错问题
+const originalPush = Router.prototype.push;
+Router.prototype.push = function (location) {
+    return originalPush.call(this, location).catch(err => err);
+};
+const originalReplace = Router.prototype.replace;
+Router.prototype.replace = function (location) {
+    return originalReplace.call(this, location).catch(err => err);
+};
 Vue.use(Router);
 Vue.use(ElementUI);
 Vue.use(Vuex);
-Vue.use(vueAxiosResource,{
-    handler:axios,
-    baseUrl:sys.sysApiBase,
-    interceptor:interceptor
+Vue.use(vueAxiosResource, {
+    handler: axios,
+    baseUrl: sys.sysApiBase,
+    interceptor: interceptor
 });
+// 使用插件
+Vue.use(lvlPlugin);
+VueClipboard.config.autoSetContainer = true;
+Vue.use(VueClipboard);
 // vuex状态
 const store = new Vuex.Store(storeConfig);
-
 // 路由
 var routes = routesDesign.create(routeConfig);
 const router = new Router({routes});
-router.afterEach((to, from) => {
-    if(from && from.name){
-        window.global_data.routeState[from.name] = {
-            query:from.query,
-            params:from.params
-        }
-    }
-});
 // 挂载dom
 const root = document.createElement('div');
 document.body.appendChild(root);
@@ -79,7 +82,6 @@ const vm = new Vue({
 // // 英文版
 // localStorage.setItem('lang', 'en');
 window.global_data.lang_type = 'cn';
-
 axios.get('/static/scripts/errorEnumData.json').then(function (res) {
     // 获取到errorEnumData.json之后才渲染vue组件
     window.global_data.errorEnumData = res.data.data;
