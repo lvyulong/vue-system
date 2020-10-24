@@ -177,6 +177,7 @@ const en = {
 #### 1、下载依赖
 <pre>npm install</pre>
 
+
 #### 2、开启本地服务器
 <pre>npm start</pre>
 
